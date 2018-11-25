@@ -167,10 +167,12 @@
 
         <div class="article-entry" itemprop="articleBody">
             <h2 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h2><h3 id="first-personalblog"><a href="#first-personalblog" class="headerlink" title="first personalblog"></a>first personalblog</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">你好，世界！</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="comments-true"><a href="#comments-true" class="headerlink" title="comments: true"></a>comments: true</h2>
         </div>
 
         <section class="meta">
-            <time class="time" itemprop="dateUpdated" datetime="2018-11-25T22:16:58+08:00" content="2018-11-25">
+            <time class="time" itemprop="dateUpdated" datetime="2018-11-25T23:25:46+08:00" content="2018-11-25">
                 <i class="fas fa-pen fa-fw" aria-hidden="true"></i>
                 本文最后更新于：2018-11-25
             </time>
@@ -201,18 +203,26 @@
                 
 
                 
-                    <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;LiveRe评论</h4>
-                    <section id="comments">
-                        <div id="lv-container" data-id="city" data-uid="MTAyMC80MTI2Ny8xNzgxNQ==">
-                            <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
-                        </div>
-                    </section>
-                
 
+                
+                    
+                        <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;Valine评论</h4>
+                        <div class="subtitle">
+                          <h6><b>文明评论，请勿灌水。</b>为了便于区分和接收回复提醒，请您在留言时填写一下<b>昵称</b>和<b>邮箱</b>。
+                          不定期清理没有昵称和灌水的评论。</h6>
+                        <div>
+                        <section id="comments">
+                            <div id="valine_container" class="valine_thread">
+                                <i class="fas fa-spinner fa-spin fa-fw"></i>
+                            </div>
+                        </section>
+                        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+                        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+                    
                 
             
 
-        </section>
+        </div></div></section>
     </article>
 
 
@@ -295,7 +305,7 @@
             <div class="wrapper"><a class="s-toc rightBtn" title="固定到顶部" target="_blank" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
         </header>
         <div class="content pure">
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#hello-world"><span class="toc-text">hello world</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#first-personalblog"><span class="toc-text">first personalblog</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#hello-world"><span class="toc-text">hello world</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#first-personalblog"><span class="toc-text">first personalblog</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#comments-true"><span class="toc-text">comments: true</span></a></li></ol>
         </div>
     </section>
 
@@ -393,17 +403,31 @@
 
     
     
-        <script type="text/javascript">
-           (function(d, s) {
-               var j, e = d.getElementsByTagName(s)[0];
-               if (typeof LivereTower === 'function') { return; }
-               j = d.createElement(s);
-               j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-               j.async = true;
-               e.parentNode.insertBefore(j, e);
-           })(document, 'script');
-        </script>
     
+        
+            <script>
+            var GUEST_INFO = ['nick','mail','link'];
+            var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+                return GUEST_INFO.indexOf(item) > -1
+            });
+            var notify = 'false' == true;
+            var verify = 'false' == true;
+            var valine = new Valine();
+            valine.init({
+                el: '#valine_container',
+                notify: notify,
+                verify: verify,
+                guest_info: guest_info,
+                appId: "6cfQVdGpzfhczTSJf09Y19vA-gzGzoHsz",
+                appKey: "CflTqLGKCoUwR02ksNc35rUY# 必填",
+                placeholder: "快来评论吧~",
+                pageSize:'10',
+                avatar:'mp',
+                lang:'zh-cn',
+                highlight:''
+            })
+            </script>
+        
     
 
 
