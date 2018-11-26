@@ -205,23 +205,10 @@
 
                 
                     
-                        <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;Valine评论</h4>
-                        <div class="subtitle">
-                          <h6><b>文明评论，请勿灌水。</b>为了便于区分和接收回复提醒，请您在留言时填写一下<b>昵称</b>和<b>邮箱</b>。
-                          不定期清理没有昵称和灌水的评论。</h6>
-                        <div>
-                        <section id="comments">
-                            <div id="valine_container" class="valine_thread">
-                                <i class="fas fa-spinner fa-spin fa-fw"></i>
-                            </div>
-                        </section>
-                        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-                        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-                    
                 
             
 
-        </div></div></section>
+        </section>
     </article>
 
 
@@ -403,29 +390,6 @@
     
     
     
-        
-            <script>
-            var GUEST_INFO = ['nick','mail','link'];
-            var guest_info = 'nick,mail,link'.split(',').filter(function(item){
-                return GUEST_INFO.indexOf(item) > -1
-            });
-            var notify = 'false' == true;
-            var verify = 'false' == true;
-            var valine = new Valine();
-            valine.init({
-                el: '#valine_container',
-                notify: notify,
-                verify: verify,
-                guest_info: guest_info,
-                appId: "6cfQVdGpzfhczTSJf09Y19vA-gzGzoHsz",
-                appKey: "CflTqLGKCoUwR02ksNc35rUY# 必填",
-                placeholder: "快来评论吧~",
-                pageSize:'10',
-                avatar:'mp',
-                lang:'zh-cn',
-                highlight:''
-            })
-            </script>
         
     
 
