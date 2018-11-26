@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite/"/>
-  <updated>2018-11-26T01:07:22.166Z</updated>
+  <updated>2018-11-26T06:46:39.310Z</updated>
   <id>http://yoursite/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://yoursite/2018/11/25/hello-world/"/>
     <id>http://yoursite/2018/11/25/hello-world/</id>
     <published>2018-11-25T08:55:32.795Z</published>
-    <updated>2018-11-26T01:07:22.166Z</updated>
+    <updated>2018-11-26T06:46:39.310Z</updated>
     
     <content type="html"><![CDATA[<h2 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h2><h3 id="first-personalblog"><a href="#first-personalblog" class="headerlink" title="first personalblog"></a>first personalblog</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">你好，世界！</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -34,6 +34,12 @@
     
     </summary>
     
+      <category term="Cocoa Dev" scheme="http://yoursite/categories/Cocoa-Dev/"/>
+    
+    
+      <category term="blog" scheme="http://yoursite/tags/blog/"/>
+    
+      <category term="Hexo" scheme="http://yoursite/tags/Hexo/"/>
     
   </entry>
   
