@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite/"/>
-  <updated>2018-12-01T14:59:02.855Z</updated>
+  <updated>2018-12-01T15:27:57.839Z</updated>
   <id>http://yoursite/</id>
   
   <author>
@@ -21,13 +21,13 @@
     <link href="http://yoursite/2018/12/01/ps%E5%86%B0%E9%9B%95%E5%9B%BE%E7%89%87%E6%95%88%E6%9E%9C/"/>
     <id>http://yoursite/2018/12/01/ps冰雕图片效果/</id>
     <published>2018-12-01T13:42:18.000Z</published>
-    <updated>2018-12-01T14:59:02.855Z</updated>
+    <updated>2018-12-01T15:27:57.839Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="ps冰雕图片效果动作"><a href="#ps冰雕图片效果动作" class="headerlink" title="ps冰雕图片效果动作"></a>ps冰雕图片效果动作</h2><p>在csnd上看到的一种ps动作，自己动手做了一个，效果如下，感觉还行哈哈哈~~<br><img src="/2018/12/01/ps冰雕图片效果/IMG_20181129_094443.jpg" alt="ps冰雕效果图"><br><a id="more"></a><br>这个图片制作很简单，只是素材的获取有点难，我会在后面发上百度网盘链接，有需要可以去下载。</p><h3 id="一、ps软件语言转换"><a href="#一、ps软件语言转换" class="headerlink" title="一、ps软件语言转换"></a>一、ps软件语言转换</h3><p>可能大家部分ps是中文版的，要用这个动作效果需要将ps改为英文版（改的方法很简单，具体教程看下面）</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、打开ps所在文件夹（如果不知道安装位置，可右键ps图标点击文件所在位置）  </span><br><span class="line">2、进入Locales/zh_CN/Support Files/文件夹中,修改tw10428。dat文件，将其拓展名修改为其他拓展名  </span><br><span class="line">（比如：txt，只要让软件无法识别该文件就可以），记住该文件的拓展名为dat  </span><br><span class="line">想要中文版将文件拓展名改回dat  </span><br><span class="line">3、重新打开ps，现在改为英文版。</span><br></pre></td></tr></table></figure><h3 id="二、将动作效果加入到ps中"><a href="#二、将动作效果加入到ps中" class="headerlink" title="二、将动作效果加入到ps中"></a>二、将动作效果加入到ps中</h3><p>先将素材下载到电脑<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">链接：https://pan.baidu.com/s/1a3RLxtYP6Nr6RQfoeX_qHQ  </span><br><span class="line">提取码：4o8i</span><br></pre></td></tr></table></figure></p><p>然后将动作放入到ps中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、打开动作窗口（快捷键alt+f9）  </span><br><span class="line">2、点击动作窗口右上角小箭头  </span><br><span class="line">3、点击载入动作，找到下载好的文件（文件拓展名为atn）  </span><br><span class="line">4、现在改动作就在你的ps里面了</span><br></pre></td></tr></table></figure></p><h3 id="三、图片制作"><a href="#三、图片制作" class="headerlink" title="三、图片制作"></a>三、图片制作</h3><p>制作方法很简单，就三步<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、将要p的图片放入到ps中  </span><br><span class="line">2、ctrl+shift+n新建一个图层</span><br><span class="line">3、选中要变为冰雕的选区，然后在动作窗口下方点击开始按钮</span><br></pre></td></tr></table></figure></p><p><img src="/2018/12/01/ps冰雕图片效果/QQ截图20181201223845.png" alt="动作开始按钮"><br>图片制作完成–很简单，但是效果很好哈哈哈，有任何可以评论哟~~~  </p>]]></content>
+    <content type="html"><![CDATA[<h2 id="ps冰雕图片效果动作"><a href="#ps冰雕图片效果动作" class="headerlink" title="ps冰雕图片效果动作"></a>ps冰雕图片效果动作</h2><p>在csnd上看到的一种ps动作，自己动手做了一个，效果如下，感觉还行哈哈哈~~<br><img src="/2018/12/01/ps冰雕图片效果/20181125190408436.jpg" alt="ps冰雕效果图"><br><a id="more"></a><br>这个图片制作很简单，只是素材的获取有点难，我会在后面发上百度网盘链接，有需要可以去下载。</p><h3 id="一、ps软件语言转换"><a href="#一、ps软件语言转换" class="headerlink" title="一、ps软件语言转换"></a>一、ps软件语言转换</h3><p>可能大家部分ps是中文版的，要用这个动作效果需要将ps改为英文版（改的方法很简单，具体教程看下面）</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、打开ps所在文件夹（如果不知道安装位置，可右键ps图标点击文件所在位置）  </span><br><span class="line">2、进入Locales/zh_CN/Support Files/文件夹中,修改tw10428。dat文件，将其拓展名修改为其他拓展名  </span><br><span class="line">（比如：txt，只要让软件无法识别该文件就可以），记住该文件的拓展名为dat  </span><br><span class="line">想要中文版将文件拓展名改回dat  </span><br><span class="line">3、重新打开ps，现在改为英文版。</span><br></pre></td></tr></table></figure><h3 id="二、将动作效果加入到ps中"><a href="#二、将动作效果加入到ps中" class="headerlink" title="二、将动作效果加入到ps中"></a>二、将动作效果加入到ps中</h3><p>先将素材下载到电脑<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">链接：https://pan.baidu.com/s/1a3RLxtYP6Nr6RQfoeX_qHQ  </span><br><span class="line">提取码：4o8i</span><br></pre></td></tr></table></figure></p><p>然后将动作放入到ps中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、打开动作窗口（快捷键alt+f9）  </span><br><span class="line">2、点击动作窗口右上角小箭头  </span><br><span class="line">3、点击载入动作，找到下载好的文件（文件拓展名为atn）  </span><br><span class="line">4、现在改动作就在你的ps里面了</span><br></pre></td></tr></table></figure></p><h3 id="三、图片制作"><a href="#三、图片制作" class="headerlink" title="三、图片制作"></a>三、图片制作</h3><p>制作方法很简单，就三步<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、将要p的图片放入到ps中  </span><br><span class="line">2、ctrl+shift+n新建一个图层,图层名字改为brush</span><br><span class="line">3、选中要变为冰雕的选区，然后在动作窗口下方点击开始按钮</span><br></pre></td></tr></table></figure></p><p><img src="/2018/12/01/ps冰雕图片效果/QQ截图20181201223845.png" alt="动作开始按钮"><br>图片制作完成–很简单，但是效果很好哈哈哈，有任何可以评论哟~~~  </p>]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;ps冰雕图片效果动作&quot;&gt;&lt;a href=&quot;#ps冰雕图片效果动作&quot; class=&quot;headerlink&quot; title=&quot;ps冰雕图片效果动作&quot;&gt;&lt;/a&gt;ps冰雕图片效果动作&lt;/h2&gt;&lt;p&gt;在csnd上看到的一种ps动作，自己动手做了一个，效果如下，感觉还行哈哈哈~~&lt;br&gt;&lt;img src=&quot;/2018/12/01/ps冰雕图片效果/IMG_20181129_094443.jpg&quot; alt=&quot;ps冰雕效果图&quot;&gt;&lt;br&gt;&lt;/p&gt;
+      &lt;h2 id=&quot;ps冰雕图片效果动作&quot;&gt;&lt;a href=&quot;#ps冰雕图片效果动作&quot; class=&quot;headerlink&quot; title=&quot;ps冰雕图片效果动作&quot;&gt;&lt;/a&gt;ps冰雕图片效果动作&lt;/h2&gt;&lt;p&gt;在csnd上看到的一种ps动作，自己动手做了一个，效果如下，感觉还行哈哈哈~~&lt;br&gt;&lt;img src=&quot;/2018/12/01/ps冰雕图片效果/20181125190408436.jpg&quot; alt=&quot;ps冰雕效果图&quot;&gt;&lt;br&gt;&lt;/p&gt;
     
     </summary>
     
@@ -63,7 +63,7 @@
     <link href="http://yoursite/2018/11/25/hello-world/"/>
     <id>http://yoursite/2018/11/25/hello-world/</id>
     <published>2018-11-25T08:55:32.795Z</published>
-    <updated>2018-11-27T04:14:04.259Z</updated>
+    <updated>2018-12-01T15:00:35.314Z</updated>
     
     <content type="html"><![CDATA[<h2 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h2><a id="more"></a><h3 id="first-personalblog"><a href="#first-personalblog" class="headerlink" title="first personalblog"></a>first personalblog</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">你好，世界！</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -76,7 +76,7 @@
       <category term="随笔" scheme="http://yoursite/categories/%E9%9A%8F%E7%AC%94/"/>
     
     
-      <category term="Hexo" scheme="http://yoursite/tags/Hexo/"/>
+      <category term="hexo" scheme="http://yoursite/tags/hexo/"/>
     
   </entry>
   
