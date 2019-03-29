@@ -50,19 +50,19 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=" rel="stylesheet" type="text/css">
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="mask-icon" href="/images/logo.svg?v=" color="#222">
 
 
 
@@ -84,14 +84,14 @@
 <meta name="description" content="Github Pages + Hexo  我的博客是Github Pages + Hexo在github上搭建的。  下面是我对搭建博客过程中的一些分享">
 <meta name="keywords" content="hexo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="soliym">
+<meta property="og:title" content="建站分享">
 <meta property="og:url" content="http://yoursite/2018/11/26/关于博客的搭建/index.html">
 <meta property="og:site_name" content="soliym">
 <meta property="og:description" content="Github Pages + Hexo  我的博客是Github Pages + Hexo在github上搭建的。  下面是我对搭建博客过程中的一些分享">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-27T04:43:42.096Z">
+<meta property="og:updated_time" content="2019-03-29T15:27:24.299Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="soliym">
+<meta name="twitter:title" content="建站分享">
 <meta name="twitter:description" content="Github Pages + Hexo  我的博客是Github Pages + Hexo在github上搭建的。  下面是我对搭建博客过程中的一些分享">
 
 
@@ -101,8 +101,8 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -128,7 +128,7 @@
 
 
 
-  <title> | soliym</title>
+  <title>建站分享 | soliym</title>
   
 
 
@@ -193,6 +193,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -203,20 +213,52 @@
         </li>
       
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
             
-            归档
+            日程表
           </a>
         </li>
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -262,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">建站分享</h1>
         
 
         <div class="post-meta">
@@ -316,6 +358,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
           
 
@@ -335,19 +382,15 @@
 
       
         <h2 id="Github-Pages-Hexo"><a href="#Github-Pages-Hexo" class="headerlink" title="Github Pages + Hexo"></a>Github Pages + Hexo</h2><p>  我的博客是Github Pages + Hexo在github上搭建的。<br>  下面是我对搭建博客过程中的一些分享<br><a id="more"></a></p>
-<h3 id="一、-Git、node-js"><a href="#一、-Git、node-js" class="headerlink" title="一、 Git、node.js"></a>一、 Git、node.js</h3><p>  先下载安装好<strong>Git、node.js</strong>，具体的过程参照了网上很多的帖子，很多都不是很详细，对于我这种小白来说就是一种折磨（完全看不懂，虽然学了一点前端的HTML、css、js，但这里完全用不上，到是在后面修改主题的时候到是能看明白了。。。。）这些博客里有一个挺详细的，按照他的过程，很容易就弄出来了（其实也不容易。。。。。出现好多问题，当时就很崩溃，明明按照他的步骤完成的，为啥就不通过呢，只能靠着百度一一解决了。。。心累啊，看来无数帖子才把这个博客建好）<br>  <strong>这个帖子有点小错误，可能是环境和版本不同的原因吧</strong>（我搭建的时候有些地方会出错，需要自己去改）</p>
-<pre><code>http://jantc.cn/2017/04/16/%E5%BB%BA%E7%AB%99%E5%88%86%E4%BA%AB%E4%B9%8BGithub%20Pages%20+%20Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%20(%E4%B8%80)/
-</code></pre><h3 id="二、Github"><a href="#二、Github" class="headerlink" title="二、Github"></a>二、Github</h3><p>  在github上申请免费的空间来搭建网页，以前西部数码上购买过一个虚拟主机，很贵，一年要几百大洋，主要是国内的主要备案很麻烦，后来就放弃了。在github上可以搭建一个简单的静态网页，虽然是静态的，但是也可以加入很多功能，比如评论、分享系统。用来写写博客或作为个人的自我接受很好用。没有繁琐的管理，搭建好以后只管写博客就好。<br>  <strong>注册GitHub的时候最好是在chrome浏览器中</strong>，因为可以翻译网页，像我这种还没过四级的渣渣，看见这些英文网站就头疼。。。。（如果英语好的话，那就当我啥都没说，哈哈哈，还有不到一个月考四级很慌啊！！！）<br>  具体的注册步骤就不说了，反正我也是看着别人的帖子弄的。。。这个很容易网上就能找到（我忘了我是在按照那个弄的了）</p>
-<h3 id="三、hexo"><a href="#三、hexo" class="headerlink" title="三、hexo"></a>三、hexo</h3><p>  我也不知道这个是啥。。。。。反正就按照上面的网址里的过程做就行了，不过hexo里有很多命令要用到，配置完hexo本地就算配置完成了，接下来就是将hexo托管到github。<br>  那个_config.yml有两个，<strong>一个是在hexo文件夹下的，另一个是在主题文件夹下的</strong>，一定要分清楚这两个，后面修改主题配置的时候会对这两个文件进行修改。<br>  到这基础的就弄完了，可以说有个简单的博客就搭建完了，不过这时候页面有点丑（太low而且没啥功能），接下来就是对博客的美化-主题</p>
-<pre><code>hexo g  
-hexo s  
-hexo d  
-</code></pre><h3 id="四、主题"><a href="#四、主题" class="headerlink" title="四、主题"></a>四、主题</h3><p>我使用的是Material X作为博客的主题，想弄的话可以在我们博客的最下面点<strong>Material X</strong>连接，里面有关于这个主题的修改方法，在最下方有主题的源代码，下载后将文件放在主题文件夹中，上传就Ok了，具体的方法可以百度（有时间是话我会写篇文章来详细说一下我是怎样修改的和遇到的问题）</p>
-<pre><code>https://xaoxuu.com/blog/
-</code></pre><p>这是主题的作者（大佬啊）</p>
-<pre><code>https://www.wushile.top/
-</code></pre><p>也是一位大佬，分享系统和一些功能就是抄袭这位牛人的（感谢分享）</p>
-<h2 id="关于搭建博客"><a href="#关于搭建博客" class="headerlink" title="关于搭建博客"></a>关于搭建博客</h2><p>  博客搭建花了大概四天多的时间才完成对博客的简单搭建，第一次弄博客，遇到了很多很多的问题，几乎都快要放弃了，但想想已经花费的很多的时间去做这个博客，就该把它弄完，从无到有，很庆幸坚持到了最后，从一无所知的小白到完成搭建这个博客，学到了很多知识，在网上查找解决问题的时候也见识到了很多。很久都没有这么专注的去做一件事情，每天就想着一件事，就想把这个博客建好，现在终于把基础搭建完了，不足的地方以后再去修改，千里之行始于足下。这是第一次写博客，很多格式都不动，写的很low，没办法，这会已经快一点，也没时间去学了，明天还有课。这两周可能不会对博客再进行大的修改了，还有两周考数据结构，没时间去美化了，等考完试再去博客进行修改吧<br>  关于本博客的评论系统，本来打算用valine的，但是一直显示app_id和app_key错误，我也不知道问题出在哪，就换了现在这个，这个是国外的网站加载速度超慢，等用时间再换一个。</p>
+<h3 id="一、-Git、node-js"><a href="#一、-Git、node-js" class="headerlink" title="一、 Git、node.js"></a>一、 Git、node.js</h3><p>  先下载安装好<strong>Git、node.js</strong>，具体的过程参照了网上很多的帖子，很多都不是很详细，对于我这种小白来说就是一种折磨（完全看不懂，虽然学了一点前端的HTML、css、js，但这里完全用不上，到是在后面修改主题的时候到是能看明白了。。。。）这些博客里有一个挺详细的，按照他的过程，很容易就弄出来了（其实也不容易。。。。。出现好多问题，当时就很崩溃，明明按照他的步骤完成的，为啥就不通过呢，只能靠着百度一一解决了。。。<br>  <strong>这个帖子有点小错误，可能是环境和版本不同的原因吧</strong>（我搭建的时候有些地方会出错，需要自己去改）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://jantc.cn/2017/04/16/%E5%BB%BA%E7%AB%99%E5%88%86%E4%BA%AB%E4%B9%8BGithub%20Pages%20+%20Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%20(%E4%B8%80)/</span><br></pre></td></tr></table></figure>
+<h3 id="二、Github"><a href="#二、Github" class="headerlink" title="二、Github"></a>二、Github</h3><p>  在github上申请免费的空间来搭建网页，以前西部数码上购买过一个虚拟主机，很贵，一年要几百大洋，主要是国内的主要备案很麻烦，后来就放弃了。在github上可以搭建一个简单的静态网页，虽然是静态的，但是也可以加入很多功能，比如评论、分享系统。用来写写博客或作为个人的自我接受很好用。没有繁琐的管理，搭建好以后只管写博客就好。<br>  <strong>注册GitHub的时候最好是在chrome浏览器中</strong>，因为可以翻译网页，像我这种还没过四级的渣渣，看见这些英文网站就头疼。。。。<br>  具体的注册步骤就不说了，反正我也是看着别人的帖子弄的。。。这个很容易网上就能找到（我忘了我是在按照那个弄的了）</p>
+<h3 id="三、hexo"><a href="#三、hexo" class="headerlink" title="三、hexo"></a>三、hexo</h3><p>配置完hexo本地就算配置完成了，接下来就是将hexo托管到github。<br>  那个_config.yml有两个，<strong>一个是在hexo文件夹下的，另一个是在主题文件夹下的</strong>，一定要分清楚这两个，后面修改主题配置的时候会对这两个文件进行修改。<br>  到这基础的就弄完了，可以说有个简单的博客就搭建完了，不过这时候页面有点丑（太low而且没啥功能），接下来就是对博客的美化-主题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo g  </span><br><span class="line">hexo s  </span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<h3 id="四、主题"><a href="#四、主题" class="headerlink" title="四、主题"></a>四、主题</h3><p>我使用的是Material X作为博客的主题，想弄的话可以在我们博客的最下面点<strong>Material X</strong>连接，里面有关于这个主题的修改方法，在最下方有主题的源代码，下载后将文件放在主题文件夹中，上传就Ok了，具体的方法可以百度（有时间是话我会写篇文章来详细说一下我是怎样修改的和遇到的问题）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://xaoxuu.com/blog/</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.wushile.top/</span><br></pre></td></tr></table></figure>
+<h2 id="关于搭建博客"><a href="#关于搭建博客" class="headerlink" title="关于搭建博客"></a>关于搭建博客</h2><p>  博客搭建花了大概四天多的时间才完成对博客的简单搭建，第一次弄博客，遇到了很多很多的问题，几乎都快要放弃了，但想想已经花费的很多的时间去做这个博客，就该把它弄完，从无到有，很庆幸坚持到了最后，从一无所知的小白到完成搭建这个博客，学到了很多知识，在网上查找解决问题的时候也见识到了很多。很久都没有这么专注的去做一件事情，每天就想着一件事，就想把这个博客建好，现在终于把基础搭建完了，不足的地方以后再去修改，千里之行始于足下。这是第一次写博客，很多格式都不动，写的很low，没办法，这会已经快一点，也没时间去学了，明天还有课。这两周可能不会对博客再进行大的修改了，还有两周考数据结构，没时间去美化了，等考完试再去博客进行修改吧    </p>
 
       
     </div>
@@ -365,12 +408,28 @@ hexo d
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag"># hexo</a>
+            <a href="/tags/hexo/" rel="tag"><i class="fa fa-tag"></i>
+ hexo</a>
           
         </div>
       
 
       
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
       
       
 
@@ -378,8 +437,8 @@ hexo d
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/25/hello-world/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2018/11/25/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
               </a>
             
           </div>
@@ -470,7 +529,7 @@ hexo d
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives">
               
                   <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">日志</span>
@@ -483,7 +542,7 @@ hexo d
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -494,7 +553,7 @@ hexo d
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -585,10 +644,17 @@ hexo d
       
 
       
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
      
     </div>
     <div id="music163player">
-    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="350" height="450" src="//music.163.com/outchain/player?type=0&id=2579685854&auto=0&height=430"></iframe>
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="450" src="//music.163.com/outchain/player?type=0&id=2287797892&auto=1&height=430"></iframe>
 </div>
   </aside>
 
@@ -610,20 +676,35 @@ hexo d
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
-  <span class="post-meta-divider">|</span>
 
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
 
 
 
@@ -636,12 +717,13 @@ hexo d
     </footer>
 
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
 
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
     
 
   </div>
@@ -716,32 +798,32 @@ hexo d
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v="></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v="></script>
 
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v="></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v="></script>
+<script type="text/javascript" src="/js/src/post-details.js?v="></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v="></script>
 
 
 
@@ -791,6 +873,323 @@ hexo d
 
   
 
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
 
 
 
@@ -803,6 +1202,41 @@ hexo d
 
   
   
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
 
   
 
@@ -810,5 +1244,7 @@ hexo d
 
   
 
-</body>
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
