@@ -1,33 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title><![CDATA[ps冰雕图片效果]]></title>
-    <url>%2F2018%2F12%2F01%2Fps%E5%86%B0%E9%9B%95%E5%9B%BE%E7%89%87%E6%95%88%E6%9E%9C%2F</url>
-    <content type="text"><![CDATA[ps冰雕图片效果动作在csnd上看到的一种ps动作，自己弄了一个. 这个图片制作很简单，只是素材的获取有点难，我会在后面发上百度网盘链接，有需要可以去下载。 一、ps软件语言转换可能大家部分ps是中文版的，要用这个动作效果需要将ps改为英文版（改的方法很简单，具体教程看下面） 123451、打开ps所在文件夹（如果不知道安装位置，可右键ps图标点击文件所在位置） 2、进入Locales/zh_CN/Support Files/文件夹中,修改tw10428。dat文件，将其拓展名修改为其他拓展名 （比如：txt，只要让软件无法识别该文件就可以），记住该文件的拓展名为dat 想要中文版将文件拓展名改回dat 3、重新打开ps，现在改为英文版。 二、将动作效果加入到ps中先将素材下载到电脑12链接：https://pan.baidu.com/s/1a3RLxtYP6Nr6RQfoeX_qHQ 提取码：4o8i 然后将动作放入到ps中12341、打开动作窗口（快捷键alt+f9） 2、点击动作窗口右上角小箭头 3、点击载入动作，找到下载好的文件（文件拓展名为atn） 4、现在改动作就在你的ps里面了 三、图片制作制作方法很简单，就三步1231、将要p的图片放入到ps中 2、ctrl+shift+n新建一个图层,图层名字改为brush3、选中要变为冰雕的选区，然后在动作窗口下方点击开始按钮 图片制作完成–很简单，但是效果很好哈哈哈，有任何问题可以评论哟~~~]]></content>
-      <tags>
-        <tag>ps</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[建站分享]]></title>
-    <url>%2F2018%2F11%2F26%2F%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA%2F</url>
-    <content type="text"><![CDATA[Github Pages + Hexo 我的博客是Github Pages + Hexo在github上搭建的。 下面是我对搭建博客过程中的一些分享 一、 Git、node.js 先下载安装好Git、node.js，具体的过程参照了网上很多的帖子，很多都不是很详细，对于我这种小白来说就是一种折磨（完全看不懂，虽然学了一点前端的HTML、css、js，但这里完全用不上，到是在后面修改主题的时候到是能看明白了。。。。）这些博客里有一个挺详细的，按照他的过程，很容易就弄出来了（其实也不容易。。。。。出现好多问题，当时就很崩溃，明明按照他的步骤完成的，为啥就不通过呢，只能靠着百度一一解决了。。。 这个帖子有点小错误，可能是环境和版本不同的原因吧（我搭建的时候有些地方会出错，需要自己去改） 1http://jantc.cn/2017/04/16/%E5%BB%BA%E7%AB%99%E5%88%86%E4%BA%AB%E4%B9%8BGithub%20Pages%20+%20Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%20(%E4%B8%80)/ 二、Github 在github上申请免费的空间来搭建网页，以前西部数码上购买过一个虚拟主机，很贵，一年要几百大洋，主要是国内的主要备案很麻烦，后来就放弃了。在github上可以搭建一个简单的静态网页，虽然是静态的，但是也可以加入很多功能，比如评论、分享系统。用来写写博客或作为个人的自我接受很好用。没有繁琐的管理，搭建好以后只管写博客就好。 注册GitHub的时候最好是在chrome浏览器中，因为可以翻译网页，像我这种还没过四级的渣渣，看见这些英文网站就头疼。。。。 具体的注册步骤就不说了，反正我也是看着别人的帖子弄的。。。这个很容易网上就能找到（我忘了我是在按照那个弄的了） 三、hexo配置完hexo本地就算配置完成了，接下来就是将hexo托管到github。 那个_config.yml有两个，一个是在hexo文件夹下的，另一个是在主题文件夹下的，一定要分清楚这两个，后面修改主题配置的时候会对这两个文件进行修改。 到这基础的就弄完了，可以说有个简单的博客就搭建完了，不过这时候页面有点丑（太low而且没啥功能），接下来就是对博客的美化-主题 123hexo g hexo s hexo d 四、主题我使用的是Material X作为博客的主题，想弄的话可以在我们博客的最下面点Material X连接，里面有关于这个主题的修改方法，在最下方有主题的源代码，下载后将文件放在主题文件夹中，上传就Ok了，具体的方法可以百度（有时间是话我会写篇文章来详细说一下我是怎样修改的和遇到的问题） 1https://xaoxuu.com/blog/ 1https://www.wushile.top/ 关于搭建博客 博客搭建花了大概四天多的时间才完成对博客的简单搭建，第一次弄博客，遇到了很多很多的问题，几乎都快要放弃了，但想想已经花费的很多的时间去做这个博客，就该把它弄完，从无到有，很庆幸坚持到了最后，从一无所知的小白到完成搭建这个博客，学到了很多知识，在网上查找解决问题的时候也见识到了很多。很久都没有这么专注的去做一件事情，每天就想着一件事，就想把这个博客建好，现在终于把基础搭建完了，不足的地方以后再去修改，千里之行始于足下。这是第一次写博客，很多格式都不动，写的很low，没办法，这会已经快一点，也没时间去学了，明天还有课。这两周可能不会对博客再进行大的修改了，还有两周考数据结构，没时间去美化了，等考完试再去博客进行修改吧]]></content>
+<search> 
+  
+    
+    <entry>
+      <title>ps冰雕图片效果</title>
+      <link href="/2018/12/01/ps%E5%86%B0%E9%9B%95%E5%9B%BE%E7%89%87%E6%95%88%E6%9E%9C/"/>
+      <url>/2018/12/01/ps%E5%86%B0%E9%9B%95%E5%9B%BE%E7%89%87%E6%95%88%E6%9E%9C/</url>
+      
+        <content type="html"><![CDATA[<h2 id="ps冰雕图片效果动作"><a href="#ps冰雕图片效果动作" class="headerlink" title="ps冰雕图片效果动作"></a>ps冰雕图片效果动作</h2><p>在csnd上看到的一种ps动作，自己弄了一个.</p><a id="more"></a><p><img src="/2018/12/01/ps冰雕图片效果/20181125190408436.jpg" alt="ps冰雕效果图">  </p><p>这个图片制作很简单，只是素材的获取有点难，我会在后面发上百度网盘链接，有需要可以去下载。</p><h3 id="一、ps软件语言转换"><a href="#一、ps软件语言转换" class="headerlink" title="一、ps软件语言转换"></a>一、ps软件语言转换</h3><p>可能大家部分ps是中文版的，要用这个动作效果需要将ps改为英文版（改的方法很简单，具体教程看下面）</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、打开ps所在文件夹（如果不知道安装位置，可右键ps图标点击文件所在位置）  </span><br><span class="line">2、进入Locales/zh_CN/Support Files/文件夹中,修改tw10428。dat文件，将其拓展名修改为其他拓展名  </span><br><span class="line">（比如：txt，只要让软件无法识别该文件就可以），记住该文件的拓展名为dat  </span><br><span class="line">想要中文版将文件拓展名改回dat  </span><br><span class="line">3、重新打开ps，现在改为英文版。</span><br></pre></td></tr></table></figure><h3 id="二、将动作效果加入到ps中"><a href="#二、将动作效果加入到ps中" class="headerlink" title="二、将动作效果加入到ps中"></a>二、将动作效果加入到ps中</h3><p>先将素材下载到电脑<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">链接：https://pan.baidu.com/s/1a3RLxtYP6Nr6RQfoeX_qHQ  </span><br><span class="line">提取码：4o8i</span><br></pre></td></tr></table></figure></p><p>然后将动作放入到ps中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、打开动作窗口（快捷键alt+f9）  </span><br><span class="line">2、点击动作窗口右上角小箭头  </span><br><span class="line">3、点击载入动作，找到下载好的文件（文件拓展名为atn）  </span><br><span class="line">4、现在改动作就在你的ps里面了</span><br></pre></td></tr></table></figure></p><h3 id="三、图片制作"><a href="#三、图片制作" class="headerlink" title="三、图片制作"></a>三、图片制作</h3><p>制作方法很简单，就三步<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、将要p的图片放入到ps中  </span><br><span class="line">2、ctrl+shift+n新建一个图层,图层名字改为brush</span><br><span class="line">3、选中要变为冰雕的选区，然后在动作窗口下方点击开始按钮</span><br></pre></td></tr></table></figure></p><p><img src="/2018/12/01/ps冰雕图片效果/QQ截图20181201223845.png" alt="动作开始按钮"><br>图片制作完成–很简单，但是效果很好哈哈哈，有任何问题可以评论哟~~~  </p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> ps </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>建站分享</title>
+      <link href="/2018/11/26/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/"/>
+      <url>/2018/11/26/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Github-Pages-Hexo"><a href="#Github-Pages-Hexo" class="headerlink" title="Github Pages + Hexo"></a>Github Pages + Hexo</h2><p>  我的博客是Github Pages + Hexo在github上搭建的。<br>  下面是我对搭建博客过程中的一些分享<br><a id="more"></a></p><h3 id="一、-Git、node-js"><a href="#一、-Git、node-js" class="headerlink" title="一、 Git、node.js"></a>一、 Git、node.js</h3><p>  先下载安装好<strong>Git、node.js</strong>，具体的过程参照了网上很多的帖子，很多都不是很详细，对于我这种小白来说就是一种折磨（完全看不懂，虽然学了一点前端的HTML、css、js，但这里完全用不上，到是在后面修改主题的时候到是能看明白了。。。。）这些博客里有一个挺详细的，按照他的过程，很容易就弄出来了（其实也不容易。。。。。出现好多问题，当时就很崩溃，明明按照他的步骤完成的，为啥就不通过呢，只能靠着百度一一解决了。。。<br>  <strong>这个帖子有点小错误，可能是环境和版本不同的原因吧</strong>（我搭建的时候有些地方会出错，需要自己去改）</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://jantc.cn/2017/04/16/%E5%BB%BA%E7%AB%99%E5%88%86%E4%BA%AB%E4%B9%8BGithub%20Pages%20+%20Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%20(%E4%B8%80)/</span><br></pre></td></tr></table></figure><h3 id="二、Github"><a href="#二、Github" class="headerlink" title="二、Github"></a>二、Github</h3><p>  在github上申请免费的空间来搭建网页，以前西部数码上购买过一个虚拟主机，很贵，一年要几百大洋，主要是国内的主要备案很麻烦，后来就放弃了。在github上可以搭建一个简单的静态网页，虽然是静态的，但是也可以加入很多功能，比如评论、分享系统。用来写写博客或作为个人的自我接受很好用。没有繁琐的管理，搭建好以后只管写博客就好。<br>  <strong>注册GitHub的时候最好是在chrome浏览器中</strong>，因为可以翻译网页，像我这种还没过四级的渣渣，看见这些英文网站就头疼。。。。<br>  具体的注册步骤就不说了，反正我也是看着别人的帖子弄的。。。这个很容易网上就能找到（我忘了我是在按照那个弄的了）</p><h3 id="三、hexo"><a href="#三、hexo" class="headerlink" title="三、hexo"></a>三、hexo</h3><p>配置完hexo本地就算配置完成了，接下来就是将hexo托管到github。<br>  那个_config.yml有两个，<strong>一个是在hexo文件夹下的，另一个是在主题文件夹下的</strong>，一定要分清楚这两个，后面修改主题配置的时候会对这两个文件进行修改。<br>  到这基础的就弄完了，可以说有个简单的博客就搭建完了，不过这时候页面有点丑（太low而且没啥功能），接下来就是对博客的美化-主题</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo g  </span><br><span class="line">hexo s  </span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure><h3 id="四、主题"><a href="#四、主题" class="headerlink" title="四、主题"></a>四、主题</h3><p>我使用的是Material X作为博客的主题，想弄的话可以在我们博客的最下面点<strong>Material X</strong>连接，里面有关于这个主题的修改方法，在最下方有主题的源代码，下载后将文件放在主题文件夹中，上传就Ok了，具体的方法可以百度（有时间是话我会写篇文章来详细说一下我是怎样修改的和遇到的问题）</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://xaoxuu.com/blog/</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.wushile.top/</span><br></pre></td></tr></table></figure><h2 id="关于搭建博客"><a href="#关于搭建博客" class="headerlink" title="关于搭建博客"></a>关于搭建博客</h2><p>  博客搭建花了大概四天多的时间才完成对博客的简单搭建，第一次弄博客，遇到了很多很多的问题，几乎都快要放弃了，但想想已经花费的很多的时间去做这个博客，就该把它弄完，从无到有，很庆幸坚持到了最后，从一无所知的小白到完成搭建这个博客，学到了很多知识，在网上查找解决问题的时候也见识到了很多。很久都没有这么专注的去做一件事情，每天就想着一件事，就想把这个博客建好，现在终于把基础搭建完了，不足的地方以后再去修改，千里之行始于足下。这是第一次写博客，很多格式都不动，写的很low，没办法，这会已经快一点，也没时间去学了，明天还有课。这两周可能不会对博客再进行大的修改了，还有两周考数据结构，没时间去美化了，等考完试再去博客进行修改吧    </p>]]></content>
+      
+      
       <categories>
-        <category>随笔</category>
+          
+          <category> 随笔 </category>
+          
       </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2018%2F11%2F25%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[hello world first personalblog1你好，世界！]]></content>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2018/11/25/hello-world/"/>
+      <url>/2018/11/25/hello-world/</url>
+      
+        <content type="html"><![CDATA[<h2 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h2><a id="more"></a><h3 id="first-personalblog"><a href="#first-personalblog" class="headerlink" title="first personalblog"></a>first personalblog</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">你好，世界！</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
       <categories>
-        <category>随笔</category>
+          
+          <category> 随笔 </category>
+          
       </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+  
+  
 </search>
