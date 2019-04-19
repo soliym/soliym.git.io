@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://soliym.top/"/>
-  <updated>2019-04-11T12:39:37.505Z</updated>
+  <updated>2019-04-19T04:59:30.687Z</updated>
   <id>http://soliym.top/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>open vswitch</title>
+    <link href="http://soliym.top/2019/04/19/open-vswitch/"/>
+    <id>http://soliym.top/2019/04/19/open-vswitch/</id>
+    <published>2019-04-19T04:56:10.561Z</published>
+    <updated>2019-04-19T04:59:30.687Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="open-vswitch实验"><a href="#open-vswitch实验" class="headerlink" title="open vswitch实验"></a>open vswitch实验</h3><p>在Terminal下对ovs交换机进行测试；</p><p>对ovs交换机和端口的创建；对端口号的修改，配置完ovs以后查看交换机的状态，以及两个端口号的测试。</p><a id="more"></a><h4 id="ovs各模块"><a href="#ovs各模块" class="headerlink" title="ovs各模块"></a>ovs各模块</h4><table><thead><tr><th>ovs-vswitched</th><th>主要模块</th></tr></thead><tbody><tr><td>ovsdb-server</td><td>轻量级数据库服务器</td></tr><tr><td>ovs-dpctl</td><td>配置switch内核</td></tr><tr><td>ovs-vsctl</td><td>c查询和更新交换机配置</td></tr><tr><td>ovs-appctl</td><td>f发送命令消息</td></tr></tbody></table><h4 id="ovs常用操作"><a href="#ovs常用操作" class="headerlink" title="ovs常用操作"></a>ovs常用操作</h4><table><thead><tr><th>操作</th><th>命令</th></tr></thead><tbody><tr><td>添加网桥</td><td>ovs-vsctl add-br 交换机名</td></tr><tr><td>删除网桥</td><td>ovs-vsctl del-br 交换机名</td></tr><tr><td>添加端口</td><td>ovs-vsctl add-port 交换机名  端口号</td></tr><tr><td>删除端口</td><td>ovs-vsctl del-port 交换机名  端口号</td></tr><tr><td>连接控制器</td><td>ovs-vsctl set-controller 交换机名 tcp:ip 地址：端口号</td></tr><tr><td>断开控制器</td><td>ovs-vsctl del-controller 交换机名</td></tr><tr><td>列出所有网桥（交换机）</td><td>ovs-vsctl list-br</td></tr><tr><td>列出网桥中的所有端口</td><td>ovs-vsctl list-port 交换机名</td></tr><tr><td>列出所有连接到网卡的网桥</td><td>ovs-vsctl port-to-br 端口号</td></tr><tr><td>查看ovs网络状态</td><td>ovs-vsctl show</td></tr><tr><td>查看ovs端口信息</td><td>ovs-vsctl show 交换机名</td></tr><tr><td>修改端口号</td><td>ovs-vsctl set Interface 端口名 ofport_request=新端口号</td></tr></tbody></table><p>以上为ovs经常用到的操作，也是最基础的操作。下面开始ovs的测试实验。</p><h4 id="open-vswitch"><a href="#open-vswitch" class="headerlink" title="open vswitch"></a>open vswitch</h4><h5 id="ovs交换机创建"><a href="#ovs交换机创建" class="headerlink" title="ovs交换机创建"></a>ovs交换机创建</h5><p>创建一个名为ovs-switch的交换机</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ovs-vsctl add-br ovs-switch</span><br></pre></td></tr></table></figure><h5 id="端口的配置"><a href="#端口的配置" class="headerlink" title="端口的配置"></a>端口的配置</h5><p>配置一个端口号，名为p0,并设置网络接口为;intrenal</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ovs-vsctl set Interface p0 type=internal</span><br></pre></td></tr></table></figure><p>设置端口号，如果不自己设置，端口号由系统随机设置</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ovs-vsctl set Interface 端口名 ofport_request=新端口号</span><br></pre></td></tr></table></figure><h5 id="虚拟网络空间配置"><a href="#虚拟网络空间配置" class="headerlink" title="虚拟网络空间配置"></a>虚拟网络空间配置</h5><p>避免与本地网络地址发生冲突，需要创建一个虚拟网络空间，将接口放入当中</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo ip netns add ns0</span><br><span class="line">sudo ip link set p0 netns ns0</span><br><span class="line">sudo ip netns exec ip addr add 192.168.1.100/24dev p0</span><br><span class="line">sudoip netns ecev ns0 ifconfig p0 promisc up</span><br></pre></td></tr></table></figure><p>创建一个名为ns0的虚拟网络空间，并将端口p0放入其中，给端口p0配置ip 192.168..1.100</p><h5 id="查看ovs交换机"><a href="#查看ovs交换机" class="headerlink" title="查看ovs交换机"></a>查看ovs交换机</h5><p>查看ovs交换机的各个接口属性</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ovs-vsctl show</span><br></pre></td></tr></table></figure><h5 id="测试端口"><a href="#测试端口" class="headerlink" title="测试端口"></a>测试端口</h5><p>两个端口之间相互测试，需要创建两个端口</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ip netns exec ns0 ping 192.168.1.101</span><br></pre></td></tr></table></figure><p>192.168.1.101为第二个端口的ip</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;open-vswitch实验&quot;&gt;&lt;a href=&quot;#open-vswitch实验&quot; class=&quot;headerlink&quot; title=&quot;open vswitch实验&quot;&gt;&lt;/a&gt;open vswitch实验&lt;/h3&gt;&lt;p&gt;在Terminal下对ovs交换机进行测试；&lt;/p&gt;
+&lt;p&gt;对ovs交换机和端口的创建；对端口号的修改，配置完ovs以后查看交换机的状态，以及两个端口号的测试。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="SDN" scheme="http://soliym.top/categories/SDN/"/>
+    
+    
+      <category term="vswitch" scheme="http://soliym.top/tags/vswitch/"/>
+    
+  </entry>
   
   <entry>
     <title>2n皇后</title>
