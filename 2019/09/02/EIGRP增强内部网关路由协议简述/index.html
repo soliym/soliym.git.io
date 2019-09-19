@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="hexo,">
+  <meta name="keywords" content="EIGRP,">
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="hello world">
-<meta name="keywords" content="hexo">
+<meta name="description" content="EIGRP：增强内部网关路由协议 — cisco私有的协议 无类别距离矢量协议，协议号88；组播更新：224.0.0.10 增量更新—仅触发、无周期更新—–可靠性、更新量小 支持非等开销负载均衡">
+<meta name="keywords" content="EIGRP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://soliym.top/2018/11/25/hello-world/index.html">
+<meta property="og:title" content="EIGRP增强内部网关路由协议简述">
+<meta property="og:url" content="http://soliym.top/2019/09/02/EIGRP增强内部网关路由协议简述/index.html">
 <meta property="og:site_name" content="soliym">
-<meta property="og:description" content="hello world">
+<meta property="og:description" content="EIGRP：增强内部网关路由协议 — cisco私有的协议 无类别距离矢量协议，协议号88；组播更新：224.0.0.10 增量更新—仅触发、无周期更新—–可靠性、更新量小 支持非等开销负载均衡">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-28T15:00:56.177Z">
+<meta property="og:updated_time" content="2019-09-02T09:14:50.548Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="hello world">
+<meta name="twitter:title" content="EIGRP增强内部网关路由协议简述">
+<meta name="twitter:description" content="EIGRP：增强内部网关路由协议 — cisco私有的协议 无类别距离矢量协议，协议号88；组播更新：224.0.0.10 增量更新—仅触发、无周期更新—–可靠性、更新量小 支持非等开销负载均衡">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://soliym.top/2018/11/25/hello-world/">
+  <link rel="canonical" href="http://soliym.top/2019/09/02/EIGRP增强内部网关路由协议简述/">
 
 
 
 
 
-  <title>Hello World | soliym</title>
+  <title>EIGRP增强内部网关路由协议简述 | soliym</title>
   
 
 
@@ -277,7 +277,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://soliym.top/2018/11/25/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://soliym.top/2019/09/02/EIGRP增强内部网关路由协议简述/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="soliym">
@@ -294,7 +294,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">EIGRP增强内部网关路由协议简述</h1>
         
 
         <div class="post-meta">
@@ -306,8 +306,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-25T16:55:32+08:00">
-                2018-11-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-02T17:14:50+08:00">
+                2019-09-02
               </time>
             
 
@@ -329,8 +329,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
+                  <a href="/categories/CCNA/" itemprop="url" rel="index">
+                    <span itemprop="name">CCNA</span>
                   </a>
                 </span>
 
@@ -371,8 +371,123 @@
       
 
       
-        <h2 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h2><a id="more"></a>
-<h3 id="first-personalblog"><a href="#first-personalblog" class="headerlink" title="first personalblog"></a>first personalblog</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">你好，世界！</span><br></pre></td></tr></table></figure>
+        <p><strong>EIGRP：增强内部网关路由协议</strong> <strong>— cisco</strong>私有的协议</p>
+<p>无类别距离矢量协议，协议号88；组播更新：224.0.0.10</p>
+<p>增量更新—仅触发、无周期更新—–可靠性、更新量小</p>
+<p>支持非等开销负载均衡</p>
+ <a id="more"></a>
+<p>AD        本地下一跳到达目标的度量</p>
+<p>FD       本地到达目标的度量</p>
+<p>S         最佳路径的下一跳路由器</p>
+<p>FS       备份路径的下一跳路由器</p>
+<p>FC       可行性条件，成为备份路径的条件</p>
+<p>【1】EIGRP的数据包</p>
+<p>Hello 包       用于邻居发现、建立、保活   hello time  5s</p>
+<p>Update包         路由条目–目标网络号+度量值</p>
+<p>查询包                    查询路径，最佳路径和备份路径—-非等开销负载均衡</p>
+<p>应答包         查询确认</p>
+<p>ACK            </p>
+<p>【2】EIGRP的4大组件 组建</p>
+<p>Hello机制—-认识所有邻居</p>
+<p>PDM —-支持多种网络层协议 （协议有关单元） 协议无关单元 IPX appletalk</p>
+<p>RTP–可靠传输协议—-借鉴TCP的4种可靠机制–确认、重传、排序、流控（不能超过链路带宽的百分之50）</p>
+<p>DUAL—扩散更新（弥散更新）算法</p>
+<p>【3】EIGRP的工作过程</p>
+<p>启动配置后，运行EIGRP协议的路由器，通过组播224.0.0.10向所有的邻居发送hello包；收到邻居的hello包后及表示认识了邻居，生成邻居表；</p>
+<p>邻居关系建立后，邻居间使用更新包进行路由信息的共享；</p>
+<p>收集到所有的路由条目后，本地生成–拓扑表；—装载所有的最佳和备份路径；</p>
+<p>本地默认将拓扑表中的最佳路径全部加载到路由表内；—收敛完成</p>
+<p>结构突变：</p>
+<p>新增网段—直连新增网段的设备，使用更新包告知所有邻居即可</p>
+<p>断开网段—-直连断开网段的设备，发出查询包，通过DUAL，收集应答包来重新收敛</p>
+<p>无法沟通—-hello time 5s   hold time 15s</p>
+<p>更新包、查询包、应答包–均被RTP服务    </p>
+<p>接收到这三种包时，需要ACK来确认，若未进行确认将单播重传，最大16次，若依然失败断开邻居关系；RTP在转发这三种包时，还会对其进行排序和流控；</p>
+<p>【4】EIGRP的配置</p>
+<p>r1(config)#router eigrp ?    启动时需要配置AS号</p>
+<p>  <1-65535>  Autonomous system number</1-65535></p>
+<p>r1(config)#router eigrp 90   此处理解为全网一致的进程号；</p>
+<p>r1(config-router)#   </p>
+<p>r1(config-router)#no auto-summary   关闭自动汇总</p>
+<p>宣告：激活     路由</p>
+<p>r1(config-router)#network 1.0.0.0</p>
+<p>r1(config-router)#network 124.1.1.1 0.0.0.0</p>
+<p>EIGRP宣告时，可以向rip一样直接配置主类，也可以像OSPF一样使用反掩码进行匹配</p>
+<p>启动配置完成后，邻居间使用hello包建立邻居关系，生成邻居表：</p>
+<p>r2#show ip eigrp neighbors </p>
+<p>IP-EIGRP neighbors for process 90</p>
+<p>H   Address                 Interface       Hold Uptime   SRTT   RTO  Q  Seq</p>
+<p>​                                            (sec)         (ms)       Cnt Num</p>
+<p>2   124.1.1.4               Fa0/0             10 00:01:59   28   200  0  11</p>
+<p>1   23.1.1.2                Se1/1             13 00:02:14   39   234  0  11</p>
+<p>0   124.1.1.1               Fa0/0             13 00:02:19  389  2334  0  7</p>
+<p>邻居关系建立后，邻居间使用更新包收敛路由信息，生成拓扑表：</p>
+<p>本地到达邻居的最佳和备份路径；</p>
+<p>r3(config)#interface s1/1</p>
+<p>r3(config-if)#bandwidth 800   修改接口参考带宽</p>
+<p>一个接口的实际传输带宽—-硬件、QOS；参考带宽并不影响实际传输带宽，只影响路由协议的选路；</p>
+<p>r3#show ip eigrp topology </p>
+<p>IP-EIGRP Topology Table for AS(90)/ID(3.3.3.3)</p>
+<p>Codes: P - Passive, A - Active, U - Update, Q - Query, R - Reply,</p>
+<p>​       r - reply Status, s - sia Status </p>
+<p>P 1.1.1.0/24, 1 successors, FD is 2300416</p>
+<p>​        via 23.1.1.1 (2300416/156160), Serial1/0   最佳</p>
+<p>​        via 34.1.1.2 (3842560/156160), Serial1/1   备份</p>
+<p>​                    FD      AD</p>
+<p>FD可行距离 —- 本地通过该路径到达目标的度量</p>
+<p>AD可行后继距离（通告距离）—-本地的下一跳到达目标的度量值</p>
+<p>FC可行条件—-成为备份路径的条件  备份的AD小于不等于最佳路径的FD值</p>
+<p>备份路径的意义在于可以和最佳路径一起完成非等开销负载均衡；</p>
+<p>非等开销负载均衡：当到达一个目标地址时，若存在两条开销相近的路径时，可以让设备将流量按比例延这些路径同时传输，提高链路的利用率；</p>
+<p>差异值：备份的FD/最佳路径的FD=向上取整</p>
+<p>设备默认的差异值规定为1，标示仅支持等开销负载均衡</p>
+<p>r3#show ip protocols </p>
+<p>  EIGRP maximum metric variance 1</p>
+<p>可以通过修改差异值，来实现非等开销负载均衡</p>
+<p>r3(config)#router eigrp 90</p>
+<p>r3(config-router)#variance 2</p>
+<p>r3#show ip route 1.1.1.0</p>
+<p>默认设备将最佳路径加载于路由表中：</p>
+<p>D - EIGRP, EX - EIGRP external</p>
+<p>使用字母D标示正常EIGRP学习的路由；</p>
+<p>管理距离为90；</p>
+<p>度量：复合度量—–各种参数</p>
+<p>度量计算公式：存在权重值  </p>
+<p>Formula with default K values (K1 = 1, K2 = 0, K3 = 1, K4 = 0, K5 = 0):</p>
+<p>当K5为0时：</p>
+<p>Metric = [K1 <em> BW + ((K2 </em> BW) / (256 – load)) + K3 * delay]</p>
+<p>当K5大于0时:</p>
+<p>Metric = [K1 <em> BW + ((K2 </em> BW) / (256 – load)) + K3 <em> delay]</em> [K5 / (reliability + K4)]</p>
+<p>带宽 可靠性 延迟 负载 MTU</p>
+<p>默认k值下度量计算为带宽+延时：</p>
+<p>带宽=（10^7/整路径最小带宽）*256</p>
+<p>延时=（整段路径入口的延时之和/10）*256</p>
+<p>256为放大因子—-1、放大参数便于比较  2、兼容IGRP</p>
+<p>【5】EIGRP的扩展配置</p>
+<p>认证</p>
+<p>r2(config)#key chain a</p>
+<p>r2(config-keychain)#key 1</p>
+<p>r2(config-keychain-key)#key-string cisco123</p>
+<p>r2(config)#interface s1/1</p>
+<p>r2(config-if)#ip authentication key-chain eigrp 90 a</p>
+<p>r2(config-if)#ip authentication mode eigrp 90 md5 </p>
+<p>注：EIGRP仅支持MD5认证，故在没有修改模式前，认证是无意义的</p>
+<p>手工汇总–在更新源路由器上，所有更新发出接口上进行配置</p>
+<p>r3(config)#interface s1/0</p>
+<p>r3(config-if)#ip summary-address eigrp 90 3.3.2.0 255.255.254.0 </p>
+<p>汇总配置完成后，在汇总设备上将自动产生指向汇总地址的空接口防环路由</p>
+<p>被动接口–只接收不发送路由协议信息</p>
+<p>​            用于连接用户的接口，不能用于连接邻居的接口</p>
+<p>r3(config)#router eigrp 90</p>
+<p>r3(config-router)#passive-interface loopback 0</p>
+<p>加快收敛  hello 5s     hold time15s</p>
+<p>r3(config)#interface s1/1</p>
+<p>r3(config-if)#ip hello-interval eigrp 90 5</p>
+<p>r3(config-if)#ip hold-time eigrp 90 15</p>
+<p>缺省路由—在边界路由器上向所有直连内网的接口上进行汇总配置，汇总地址0.0.0.0/0；</p>
+<p>​             但边界路由器需要静态缺省指向ISP</p>
+<p>r1(config)#interface fastEthernet 0/0</p>
+<p>r1(config-if)#ip summary-address eigrp 90 0.0.0.0 0.0.0.0</p>
 
       
     </div>
@@ -401,7 +516,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://soliym.top/2018/11/25/hello-world/" title="Hello World">http://soliym.top/2018/11/25/hello-world/</a>
+    <a href="http://soliym.top/2019/09/02/EIGRP增强内部网关路由协议简述/" title="EIGRP增强内部网关路由协议简述">http://soliym.top/2019/09/02/EIGRP增强内部网关路由协议简述/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -416,8 +531,8 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag"><i class="fa fa-tag"></i>
- hexo</a>
+            <a href="/tags/EIGRP/" rel="tag"><i class="fa fa-tag"></i>
+ EIGRP</a>
           
         </div>
       
@@ -445,15 +560,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/09/02/OSPF开放最短路径优先协议简述/" rel="next" title="OSPF开放最短路径优先协议简述">
+                <i class="fa fa-chevron-left"></i> OSPF开放最短路径优先协议简述
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/26/关于博客的搭建/" rel="prev" title="建站分享">
-                建站分享 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -510,17 +625,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -629,22 +735,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#hello-world"><span class="nav-number">1.</span> <span class="nav-text">hello world</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#first-personalblog"><span class="nav-number">1.1.</span> <span class="nav-text">first personalblog</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
