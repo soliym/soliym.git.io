@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://soliym.top/"/>
-  <updated>2019-09-23T09:57:49.065Z</updated>
+  <updated>2019-11-07T13:26:05.538Z</updated>
   <id>http://soliym.top/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vlan接口模式</title>
+    <link href="http://soliym.top/2019/11/07/vlan%E6%8E%A5%E5%8F%A3%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://soliym.top/2019/11/07/vlan接口模式/</id>
+    <published>2019-11-07T13:24:05.138Z</published>
+    <updated>2019-11-07T13:26:05.538Z</updated>
+    
+    <content type="html"><![CDATA[<p>vlan三种接口模式区别：</p><a id="more"></a><h3 id="Access端口"><a href="#Access端口" class="headerlink" title="Access端口"></a>Access端口</h3><h4 id="1、收到数据包"><a href="#1、收到数据包" class="headerlink" title="1、收到数据包"></a>1、收到数据包</h4><p>收到一个数据包，判断是否有vlan信息，如果没有则打上端口的pvid，并进行交换转发</p><h4 id="2、发送数据包"><a href="#2、发送数据包" class="headerlink" title="2、发送数据包"></a>2、发送数据包</h4><p>将数据包的vlan信息剥离，直接发送出去</p><h3 id="Trunk端口"><a href="#Trunk端口" class="headerlink" title="Trunk端口"></a>Trunk端口</h3><h4 id="1、收到数据包-1"><a href="#1、收到数据包-1" class="headerlink" title="1、收到数据包"></a>1、收到数据包</h4><p>1）收到一个数据包，判断是否有vlan信息，如果没有则打上端口的pvid，并进行交换转发</p><p>2）如果有vlan信息，则判断该trunk端口是否容许该vlan数据包进入，容许转发，否则丢弃。</p><h4 id="2、发送数据包-1"><a href="#2、发送数据包-1" class="headerlink" title="2、发送数据包"></a>2、发送数据包</h4><p>比较端口的pvid和发送的vlan信息，如果相同则剥离vlan信息，然后发送，不相等，则直接发送。</p><h3 id="hybrid端口"><a href="#hybrid端口" class="headerlink" title="hybrid端口"></a>hybrid端口</h3><h4 id="1、收到数据包-2"><a href="#1、收到数据包-2" class="headerlink" title="1、收到数据包"></a>1、收到数据包</h4><p>1）没有vlan信息，则打上端口的pvid，然后交换转发</p><p>2）有vlan信息，则判断该端口是否容许该vlan的数据包进入</p><h4 id="2、发送数据包-2"><a href="#2、发送数据包-2" class="headerlink" title="2、发送数据包"></a>2、发送数据包</h4><p>判断该vlan的属性</p><p>1）untagged 剥离vlan tag，进行转发</p><p>2）tagged 直接发送</p><p>3）没有接口容许vlan，丢弃</p><p>注：交换机内部在处理数据包时，所有数据包一定是打上vlan tag的</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>1、tag报文是在原来以太网mac帧格式的基础上，在源mac和目的mac地址的后面加上4字节的vlan信息，组成802.1q帧，对于vlan信息PC网卡不能识别</p><p>2、access端口只能属于一个vlan</p><p>3、trunk端口可用于多个vlan通信</p><p>4、hybrid端口允许端个vlan通过，可以接受和发送多vlan报文</p><p>5、hybrid和trunk端口在处理数据报时，方法是一样的，不同在于，发送数据包，hybrid端口可以容许多个vlan数据包发送时不打标签，trunk端口只容许缺省vlan的数据包发送时不打标签</p><p>6、access端口只属于一个vlan，所以它的缺省vlan就是在所在vlan，hybrid和trunk端口属于多个vlan，他们的缺省vlan为vlan 1</p><p>7、如果设置了端口的缺省vlan id，当端口收到不带vlan tag的数据包之后，则将数据包转发到缺省vlan所在的交换机端口，当端口发送带有vlan tag的数据包时，如果数据包的vlan id与端口缺省vlan 相同，则交换机将去掉数据包携带的vlan tag，然后转发到该接口。</p><p>8、华为交换机的缺省vlan为pvid</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;vlan三种接口模式区别：&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="HCNP" scheme="http://soliym.top/categories/HCNP/"/>
+    
+    
+      <category term="交换" scheme="http://soliym.top/tags/%E4%BA%A4%E6%8D%A2/"/>
+    
+  </entry>
   
   <entry>
     <title>OSPF(三)</title>
@@ -217,28 +239,6 @@
     
     
       <category term="Linux" scheme="http://soliym.top/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>常见排序算法（1）</title>
-    <link href="http://soliym.top/2019/05/16/%E5%B8%B8%E8%A7%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%EF%BC%881%EF%BC%89/"/>
-    <id>http://soliym.top/2019/05/16/常见排序算法（1）/</id>
-    <published>2019-05-16T15:40:24.468Z</published>
-    <updated>2019-09-02T04:16:25.207Z</updated>
-    
-    <content type="html"><![CDATA[<p>排序算法是算法中最重要、最基础的算法，也是编程中用到最多的算法。不论是竞赛还是面试时，排序算法都是最常见的考点，下面根据排序思想不同，给出常见的几种排序算法。</p><a id="more"></a><h4 id="插入类排序"><a href="#插入类排序" class="headerlink" title="插入类排序"></a>插入类排序</h4><p>基本思想：在一个已排好序的基础上，每一步将下个待排序的记录有序插入到已排好的记录子集中，直到所有的待排序记录全部插入到序列中。</p><h5 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a>直接插入排序</h5><p>算法思想：将第i个数据插到前面i-1个以排好的数据中。</p><p>例如：48 62 35 77 55 14 35* 98</p><p>a  ｛48｝ 62 35 77 55 14 35* 98</p><p>b  ｛48 62｝ 35 77 55 14 35* 98</p><p>c    ｛35 48 62｝77 55 14 35* 98</p><p>。。。。。。。。。。。。。。。</p><p>算法过程：保留第i个数据，将第i个数据依次和前面i-1个数据比较，如果大于其中某一个数据，则停止，将第I个数据插入到此数据后一位，在每次比较中，较大的数据向后移动一位（排序为从小到大）。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">void InsSort(int r[],int length)</span><br><span class="line">&#123;</span><br><span class="line">    for(int i=2;i&lt;=length;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        r[0]=r[j];//采用首地址保存第i个元素,并且防止数组越界</span><br><span class="line">        int j=i-1;</span><br><span class="line">        while(r[0]&lt;r[j])&#123;</span><br><span class="line">            r[j+1]=r[j];</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        r[j+1]=r[0];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>直接插入排序的时间复杂度为T(n)=O(n^2),空间复杂度，空间复杂度为S（n）=O(1);</p><p>直接插入排序是稳定的排序方法。当有两个相同元素时，他们的相对位置不发生改变。</p><h5 id="折半插入排序"><a href="#折半插入排序" class="headerlink" title="折半插入排序"></a>折半插入排序</h5><p>算法思想：在直接插入的思想中加入折半查找的思想，提高查找效率。</p><p>基本的排序方法不变，只是在查找的过程中做出改变，前面的查找为顺序查找，从第i-1个元素按顺序查找到第1个元素。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">void BinSort（int r[],int length）</span><br><span class="line">&#123;</span><br><span class="line">    for(int i=2;i&lt;=length;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        int r[0]=r[i];</span><br><span class="line">        int low=1,high=i-1;</span><br><span class="line">        while(low&lt;=high)</span><br><span class="line">        &#123;</span><br><span class="line">            int mid=(low+high)/2;</span><br><span class="line">            if(r[0]&lt;r[mid]) high=mid-1;</span><br><span class="line">            else low=mid+1;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int j=i-1;j&gt;=low;j--)</span><br><span class="line">          r[j+1]=r[j];</span><br><span class="line">        r[low]=r[0];  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>折半插入排序是由直接插入排序改良而来，在原有的基础上加入折半查找，折半查找是一种非常重要的计算机思维，在很多地方都有应用。</p><p>虽然折半插入是由直接插入改进而来，但是时间复杂度并没用改变多少，仍然为0（n^2）;</p><h5 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h5><p>在插入排序中，希尔排序是最佳的排序算法，也是比较难理解的算法。</p><p>例：</p><p> 初始             46  55  13   42  94  17  05  70 </p><p>d=4               <strong><em>46</em></strong>  17  05   42  <strong><em>94</em></strong>   55 13  70</p><p>d=2               05  17  13   42  46   55  94 70 </p><p>d=1               05  13   17  42  46   55  70 94 </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">void   shellInSort(int r[],int length,int delta)</span><br><span class="line">&#123;</span><br><span class="line">    for(int i=1+delta;i&lt;=length,i++)//delta为增量d</span><br><span class="line">    &#123;</span><br><span class="line">        if(r[i]&lt;r[i-delta])//子序列最后一个元素和第一个元素比较</span><br><span class="line">        ｛</span><br><span class="line">        r[0]=r[i];</span><br><span class="line">        for(int j=i-delta;j&gt;0&amp;&amp;r[0]&lt;r[j];j-=delta)</span><br><span class="line">           r[j+delta]=r[j];</span><br><span class="line">          r[j+delta]=r[0];</span><br><span class="line">        ｝</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">void shellSort(int r[],int length,int delta[],int n)</span><br><span class="line">&#123;</span><br><span class="line">    for(int i=0;i&lt;=n-1;i++)</span><br><span class="line">      shellInSort(r,length,delta[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>关于增量d的选取：</p><p>shell  ： d=n/2;d=d/2……..d=1;</p><p>knuth:    d=d/3+1;</p><p>时间复杂度：O（n^1.5）;</p><p>注意：希尔排序是一种不稳定的排序；</p><h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><table><thead><tr><th>排序算法</th><th>时间复杂度</th><th>空间复杂度</th><th>稳定性</th></tr></thead><tbody><tr><td>直接插入</td><td>O(n^2)</td><td>O(1)</td><td>稳定</td></tr><tr><td>折半插入</td><td>O(n^2)</td><td>O(1)</td><td>稳定</td></tr><tr><td>希尔排序</td><td>O(n^1.5)</td><td>O(1)</td><td>不稳定</td></tr></tbody></table>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;排序算法是算法中最重要、最基础的算法，也是编程中用到最多的算法。不论是竞赛还是面试时，排序算法都是最常见的考点，下面根据排序思想不同，给出常见的几种排序算法。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="算法" scheme="http://soliym.top/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="插入排序" scheme="http://soliym.top/tags/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/"/>
     
   </entry>
   
