@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="密码学,">
 
 
 
@@ -81,13 +81,25 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="soliym">
-<meta property="og:url" content="http://soliym.top/page/2/index.html">
+<meta name="description" content="信息安全的两次变革：第一次是计算机的诞生，许多重要文件存储于计算机中，因此，计算机的主机安全就成为了一个重要的问题。第二次是计算机网络及分布式系统的诞生，人们利用网络对数据传输，在这个复杂且庞大的网络中，如何去传输重要数据，这又给信息安全带来新的问题和挑战。随着这些问题的解决，密码学也在不断的发展中。信息安全的四个目标：保密性、完整性、可用性、合法使用。">
+<meta name="keywords" content="密码学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单钥密码体制(一)">
+<meta property="og:url" content="http://soliym.top/2019/11/24/单钥密码体制一/index.html">
 <meta property="og:site_name" content="soliym">
+<meta property="og:description" content="信息安全的两次变革：第一次是计算机的诞生，许多重要文件存储于计算机中，因此，计算机的主机安全就成为了一个重要的问题。第二次是计算机网络及分布式系统的诞生，人们利用网络对数据传输，在这个复杂且庞大的网络中，如何去传输重要数据，这又给信息安全带来新的问题和挑战。随着这些问题的解决，密码学也在不断的发展中。信息安全的四个目标：保密性、完整性、可用性、合法使用。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://soliym.top/2019/11/24/单钥密码体制一/01.png">
+<meta property="og:image" content="http://soliym.top/2019/11/24/单钥密码体制一/02.png">
+<meta property="og:image" content="http://soliym.top/2019/11/24/单钥密码体制一/03.png">
+<meta property="og:image" content="http://soliym.top/2019/11/24/单钥密码体制一/04.png">
+<meta property="og:image" content="http://soliym.top/2019/11/24/单钥密码体制一/05.png">
+<meta property="og:image" content="http://soliym.top/2019/11/24/单钥密码体制一/06.png">
+<meta property="og:updated_time" content="2019-11-24T09:57:33.605Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="soliym">
+<meta name="twitter:title" content="单钥密码体制(一)">
+<meta name="twitter:description" content="信息安全的两次变革：第一次是计算机的诞生，许多重要文件存储于计算机中，因此，计算机的主机安全就成为了一个重要的问题。第二次是计算机网络及分布式系统的诞生，人们利用网络对数据传输，在这个复杂且庞大的网络中，如何去传输重要数据，这又给信息安全带来新的问题和挑战。随着这些问题的解决，密码学也在不断的发展中。信息安全的四个目标：保密性、完整性、可用性、合法使用。">
+<meta name="twitter:image" content="http://soliym.top/2019/11/24/单钥密码体制一/01.png">
 
 
 
@@ -117,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://soliym.top/page/2/">
+  <link rel="canonical" href="http://soliym.top/2019/11/24/单钥密码体制一/">
 
 
 
 
 
-  <title>soliym</title>
+  <title>单钥密码体制(一) | soliym</title>
   
 
 
@@ -142,8 +154,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -258,9 +269,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -273,7 +284,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://soliym.top/2019/06/17/RHCSA-Linux简介/">
+    <link itemprop="mainEntityOfPage" href="http://soliym.top/2019/11/24/单钥密码体制一/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="soliym">
@@ -290,9 +301,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/17/RHCSA-Linux简介/" itemprop="url">RHCSA-Linux简介</a></h1>
+          <h1 class="post-title" itemprop="name headline">单钥密码体制(一)</h1>
         
 
         <div class="post-meta">
@@ -304,8 +313,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-17T19:17:36+08:00">
-                2019-06-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-24T17:34:01+08:00">
+                2019-11-24
               </time>
             
 
@@ -327,8 +336,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/RHCSA/" itemprop="url" rel="index">
-                    <span itemprop="name">RHCSA</span>
+                  <a href="/categories/信息安全/" itemprop="url" rel="index">
+                    <span itemprop="name">信息安全</span>
                   </a>
                 </span>
 
@@ -345,6 +354,11 @@
           
           
 
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
           
 
           
@@ -364,17 +378,40 @@
       
 
       
-        
-          <h5 id="操作系统是什么？"><a href="#操作系统是什么？" class="headerlink" title="操作系统是什么？"></a>操作系统是什么？</h5><p>操作系统（Operating System，简称OS）是管理和控制计算机硬件与软件资源的计算机程序，是配置在计算机硬件上的第一层软件，任何其它软件都必须在操作系统的支持下才能运行。</p>
-<p>操作系统的主要功能是为管理硬件资源和为应用程序开发人员提供良好的环境来使应用程序具有更好的兼容性，为了达到这个目的，内核提供一系列具备预定功能的多内核函数，通过一组称为系统调用的接口（应用编程接口API，由操作系统实现提供的所有系统调用所构成的集合，是应用程序和系统之间的接口）呈现给用户。系统调用把应用程序的请求传给内核，调用相应的内核函数完成所需的处理，将处理的结果返回给应用程序。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/06/17/RHCSA-Linux简介/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <p>信息安全的两次变革：第一次是计算机的诞生，许多重要文件存储于计算机中，因此，计算机的主机安全就成为了一个重要的问题。第二次是计算机网络及分布式系统的诞生，人们利用网络对数据传输，在这个复杂且庞大的网络中，如何去传输重要数据，这又给信息安全带来新的问题和挑战。随着这些问题的解决，密码学也在不断的发展中。信息安全的四个目标：保密性、完整性、可用性、合法使用。</p>
+<a id="more"></a>
+<h3 id="一、单钥密码体制"><a href="#一、单钥密码体制" class="headerlink" title="一、单钥密码体制"></a>一、单钥密码体制</h3><p>单钥密码体制也称为私钥加密体制，因为通信双方采用的密码相同，因此，也称为对称加密体制，根据其加密算法的特点，可分为：分组密码和流密码。</p>
+<p>古典密码：是一种简单的加密体制，它伴随着密码学的发展，它的思想对单钥密码体制影响深远，代换和置换思想，是单钥密码体制的基础。</p>
+<p>密码学可分为古代密码、近代密码、现代密码，它有两个重要的时期，一是1949，密码学成为一门学科，二是1976年，公钥密码算法的出现。</p>
+<p>密码学的进程：从单表代替到多表代替，再到机械码，以及现在的现代密码学，未来将会出现的量子密码学。</p>
+<p>密码学中有一个重要的定律：伯格夫斯基定律：每一个密码都是可以破解的</p>
+<p>虽然有些密码至今没有人可以破解，但是根据密码学的加密规则来说，密文都是根据一定的规则由明文加密而来，因此，密文肯定是可以破解的，只是时间和方法问题。</p>
+<p>既然所有的密码都是可以破解的，那么机密算法的安全性在哪？</p>
+<p>1、破译的成本超过加密信息性价值</p>
+<p>2、破译的时间超过加密信息的生命周期</p>
+<h3 id="二、分组密码DES"><a href="#二、分组密码DES" class="headerlink" title="二、分组密码DES"></a>二、分组密码DES</h3><h4 id="1、DES"><a href="#1、DES" class="headerlink" title="1、DES"></a>1、DES</h4><p>DES是一种分组加密算法，输入的明文为64位，密钥为56位，生成的密文分组长度为64位</p>
+<h4 id="2、DES算法"><a href="#2、DES算法" class="headerlink" title="2、DES算法"></a>2、DES算法</h4><p>1、对输入分组进行固定的“初始置换”IP运算，可以将这个置换表示为：</p>
+<p>  <img src="/2019/11/24/单钥密码体制一/01.png" alt="01"></p>
+<p> 注意：这里L0和R0称为“左右半分组”，各为32比特。IP是固定的函数（即输入密钥不是它的参数），它是公开的。这个过程实际上为“扩散（ Diffusion ）”。</p>
+<p>2、迭代运算，即将下面的运算迭代16轮</p>
+<p><img src="/2019/11/24/单钥密码体制一/02.png" alt="02"></p>
+<p>这个过程就是香农信息论中的“混淆”       </p>
+<p>3、将16轮迭代后得到的结果（L16, R16）输入到IP的逆置换IP-1中：</p>
+<p>注意：DES算法的加密和解密运算均采用这3个步骤。仅有的不同是：如果加密算法中使用的轮密钥次序为k1, k2, …, k16，那么解密算法中使用的密钥次序为：k16, k15, …, k1。   </p>
+<p><img src="/2019/11/24/单钥密码体制一/03.png" alt="03"></p>
+<p>加密流程：</p>
+<p><img src="/2019/11/24/单钥密码体制一/04.png" alt="04"></p>
+<p>3、密钥生成</p>
+<p><img src="/2019/11/24/单钥密码体制一/05.png" alt="05"></p>
+<p>4、迭代结构</p>
+<p><img src="/2019/11/24/单钥密码体制一/06.png" alt="06"></p>
+<p>DES的轮结构重点在于F函数，F函数将32bit明文扩展为48bit密文，然后在于密钥异或，再通过S盒的替换，压缩成32bit。</p>
+<p>F函数中明文的扩展：将明文分为8*4的矩阵，在矩阵的左右两侧，各加入一列元素，元素生成规则为：元素空间为0到32，左侧一列为第一列元素-1，如果为-1，则为32，右侧一列+1模32</p>
+<p>F函数中的密文压缩：通过8个s盒的代换，代换规则，将48bit密文分为8组，每组6bit，分别对应8个S盒，然后将每组的第一位和最后一位组成行，其他位组成列，然后查表替换。</p>
+<h3 id="三、DES安全性"><a href="#三、DES安全性" class="headerlink" title="三、DES安全性"></a>三、DES安全性</h3><p>因为DES的密钥太短，因此不能抵抗穷举密钥搜索攻击，已被破解，但是它的思想影响了后来单钥密码体制的设计。</p>
+<h3 id="四、DES的设计思想"><a href="#四、DES的设计思想" class="headerlink" title="四、DES的设计思想"></a>四、DES的设计思想</h3><p>DES的设计主要包含了扩散和混淆，这也是单钥加密算法中，分组密码的基本设计思想，扩散是将密钥对明文的影响尽可能多的去影响明文中的元素，使明文和密文的差别尽可能的大。混淆是将明文和密文的联系尽可能小，通过统计等手段，不能确定明文和密文之间的关系。</p>
+<p>扩散和混淆的思想来源于古典密码中的置换和代换。</p>
+
       
     </div>
     
@@ -382,313 +419,85 @@
     
 
     
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="" alt="soliym wechat" style="width: 200px; max-width: 100%;">
+    <div></div>
+</div>
+
+      </div>
+    
 
     
 
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    soliym
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://soliym.top/2019/11/24/单钥密码体制一/" title="单钥密码体制(一)">http://soliym.top/2019/11/24/单钥密码体制一/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
     
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://soliym.top/2019/05/14/c关于堆栈的划定/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="soliym">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="soliym">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/14/c关于堆栈的划定/" itemprop="url">c关于堆栈的划定</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-14T21:41:59+08:00">
-                2019-05-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/c语言/" itemprop="url" rel="index">
-                    <span itemprop="name">c语言</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/密码学/" rel="tag"><i class="fa fa-tag"></i>
+ 密码学</a>
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="c语言-全局变量与局部变量的划分"><a href="#c语言-全局变量与局部变量的划分" class="headerlink" title="c语言 全局变量与局部变量的划分"></a>c语言 全局变量与局部变量的划分</h4><p>在做背包问题的时候遇到这样的问题，定义一个二维数组变量，该变量的大小为1000*1000，但是在运行时报错，显示“Stack overflow ”，说明在此处超过了栈的空间。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/05/14/c关于堆栈的划定/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://soliym.top/2019/04/11/2n皇后/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="soliym">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="soliym">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/11/2n皇后/" itemprop="url">2n皇后</a></h1>
+        <div class="post-widgets">
         
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-11T20:37:08+08:00">
-                2019-04-11
-              </time>
-            
+        
 
-            
-
-            
-          </span>
-
+        
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
             </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><h5 id="问题描述-1"><a href="#问题描述-1" class="headerlink" title="问题描述"></a>问题描述</h5><p>给定一个n*n的棋盘，棋盘中有一些位置不能放皇后。现在要向棋盘中放入n个黑皇后和n个白皇后，使任意的两个黑皇后都不在同一行、同一列或同一条对角线上，任意的两个白皇后都不在同一行、同一列或同一条对角线上。问总共有多少种放法？n小于等于8。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/04/11/2n皇后/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
           </div>
-          <!--/noindex-->
         
+        </div>
       
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/07/vlan接口模式/" rel="next" title="vlan接口模式">
+                <i class="fa fa-chevron-left"></i> vlan接口模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -698,606 +507,27 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://soliym.top/2019/04/06/n皇后/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="soliym">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="soliym">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/06/n皇后/" itemprop="url">n皇后</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-06T18:10:57+08:00">
-                2019-04-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>​        n皇后问题是指在一个n*n的国际象棋棋盘上放置n个皇后，使得这n个皇后两均不在同一行、同一列、同一条线上，求合法的方案数。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/04/06/n皇后/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
 
 
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://soliym.top/2019/03/30/贪心算法/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="soliym">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="soliym">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/30/贪心算法/" itemprop="url">贪心算法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-30T14:59:22+08:00">
-                2019-03-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="贪心算法概述："><a href="#贪心算法概述：" class="headerlink" title="贪心算法概述："></a>贪心算法概述：</h3><p>贪心算法（贪婪）又叫登山法，它的根本思想为：逐步求解最优解，将问题分解为每个小部分，使每个部分都达到最优解，从而使全局达到最优。贪心算法求解问题得到的解不一定是最优的解。例如Prim算法和Kruskal算法都是使用贪心算法的策略。</p>
-<p>注意：有些问题用贪心算法可以达到最优解，但是不是所有问题都是局部最优从而全局最优，面对最优解问题时除了贪心算法以外还有动态规划。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/30/贪心算法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
           </div>
-          <!--/noindex-->
-        
-      
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTI2Ny8xNzgxNQ=="></div>
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
-  
-  
-  
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://soliym.top/2018/11/26/关于博客的搭建/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="soliym">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="soliym">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/26/关于博客的搭建/" itemprop="url">建站分享</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-26T22:40:01+08:00">
-                2018-11-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Github-Pages-Hexo"><a href="#Github-Pages-Hexo" class="headerlink" title="Github Pages + Hexo"></a>Github Pages + Hexo</h2><p>  我的博客是Github Pages + Hexo在github上搭建的。<br>  下面是我对搭建博客过程中的一些分享<br></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/26/关于博客的搭建/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://soliym.top/2018/11/25/hello-world/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="soliym">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="soliym">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/25/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-25T16:55:32+08:00">
-                2018-11-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h2>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/25/hello-world/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
-
-
-
-          </div>
-          
-
-
-          
 
         </div>
         
@@ -1318,8 +548,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -1428,6 +667,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、单钥密码体制"><span class="nav-number">1.</span> <span class="nav-text">一、单钥密码体制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、分组密码DES"><span class="nav-number">2.</span> <span class="nav-text">二、分组密码DES</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、DES"><span class="nav-number">2.1.</span> <span class="nav-text">1、DES</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、DES算法"><span class="nav-number">2.2.</span> <span class="nav-text">2、DES算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、DES安全性"><span class="nav-number">3.</span> <span class="nav-text">三、DES安全性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、DES的设计思想"><span class="nav-number">4.</span> <span class="nav-text">四、DES的设计思想</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1602,6 +857,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v="></script>
+<script type="text/javascript" src="/js/src/post-details.js?v="></script>
+
+
 
   
 
@@ -1630,6 +889,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
