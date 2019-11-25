@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://soliym.top/"/>
-  <updated>2019-11-24T09:57:33.605Z</updated>
+  <updated>2019-11-25T10:23:29.069Z</updated>
   <id>http://soliym.top/</id>
   
   <author>
@@ -15,6 +15,50 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>AES列混淆机制详解</title>
+    <link href="http://soliym.top/2019/11/25/AES%E5%88%97%E6%B7%B7%E6%B7%86%E6%9C%BA%E5%88%B6%E8%AF%A6%E8%A7%A3/"/>
+    <id>http://soliym.top/2019/11/25/AES列混淆机制详解/</id>
+    <published>2019-11-25T09:04:37.000Z</published>
+    <updated>2019-11-25T10:23:29.069Z</updated>
+    
+    <content type="html"><![CDATA[<p>在AES中列混淆是比较重要的一步，在列混淆的设计中，设计的算法思想及运算机制是非常值得学习，它包括多项式相乘的处理，以及十六进制乘法中的Xtime机制</p><a id="more"></a><h3 id="一、多项式"><a href="#一、多项式" class="headerlink" title="一、多项式"></a>一、多项式</h3><p>在AES中列混淆是将矩阵的每一列通过运算得到一列新的值，这个运算即使矩阵相乘，将行位移后的矩阵的列，表示为多项式，该多项式有4个项，最高项的次幂为3，多项式系数为矩阵的列值，按列值的行号等于每一项的次幂，得到一个多项式，记为s(x)；</p><p>在固定给出一个多项式，该多项式与s(x)一样，同为最高项的幂为3，该多项式的系数是固定的，这里记为c(x)；</p><p>那么通过两多项式相乘可以得到一个多项式f(x)，但是这个多项式并不是一个最高次幂是3的多项式，因此需要对该多项式取余，即模X^4+1;</p><p>因为x^4+1在F2上约等于(x+1)^4,模一个4次多项式是为了得到一个三次多项式。</p><p>即：X^(i)mod(X^4+1)=X^(imod4)</p><h3 id="二、多项式相乘"><a href="#二、多项式相乘" class="headerlink" title="二、多项式相乘"></a>二、多项式相乘</h3><p>计算两个多项式相乘并不是容易的事，但是可以通过的矩阵的运算，直接求解f(x)的系数</p><p>可以得到：x^3的系数为s3c0+s2c1+s1c2+s0c3，通过验证，多项式的系数可以通过两个矩阵相乘得出，两个矩阵由s(x)和c(x)得出：</p><p>首先根据固定的多项式可以得到一个4X4的矩阵，第3行排列c3 、c2、c1、c0，然后第2行为c2、c1、c0、c3，每一次根据i+1行的循环左移一位，因此，第0行为c0、c3、c2、c1</p><p>s(x)可以得到一个4X1的矩阵，即s0、s1、s2、s3，然后两个矩阵相乘可以得到一个4X1的新列，AES列混淆，就是用这个新列去代换旧列</p><h3 id="三、Xtime-机制"><a href="#三、Xtime-机制" class="headerlink" title="三、Xtime()机制"></a>三、Xtime()机制</h3><p>因为明文矩阵和固定多项式的系数是8bit，即用十六进制表示，因此会遇到十六进制相乘，Xtime()就是简化这个过程</p><p><img src="/2019/11/25/AES列混淆机制详解/01.png" alt="01"></p><p>由上述可以总结：对于02或是03这样的乘法，那我们就可以通过Xtime()机制优化算法</p><p>Xtime()：</p><p>将括号内的数左移一位，判断是否有溢出</p><p>1、无溢出，直接输出</p><p>2、有溢出，异或1B后输出</p><p>判断最高位是否溢出：如果最高位为0，则一位后不输出，如果为1，则移位后溢出</p><h3 id="四、列混淆的完整表达式"><a href="#四、列混淆的完整表达式" class="headerlink" title="四、列混淆的完整表达式"></a>四、列混淆的完整表达式</h3><p><img src="/2019/11/25/AES列混淆机制详解/02.png" alt="02"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在AES中列混淆是比较重要的一步，在列混淆的设计中，设计的算法思想及运算机制是非常值得学习，它包括多项式相乘的处理，以及十六进制乘法中的Xtime机制&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="信息安全" scheme="http://soliym.top/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="密码学" scheme="http://soliym.top/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>单钥密码体制二</title>
+    <link href="http://soliym.top/2019/11/24/%E5%8D%95%E9%92%A5%E5%AF%86%E7%A0%81%E4%BD%93%E5%88%B6%E4%BA%8C/"/>
+    <id>http://soliym.top/2019/11/24/单钥密码体制二/</id>
+    <published>2019-11-24T11:54:21.000Z</published>
+    <updated>2019-11-25T08:55:29.210Z</updated>
+    
+    <content type="html"><![CDATA[<p>数据加密标准-DES是第一个并且也是十分重要的现代对称加密算法，但是由于DES密钥太短，伴随着计算机的计算能力的突飞猛进，DES已经极其不安全，所以需要新的加密算法代替DES，由2000年公布的AES高级加密标准代替DES。</p><a id="more"></a><h3 id="一、AES"><a href="#一、AES" class="headerlink" title="一、AES"></a>一、AES</h3><p>RIJIdael是分组长度和密钥长度均可变的分组密码，密钥长度和分组长度可以独立指定为128b、192b、256b，由比利时密码学家Daemen和Rijmen设计。</p><p>二、加密流程图</p><p><img src="/2019/11/24/单钥密码体制二/01.png" alt="01"></p><h3 id="三、加密步骤"><a href="#三、加密步骤" class="headerlink" title="三、加密步骤"></a>三、加密步骤</h3><h4 id="1、明文分组"><a href="#1、明文分组" class="headerlink" title="1、明文分组"></a>1、明文分组</h4><p>AES是分组密码，将明文分成固定长度大小的组，每组分别加密，以128为例，将128bit的明文以字节为单位分为16组，在按序每4字节为一列，组成4X4矩阵。</p><h4 id="2、字节代换"><a href="#2、字节代换" class="headerlink" title="2、字节代换"></a>2、字节代换</h4><p>在4X4矩阵中，每个元素都是1字节，8bit，因此，每个元素的前4bit组成行，后4bit组成列，通过s盒查找，代换为新的元素</p><h4 id="3、行位移"><a href="#3、行位移" class="headerlink" title="3、行位移"></a>3、行位移</h4><p>将4X4矩阵每行循环左移i个元素，i为正整数，从0开始。</p><h4 id="4、列混淆"><a href="#4、列混淆" class="headerlink" title="4、列混淆"></a>4、列混淆</h4><p>将矩阵的每个列视为GF（2^8）上的多项式，再与一个固定的多项式c(x)进行模x^4+1乘法，要求c（x）是模x^4+1可逆的多项式</p><p><img src="/2019/11/24/单钥密码体制二/02.png" alt="02"></p><p>列混淆的实质是两个多项式的相乘，并且希望得到一个多项式，但是两个多项式相乘的结果最高次项不是3，在列混淆中时两个最高次幂为3的多项式相乘，因此，需要模x^4+1.其中</p><p>因为多项式的乘法可由线性代数，即矩阵乘法给出，所以采用矩阵运算。</p><h4 id="5、轮密钥加"><a href="#5、轮密钥加" class="headerlink" title="5、轮密钥加"></a>5、轮密钥加</h4><p>将4X4的明文矩阵和4X4的密钥矩阵按位异或，既128bit与128bit异或</p><h3 id="四、密钥生成"><a href="#四、密钥生成" class="headerlink" title="四、密钥生成"></a>四、密钥生成</h3><p>初始给定的密钥是128bit，用于初始加密，但是在后面的10轮迭代中都需要用到密钥，它们加密的密钥是不同的，需要通过初始的128bit密钥，扩展出10个128bit的密钥。因此，AES加密需要11X128bit的密钥。</p><p>密钥是按矩阵的列进行分组的，需要添加40个新列来扩展密钥。</p><p><img src="/2019/11/24/单钥密码体制二/03.png" alt="03"></p><p>当i可以被4整除，需要用到T函数</p><p>T函数：1、RCON轮常量，轮常量是一个字32bit，这个字最右边为3个字节24bit的0。</p><p>​                    轮常量是固定的，每一轮均不相同。</p><p>​              2、ROTBYTE字节代换，利用S盒对输入的数替换，前4bit为行，后4bit为列</p><p>​              3、BYTESUB字循环，循环左移一个字节，即abcd变为bcda</p><h3 id="五、解密过程"><a href="#五、解密过程" class="headerlink" title="五、解密过程"></a>五、解密过程</h3><p>AES与DES不同，AES的解密过程与加密过程是不同的，不同是指解密的过程是相反的，而Feistel密码的加密解密可以使用相同的电路或程序，因为AES所有中间的加密过程都是可逆的，所以解密过程与加密过程相反，具体操作位加密操作的逆过程。</p><p>例：</p><p><img src="/2019/11/24/单钥密码体制二/04.png" alt="04"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;数据加密标准-DES是第一个并且也是十分重要的现代对称加密算法，但是由于DES密钥太短，伴随着计算机的计算能力的突飞猛进，DES已经极其不安全，所以需要新的加密算法代替DES，由2000年公布的AES高级加密标准代替DES。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="信息安全" scheme="http://soliym.top/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="密码学" scheme="http://soliym.top/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
+    
+  </entry>
   
   <entry>
     <title>单钥密码体制(一)</title>
