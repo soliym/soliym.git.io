@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="DHCP,">
+  <meta name="keywords" content="密码学,">
 
 
 
@@ -81,20 +81,18 @@
 
 
 
-<meta name="description" content="DHCP 全称Dynamic Host configuration protocol， 动态主机配置协议。 它可以为客户机自动分配IP地址、子网掩码以及缺省网关、DNS服务器的IP地址等TCP/IP参数，">
-<meta name="keywords" content="DHCP">
+<meta name="description" content="HTTP与HTTPS的区别及工作过程">
+<meta name="keywords" content="密码学">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DHCP工作原理">
-<meta property="og:url" content="http://soliym.top/2019/09/02/DHCP工作原理/index.html">
+<meta property="og:title" content="Http与Https的区别和加密原理">
+<meta property="og:url" content="http://soliym.top/2019/12/02/Http与Https的区别和加密原理/index.html">
 <meta property="og:site_name" content="soliym">
-<meta property="og:description" content="DHCP 全称Dynamic Host configuration protocol， 动态主机配置协议。 它可以为客户机自动分配IP地址、子网掩码以及缺省网关、DNS服务器的IP地址等TCP/IP参数，">
+<meta property="og:description" content="HTTP与HTTPS的区别及工作过程">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://soliym.top/2019/09/02/DHCP工作原理/D:/网站文件/personalblog/hexo/source/_posts/DHCP工作原理/DHCP.png">
-<meta property="og:updated_time" content="2019-09-02T04:23:42.076Z">
+<meta property="og:updated_time" content="2019-12-02T13:30:35.557Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DHCP工作原理">
-<meta name="twitter:description" content="DHCP 全称Dynamic Host configuration protocol， 动态主机配置协议。 它可以为客户机自动分配IP地址、子网掩码以及缺省网关、DNS服务器的IP地址等TCP/IP参数，">
-<meta name="twitter:image" content="http://soliym.top/2019/09/02/DHCP工作原理/D:/网站文件/personalblog/hexo/source/_posts/DHCP工作原理/DHCP.png">
+<meta name="twitter:title" content="Http与Https的区别和加密原理">
+<meta name="twitter:description" content="HTTP与HTTPS的区别及工作过程">
 
 
 
@@ -124,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://soliym.top/2019/09/02/DHCP工作原理/">
+  <link rel="canonical" href="http://soliym.top/2019/12/02/Http与Https的区别和加密原理/">
 
 
 
 
 
-  <title>DHCP工作原理 | soliym</title>
+  <title>Http与Https的区别和加密原理 | soliym</title>
   
 
 
@@ -279,7 +277,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://soliym.top/2019/09/02/DHCP工作原理/">
+    <link itemprop="mainEntityOfPage" href="http://soliym.top/2019/12/02/Http与Https的区别和加密原理/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="soliym">
@@ -296,7 +294,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">DHCP工作原理</h1>
+          <h1 class="post-title" itemprop="name headline">Http与Https的区别和加密原理</h1>
         
 
         <div class="post-meta">
@@ -308,8 +306,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-02T12:12:03+08:00">
-                2019-09-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-02T21:24:38+08:00">
+                2019-12-02
               </time>
             
 
@@ -331,8 +329,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/CCNA/" itemprop="url" rel="index">
-                    <span itemprop="name">CCNA</span>
+                  <a href="/categories/信息安全/" itemprop="url" rel="index">
+                    <span itemprop="name">信息安全</span>
                   </a>
                 </span>
 
@@ -373,46 +371,92 @@
       
 
       
-        <p>DHCP 全称Dynamic Host configuration protocol， 动态主机配置协议。 它可以为客户机自动分配IP地址、子网掩码以及缺省网关、DNS服务器的IP地址等TCP/IP参数，</p>
- <a id="more"></a>
-<h4 id="一、DHCP共有八种报文，不同报文之间的区别除了DHCP数据包本身之外，在封包上-UDP头，IP头、链路层头-也有一些差别"><a href="#一、DHCP共有八种报文，不同报文之间的区别除了DHCP数据包本身之外，在封包上-UDP头，IP头、链路层头-也有一些差别" class="headerlink" title="一、DHCP共有八种报文，不同报文之间的区别除了DHCP数据包本身之外，在封包上(UDP头，IP头、链路层头)也有一些差别"></a>一、DHCP共有八种报文，不同报文之间的区别除了DHCP数据包本身之外，在封包上(UDP头，IP头、链路层头)也有一些差别</h4><p>​      </p>
-<h5 id="1）DHCP-Discover"><a href="#1）DHCP-Discover" class="headerlink" title="1）DHCP Discover"></a>1）DHCP Discover</h5><p>DHCP客户端请求地址时，并不知道DHCP服务器的位置，因此DHCP客户端会在本地网络内以广播方式发送请求报文，这个报文成为Discover报文，目的是发现网络中的DHCP服务器，所有收到Discover报文的DHCP服务器都会发送回应报文，DHCP客户端据此可以知道网络中存在的DHCP服务器的位置。</p>
-<h5 id="2）DHCP-Offer"><a href="#2）DHCP-Offer" class="headerlink" title="2）DHCP Offer"></a>2）DHCP Offer</h5><p>DHCP服务器收到Discover报文后，就会在所配置的地址池中查找一个合适的IP地址，加上相应的租约期限和其他配置信息(如网关、DNS服务器等)，构造一个Offer报文，发送给用户(可以广播、也可以单播)，告知用户本服务器可以为其提供IP地址。(注意，只是告诉client可以提供，是预分配，还需要client通过ARP检测该IP是否重复)</p>
-<h5 id="3）DHCP-Request"><a href="#3）DHCP-Request" class="headerlink" title="3）DHCP Request"></a>3）DHCP Request</h5><p>客户端会在两种情况下发送DHCP Request</p>
-<p>a）DHCP客户端可能会收到来自DHCP服务器的很多Offer，所以必须在这些回应中选择一个。Client通常选择第一个回应Offer报文的服务器作为自己的目标服务器，并回应一个广播Request报文，通告选择的服务器。注意，”Client通常选择第一个回应Offer报文的服务器作为自己的目标服务器”这里存在一个安全问题，如果我们的伪DHCP服务器能比原始DHCP服务器先发送Offer数据包，就能达到欺骗的目的，从而劫持目标用户的流量</p>
-<p>b）获取DHCP客户端成功获取IP地址后，在地址使用租期过去1/2时，会向DHCP服务器发送单播Request报文续延租期，如果没有收到DHCP ACK报文，在租期过去3/4时，会再次发送广播Request报文续延租期。</p>
-<h5 id="4）DHCP-ACK"><a href="#4）DHCP-ACK" class="headerlink" title="4）DHCP ACK"></a>4）DHCP ACK</h5><p>DHCP服务器收到Request报文后，根据Request报文中携带的用户MAC来查找有没有相应的租约记录(即之前的预分配过程中登记的那个MAC)，如果有则发送ACK报文作为回应，通知用户可以使用分配的IP地址。</p>
-<h5 id="5）-DHCP-NAK"><a href="#5）-DHCP-NAK" class="headerlink" title="5） DHCP NAK"></a>5） DHCP NAK</h5><p>如果DHCP服务器收到Request报文后，没有发现有相应的租约记录或者由于某些原因无法正常分配IP地址，则发送NAK报文作为回应，通知用户无法分配合适的IP地址。</p>
-<h5 id="6）DHCP-Release"><a href="#6）DHCP-Release" class="headerlink" title="6）DHCP Release"></a>6）DHCP Release</h5><p>当用户不再需要使用分配IP地址时，就会”主动”向DHCP服务器发送Release报文，告知服务器用户不再需要分配IP地址，DHCP服务器会释放被绑定的租约(在数据库中清除某个MAC对某个IP的租约记录，这样，这个IP就可以分配给下一个请求租约的MAC)</p>
-<h5 id="7-DHCP-Decline"><a href="#7-DHCP-Decline" class="headerlink" title="\7. DHCP Decline"></a>\7. DHCP Decline</h5><p>DHCP客户端收到DHCP服务器回应的ACK报文后，通过地址冲突检测发现服务器分配的地址冲突或者由于其他原因导致不能使用，则发送Decline报文，通知服务器所分配的IP地址不可用，我们在手工设置静态IP、或者DHCP分配中有时会遇到”检测到IP冲突”的提示就是因为客户端利用ARP机制来在当前内网中确认当前指定的IP是否已经被占用</p>
-<h5 id="8）DHCP-Inform"><a href="#8）DHCP-Inform" class="headerlink" title="8）DHCP Inform"></a>8）DHCP Inform</h5><p>DHCP客户端如果需要从DHCP服务器端获取更为详细的配置信息，则发送Inform报文向服务器进行请求，服务器收到该报文后，将根据租约进行查找，找到相应的配置信息后，发送ACK报文回应DHCP客户端。</p>
-<h4 id="二、DHCP协议的本质"><a href="#二、DHCP协议的本质" class="headerlink" title="二、DHCP协议的本质"></a>二、DHCP协议的本质</h4><p>DHCP使用UDP进行报文的传输。在主机DHCP获得地址之前，主机并没有有效的IP地址，它是通过受限广播IP地址（全1），当该地址作为目的地址时，子网内的所有主机都能收到该IP数据报。IP层的广播实际上是基于链路层的广播来实现的，所以这里有个前提，即链路层具有广播功能，在以太网中，目的地址为全1的MAC地址可作为链路上的广播地址。只要数据包能够正确到达主机IP层UDP的端口上，则应用程序就能收到该端口上的广播IP包，这正是DHCP设备能正确获得IP地址的本质。</p>
-<p>DHCP客户端使用固定端口号68，而服务器使用固定端口号67。</p>
-<p>DHCP由三种机制分配IP地址：</p>
-<p> 1.自动分配方式：DHCP服务器为主机指定一个永久性的IP地址，一旦DHCP客户端第一次成功从DHCP服务器租用到IP地址，就可以永久使用该地址。</p>
-<p> 2.动态分配方式：DHCP服务器给主机指定一个有时间限制的IP地址， 时间到期或主机明确表示放弃该地址时，该地址可以被其他主机使用。</p>
-<p>  3.手工分配方式：客户端的IP地址是由网络管理员指定的，DHCP服务器只是将指定的IP地址告诉客户端主机。 </p>
-<p>三种地址分配方式中， 只有动态分配方式可以重复使用客户端不再需要的地址</p>
-<h4 id="三、DHCP工作流程"><a href="#三、DHCP工作流程" class="headerlink" title="三、DHCP工作流程"></a>三、DHCP工作流程</h4><p><img src="/2019/09/02/DHCP工作原理/D:/网站文件\personalblog\hexo\source\_posts\DHCP工作原理\DHCP.png" alt=""></p>
-<p>1、客户端以广播的方式发送DHCP_DISCOVER报文，广播的范围的服务器都能接收到该报文。</p>
-<p>2、所有的DHCP服务器都会对该报文进行响应，向DHCP客户端发送DHCP_OFFER报文，报文中的     Your（Client）IP Address字段携带了分配给客户端的IP地址，同时服务器的IP地址放在报文中的option字段中以便客户端可以区分，服务器分配后IP地址给客户端后，会把该地址分配记录下来。</p>
-<p>3、DHCP客户端可能收到多个服务器的DHCP_OFFER报文，但是它只能对其中的一个做响应，通常DHCP客户端处理最先收到的DHCP_OFFER报文并响应。</p>
-<p>4、DHCP客户端从DHCP_OFFER报文中提取可使用的IP地址和服务器IP地址后，会发出个广播的DHCP_REQUST报文，并在选项字段中加入选中的DHCP服务器的IP地址和自己要的IP地址。</p>
-<p>5、DHCP服务器收到DHCP_REQUST报文后，判断选项字段中的IP地址是否与自己的地址相同。如果不相同，DHCP服务器不做任何处理，然后清除相应IP地址分配记录；如果相同，DHCP服务器就会向客户端发送一个DHCP_ACK报文，并在报文选项字段中增加IP地址的使用租期信息。</p>
-<p>6、DHCP客户端接收到DHCP_ACK报文后，会检查服务器分配的IP地址是否能够使用（发送一个ARP请求到网络中，如果无主机回应该请求，则表示该地址可用）。如果可以使用，则客户端成功获得IP地址会根据IP地址使用租期自动启动续延过程；如果DHCP客户端发现分配的IP地址已经被使用，则需要向DHCP服务器发出一个DHCP_DECLINE报文，通知DHCP服务器禁用这个IP地址，此后，DHCP客户端重新开始上述地址申请流程。</p>
-<p>7、客户端在使用租期超过50%或87.5%时，会以广播播形式向DHCP服务器发送DHCP_REQUST报文来续租IP地址。如果DHCP客户端成功收到服务器返回的DHCP_ACK报文，则按相应时间延长IP地址租期；如果没有收到服务器返回的的DHCP_ACK报文，则DHCP 客户端继续使用这个IP地址，直到IP地址使用租期到期。当租期到期后，DHCP客户端会向DHCP服务器发送一个DHCP_RELEASE报文来释放这个IP地址，并开始新的IP地址申请过程。</p>
-<p>8、最后需要指出的是，DHCP服务器发送的DHCP_OFFER报文中的IP地址不一定是最后分配给客户端的IP地址，通常情况下，DHCP服务器会保留该地址直到客户端发出DHCP_REQUEST请求。在整个协商过程中，如果DHCP客户端发送的DHCP_REQUEST报文中的地址信息不正确，如客户端已经迁移到新的子网或者租约已经过期，DHCP服务器会发送DHCP_NAK报文给DHCP客户端，让客户端重新发起地址申请过程。</p>
-<h4 id="四、配置"><a href="#四、配置" class="headerlink" title="四、配置"></a>四、配置</h4><p>DHCP配置：</p>
-<p>R1(config)#ip dhcp pool ccna(dhcp服务器名称）</p>
-<p>R1(dhcp-config)#network 172.16.1.0 255.255.255.0</p>
-<p>R1(dhcp-config)#default-router 172.16.1.1</p>
-<p>R1(dhcp-config)#dns-server 8.8.8.8</p>
-<p>排除地址：</p>
-<p>排除单个地址</p>
-<p>R1(config)#ip dhcp excluded-address 172.16.1.254</p>
-<p>排除一段地址</p>
-<p>R1(config)#ip dhcp excluded-address 172.16.1.100 172.16.1.200</p>
-<p>​                               起始地址   结束地址</p>
+        <p>HTTP与HTTPS的区别及工作过程  </p>
+<a id="more"></a>                                                          
+<h3 id="一、HTTP介绍"><a href="#一、HTTP介绍" class="headerlink" title="一、HTTP介绍"></a>一、HTTP介绍</h3><h4 id="1、什么是HTTP"><a href="#1、什么是HTTP" class="headerlink" title="1、什么是HTTP"></a>1、什么是HTTP</h4><p>（一）HTTP（Hypertext Transfer Protocol）：超文本传输协议</p>
+<p>一种建立在TCP上的无状态连接的应用层协议，HTTP是WWW的数据交互的基础，超文本文档包括超链接链接到其他资源用户可以很容易获取。HTTP发展用来促进超文本和WWW。所谓协议，就是指双方遵循的规则、约定。http协议，就是浏览器和服务器之间进行通信的一种规规则。</p>
+<p>（二）TCP-IP详解对HTTP的概述</p>
+<p>H T T P是一个简单的协议。客户进程建立一条同服务器进程的 T C P连接，然后发出请求并读取服务器进程的响应。服务器进程关闭连接表示本次响应结束。服务器进程返回的文件通常含有指向其他服务器上文件的指针 (超文本链接)。用户显然可以很轻松地沿着这些链接从一 个服务器到下一个服务器。 </p>
+<h4 id="2、HTTP特点"><a href="#2、HTTP特点" class="headerlink" title="2、HTTP特点"></a>2、HTTP特点</h4><p>1、简单：客户向服务器请求服务时，只需传送请求方法和路径。请求方法常用的有GET、HEAD、POST。每种方法规定了客户与服务器联系的不同类型。由于HTTP协议简单，使得HTTP服务器的程序规模小，因而通信速度很快。</p>
+<p>2、灵活：HTTP允许传输任意类型的数据对象。正在传输的类型由Content-Type加以标记。</p>
+<p>3、请求-响应模式：客户端每次向服务器发起一个请求时都建立一个连接， 服务器处理完客户的请求即断开连接。</p>
+<p>4、无状态：HTTP协议是无状态协议。无状态是指协议对于事务处理没有记忆能力。缺少状态意味着如果后续处理需要前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。 </p>
+<h4 id="3、HTTP工作过程"><a href="#3、HTTP工作过程" class="headerlink" title="3、HTTP工作过程"></a>3、HTTP工作过程</h4><h5 id="（一）概述"><a href="#（一）概述" class="headerlink" title="（一）概述"></a>（一）概述</h5><p>HTTP客户端发起请求，创建端口。</p>
+<p>HTTP服务器在端口监听客户端请求。</p>
+<p>HTTP服务器向客户端返回状态和内容</p>
+<h5 id="（二）详解"><a href="#（二）详解" class="headerlink" title="（二）详解"></a>（二）详解</h5><h6 id="1、输入地址后回车，首先执行域名解析"><a href="#1、输入地址后回车，首先执行域名解析" class="headerlink" title="1、输入地址后回车，首先执行域名解析"></a>1、输入地址后回车，首先执行域名解析</h6><p>（1）查询浏览器自身的DNS缓冲</p>
+<p>（2）如果缓冲失效则查找系统的DNS缓冲</p>
+<p>（3）如果系统DNS缓冲没有查到则查看本地Host文件</p>
+<p>（4）如果找不到配置则浏览器发起DNS系统调用</p>
+<p>（5）主机向DNS服务器发起查询，获取IP地址</p>
+<h6 id="2、连接并进行通信"><a href="#2、连接并进行通信" class="headerlink" title="2、连接并进行通信"></a>2、连接并进行通信</h6><p>（1）浏览器获得域名对应的IP地址后，发起TCP“三次握手”</p>
+<p>（2）TCP/IP连接建立起来后，浏览器就可以向服务器发送http请求</p>
+<p>（3）服务器接收到这个请求，根据路径参数，经过后端的一些处理之后，把处理后的一个结果的数据返回给浏览器</p>
+<h6 id="3、浏览器渲染页面"><a href="#3、浏览器渲染页面" class="headerlink" title="3、浏览器渲染页面"></a>3、浏览器渲染页面</h6><h6 id="4、HTTP的不足"><a href="#4、HTTP的不足" class="headerlink" title="4、HTTP的不足"></a>4、HTTP的不足</h6><p>（一）安全性</p>
+<p>​      （1）HTTP使用明文通信，内容可能窃取</p>
+<p>​      （2）不验证通信方的身份，因此有可能遭遇伪装</p>
+<p>​      （3）无法证明报文的完整性，有可能已遭篡改</p>
+<p>（二）响应时间长</p>
+<p>​      （1）基于TCP工作，可靠但是速度慢</p>
+<p>​      （2）HTTP协议是无状态协议，传输完成后断开TCP连接，下一次的请求需要重新建立连接</p>
+<p>（三）臃肿的消息首部</p>
+<h3 id="二、HTTP的改进-HTTPS"><a href="#二、HTTP的改进-HTTPS" class="headerlink" title="二、HTTP的改进-HTTPS"></a>二、HTTP的改进-HTTPS</h3><p>Https并不是一个崭新的协议，而是在http的基础上发展而来相当于是Http的升级版。它主要是为了解决http协议安全性不足的问题而诞生的。HTTPS 就是在 HTTP 下加入了 SSL 层，从而保护了交换数据隐私和完整性，提供对网站服务器身份认证的功能，简单来说它就是安全版的 HTTP。</p>
+<p>Http+加密+认证+完整性保护=https</p>
+<p>Https的通信端口由SSL/TSL代替了，它是一种应用层协议。一般的情况下http直接和Tcp进行通信，当使用了SSL之后，就会变成先和SSL通信，SSL再和TCP进行通信。</p>
+<h3 id="三、HTTPS采用的加密技术"><a href="#三、HTTPS采用的加密技术" class="headerlink" title="三、HTTPS采用的加密技术"></a>三、HTTPS采用的加密技术</h3><h4 id="（一）对称密钥加密"><a href="#（一）对称密钥加密" class="headerlink" title="（一）对称密钥加密"></a>（一）对称密钥加密</h4><p> SSL采用的加密技术叫做“单密钥加密”，也叫作“对称密钥加密”，这种加密方法是这样的，比如客户端向服务器发送一条信息，首先客户端会采用已知的算法对信息进行加密，接收端对加密的信息进行解密的时候需要用到密钥，中间会传递密钥，（加密和解密的密钥是同一个），密钥在传输中间是被加密的。这种方式看起来安全，但是仍有潜在的危险，一旦被窃听，或者信息被挟持，就有可能破解密钥，而破解其中的信息，这种方式存在安全隐患。</p>
+<h4 id="（二）非对称密钥加密"><a href="#（二）非对称密钥加密" class="headerlink" title="（二）非对称密钥加密"></a>（二）非对称密钥加密</h4><p>“非对称加密”使用的时候有两把锁，一把叫做“私钥”，一把是“公钥”，使用非对称加密的加密方式的时候，服务器首先告诉客户端按照自己给定的公开密钥进行加密处理，客户端按照公开密钥加密以后，服务器接受到信息再通过自己的私有密钥进行解密，这样做的好处就是解密的钥匙根本就不会进行传输，因此也就避免了被挟持的风险。就算公开密钥被窃听者拿到了，它也很难进行解密。</p>
+<h3 id="四、HTTPS通信加密机制"><a href="#四、HTTPS通信加密机制" class="headerlink" title="四、HTTPS通信加密机制"></a>四、HTTPS通信加密机制</h3><h4 id="（一）HTTPS采用混合机制的加密方式"><a href="#（一）HTTPS采用混合机制的加密方式" class="headerlink" title="（一）HTTPS采用混合机制的加密方式"></a>（一）HTTPS采用混合机制的加密方式</h4><p>https则综合了对称密钥加密和非对称密钥加密的两种方式，充分利用两者的优势，在最初的连接的时候使用非对称密钥的加密方式保证连接的安全性，之后稳定的通讯采用对称加密的方式，稳定的通讯是指确保交换的密钥是安全的。</p>
+<p>某网站拥有用于非对称加密的公钥A、私钥A’，浏览器像网站服务器请求，服务器把公钥A明文给传输浏览器，浏览器随机生成一个用于对称加密的密钥X，用公钥A加密后传给服务器，服务器拿到后用私钥A’解密得到密钥X，这样双方就都拥有密钥X了，且别人无法知道它。之后双方所有数据都用密钥X加密解密。</p>
+<p>虽然这种加密方式比对称加密和非对称加密安全，但是还是存在漏洞，某网站拥有用于非对称加密的公钥A、私钥A’，浏览器向网站服务器请求，服务器把公钥A明文给传输浏览器，中间人劫持到公钥A，保存下来，把数据包中的公钥A替换成自己伪造的公钥B（它当然也拥有公钥B对应的私钥B’），浏览器随机生成一个用于对称加密的密钥X，用公钥B（浏览器不知道公钥被替换了）加密后传给服务器，中间人劫持后用私钥B’解密得到密钥X，再用公钥A加密后传给服务器，服务器拿到后用私钥A’解密得到密钥X</p>
+<p>为了应对这种漏洞，HTTPS加入了一种新的安全机制，证书认证</p>
+<h4 id="（二）https的证书机制"><a href="#（二）https的证书机制" class="headerlink" title="（二）https的证书机制"></a>（二）https的证书机制</h4><p>1、服务器的开发者携带公开密钥，向数字证书认证机构提出公开密钥的申请，数字证书认证机构在认清申请者的身份，审核通过以后，会对开发者申请的公开密钥做数字签名，然后分配这个已签名的公开密钥，并将密钥放在证书里面，绑定在一起</p>
+<p>2、服务器将这份数字证书发送给客户端，因为客户端也认可证书机构，客户端可以通过数字证书中的数字签名来验证公钥的真伪，来确保服务器传过来的公开密钥是真实的。一般情况下，证书的数字签名是很难被伪造的，这取决于认证机构的公信力。一旦确认信息无误之后，客户端就会通过公钥对报文进行加密发送，服务器接收到以后用自己的私钥进行解密。</p>
+<h3 id="五、SSL-TLS"><a href="#五、SSL-TLS" class="headerlink" title="五、SSL/TLS"></a>五、SSL/TLS</h3><p>SSL(Secure Sockets Layer <a href="https://baike.baidu.com/item/%E5%AE%89%E5%85%A8%E5%A5%97%E6%8E%A5%E5%B1%82" target="_blank" rel="noopener">安全套接层</a>),及其继任者<a href="https://baike.baidu.com/item/%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8" target="_blank" rel="noopener">传输层安全</a>（Transport Layer Security，TLS）是为<a href="https://baike.baidu.com/item/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/9636548" target="_blank" rel="noopener">网络通信</a>提供安全及<a href="https://baike.baidu.com/item/%E6%95%B0%E6%8D%AE%E5%AE%8C%E6%95%B4%E6%80%A7/110071" target="_blank" rel="noopener">数据完整性</a>的一种安全协议。TLS与SSL在<a href="https://baike.baidu.com/item/%E4%BC%A0%E8%BE%93%E5%B1%82/4329536" target="_blank" rel="noopener">传输层</a>对网络连接进行加密。</p>
+<p>SSL是基于HTTP之下TCP之上的一个协议层，是基于HTTP标准并对TCP传输数据时进行加密，所以HPPTS是HTTP+SSL/TCP的简称。</p>
+<p>标准化后的SSL更名为TLS(Transport Layer Security 安全传输层协议)</p>
+<h4 id="（一）SSL协议"><a href="#（一）SSL协议" class="headerlink" title="（一）SSL协议"></a>（一）SSL协议</h4><p>SSL协议是一个分层的协议，共有两层组成。处于SSL协议的底层的是SSL记录层协议(SSL Record Protocol)，它位于可靠的传输层协议(如TCP)之上，用于封装高层协议的数据。其中SSL握手协议(SSL Handshake Protocol)允许服务方和客户方互相认证，并在应用层协议传送数据之前协商出一个加密算法和会话密钥。</p>
+<p>SSL协议实现的安全机制包括：</p>
+<p>数据传输的机密性：利用对称密钥算法对传输的数据进行加密。</p>
+<p>身份验证机制：基于证书利用数字签名方法对服务器和客户端进行身份验证，其中客户端的身份验证是可选的。</p>
+<p>消息完整性验证：消息传输过程中使用MAC算法来检验消息的完整性。</p>
+<h4 id="（二）加密算法"><a href="#（二）加密算法" class="headerlink" title="（二）加密算法"></a>（二）加密算法</h4><h5 id="1、散列函数Hash"><a href="#1、散列函数Hash" class="headerlink" title="1、散列函数Hash"></a>1、散列函数Hash</h5><p>常见的有 MD5、SHA1、SHA256，该类函数特点是函数单向不可逆、对输入非常敏感、输出长度固定，针对数据的任何修改都会改变散列函数的结果，用于防止信息篡改并验证数据的完整性。</p>
+<h5 id="2、对称加密"><a href="#2、对称加密" class="headerlink" title="2、对称加密"></a>2、对称加密</h5><p>常见的有AES-CBC、DES、3DES、AES-GCM等，相同的密钥可以用于信息的加密和解密，掌握密钥才能获取信息，能够防止信息窃听。</p>
+<h5 id="3、非对称加密"><a href="#3、非对称加密" class="headerlink" title="3、非对称加密"></a>3、非对称加密</h5><p>即常见的 RSA 算法，还包括 ECC、DH 等算法，算法特点是，密钥成对出现，一般称为公钥(公开)和私钥(保密)，公钥加密的信息只能私钥解开，私钥加密的信息只能公钥解开。</p>
+<h3 id="六、SSL-TSL握手过程"><a href="#六、SSL-TSL握手过程" class="headerlink" title="六、SSL/TSL握手过程"></a>六、SSL/TSL握手过程</h3><p>（一）客户端发起请求，以明文传输请求信息，包含版本信息，加密套件候选列表，压缩算法候选列表，随机数，扩展字段等信息</p>
+<p>（二）服务端返回协商的信息结果，包括选择使用的协议版本，选择的加密套件 ，选择的压缩算法、随机数等，其中随机数用于后续的密钥协商;服务器端配置对应的证书链，用于身份验证与密钥交换</p>
+<p>（三）证书校验，客户端验证证书的合法性，如果验证通过才会进行后续通信，否则根据错误情况不同做出提示和操作</p>
+<p>（四）合法性验证通过之后，客户端计算产生随机数字 Pre-master，并用证书公钥加密，发送给服务器</p>
+<p>（五）服务器用私钥解密加密的数据，基于之前交换的两个明文随机数，计算得到协商密钥，计算之前所有接收信息的 hash 值，验证数据和密钥正确性;</p>
+<p>（六）握手结束</p>
+<h3 id="七、HTTPS工作流程"><a href="#七、HTTPS工作流程" class="headerlink" title="七、HTTPS工作流程"></a>七、HTTPS工作流程</h3><h4 id="（一）建立连接"><a href="#（一）建立连接" class="headerlink" title="（一）建立连接"></a>（一）建立连接</h4><p>1.服务端首先把自己的公钥（Key1）发给证书颁发机构，向证书颁发机构申请证书。</p>
+<p>2.证书颁发机构自己也有一对公钥私钥。机构利用自己的私钥来加密Key1，并且通过服务端网址等信息生成一个证书签名，证书签名同样经过机构的私钥加密。证书制作完成后，机构把证书发送给了服务端。</p>
+<p>3.当客户端向服务端请求通信的时候，服务端不再直接返回自己的公钥（Key1），而是把自己申请的证书返回给客户端。</p>
+<p>4.客户端收到证书以后，要做的第一件事情是验证证书的真伪。需要说明的是，各大浏览器和操作系统已经维护了所有权威证书机构的名称和公钥。所以客户端只需要知道是哪个机构颁布的证书，就可以从本地找到对应的机构公钥，解密出证书签名，客户端对证书验证成功后，就可以放心地再次利用机构公钥，解密出服务端的公钥Key1。</p>
+<ol start="5">
+<li><p>客户端生成自己的对称加密密钥Key2，并且用服务端公钥Key1加密Key2，发送给服务端。</p>
+</li>
+<li><p>服务端用自己的私钥解开加密，得到对称加密密钥Key2。于是客户端与服务端开始用Key2进行对称加密的通信。</p>
+</li>
+</ol>
+<h4 id="（二）数据传输"><a href="#（二）数据传输" class="headerlink" title="（二）数据传输"></a>（二）数据传输</h4><ol>
+<li><p>对应用层数据进行分片成合适的 block</p>
+</li>
+<li><p>为分片数据编号，防止重放攻击</p>
+</li>
+<li><p>使用协商的压缩算法压缩数据</p>
+</li>
+<li><p>计算 MAC 值和压缩数据组成传输数据</p>
+</li>
+<li><p>使用 key 加密数据，发送给服务器</p>
+</li>
+<li><p>服务器收到数据之后使用key解密，校验数据，解压缩数据，重新组装</p>
+</li>
+</ol>
+<h3 id="八、HTTP与HTTPS的不同"><a href="#八、HTTP与HTTPS的不同" class="headerlink" title="八、HTTP与HTTPS的不同"></a>八、HTTP与HTTPS的不同</h3><p>(1) HTTPS是加密传输协议，HTTP是明文传输协议</p>
+<p>(2) HTTPS需要用到SSL证书，而HTTP不用</p>
+<p>(3) HTTPS比HTTP更加安全，对搜索引擎更友好，利于SEO</p>
+<p>(4) HTTPS标准端口443，HTTP标准端口80</p>
+<p>(5) HTTPS基于传输层，HTTP基于应用层</p>
 
       
     </div>
@@ -441,7 +485,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://soliym.top/2019/09/02/DHCP工作原理/" title="DHCP工作原理">http://soliym.top/2019/09/02/DHCP工作原理/</a>
+    <a href="http://soliym.top/2019/12/02/Http与Https的区别和加密原理/" title="Http与Https的区别和加密原理">http://soliym.top/2019/12/02/Http与Https的区别和加密原理/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -456,8 +500,8 @@
       
         <div class="post-tags">
           
-            <a href="/tags/DHCP/" rel="tag"><i class="fa fa-tag"></i>
- DHCP</a>
+            <a href="/tags/密码学/" rel="tag"><i class="fa fa-tag"></i>
+ 密码学</a>
           
         </div>
       
@@ -485,8 +529,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/17/RHCSA-Linux基础命令（一）/" rel="next" title="RHCSA-Linux基础命令（一）">
-                <i class="fa fa-chevron-left"></i> RHCSA-Linux基础命令（一）
+              <a href="/2019/12/01/单钥密码体制三/" rel="next" title="单钥密码体制三">
+                <i class="fa fa-chevron-left"></i> 单钥密码体制三
               </a>
             
           </div>
@@ -494,10 +538,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/09/02/RIP路由信息简述/" rel="prev" title="RIP路由信息简述">
-                RIP路由信息简述 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -683,7 +723,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、DHCP共有八种报文，不同报文之间的区别除了DHCP数据包本身之外，在封包上-UDP头，IP头、链路层头-也有一些差别"><span class="nav-number">1.</span> <span class="nav-text">一、DHCP共有八种报文，不同报文之间的区别除了DHCP数据包本身之外，在封包上(UDP头，IP头、链路层头)也有一些差别</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1）DHCP-Discover"><span class="nav-number">1.1.</span> <span class="nav-text">1）DHCP Discover</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2）DHCP-Offer"><span class="nav-number">1.2.</span> <span class="nav-text">2）DHCP Offer</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3）DHCP-Request"><span class="nav-number">1.3.</span> <span class="nav-text">3）DHCP Request</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4）DHCP-ACK"><span class="nav-number">1.4.</span> <span class="nav-text">4）DHCP ACK</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5）-DHCP-NAK"><span class="nav-number">1.5.</span> <span class="nav-text">5） DHCP NAK</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6）DHCP-Release"><span class="nav-number">1.6.</span> <span class="nav-text">6）DHCP Release</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-DHCP-Decline"><span class="nav-number">1.7.</span> <span class="nav-text">\7. DHCP Decline</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8）DHCP-Inform"><span class="nav-number">1.8.</span> <span class="nav-text">8）DHCP Inform</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、DHCP协议的本质"><span class="nav-number">2.</span> <span class="nav-text">二、DHCP协议的本质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、DHCP工作流程"><span class="nav-number">3.</span> <span class="nav-text">三、DHCP工作流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、配置"><span class="nav-number">4.</span> <span class="nav-text">四、配置</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、HTTP介绍"><span class="nav-number">1.</span> <span class="nav-text">一、HTTP介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、什么是HTTP"><span class="nav-number">1.1.</span> <span class="nav-text">1、什么是HTTP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、HTTP特点"><span class="nav-number">1.2.</span> <span class="nav-text">2、HTTP特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、HTTP工作过程"><span class="nav-number">1.3.</span> <span class="nav-text">3、HTTP工作过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#（一）概述"><span class="nav-number">1.3.1.</span> <span class="nav-text">（一）概述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#（二）详解"><span class="nav-number">1.3.2.</span> <span class="nav-text">（二）详解</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1、输入地址后回车，首先执行域名解析"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">1、输入地址后回车，首先执行域名解析</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2、连接并进行通信"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">2、连接并进行通信</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3、浏览器渲染页面"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">3、浏览器渲染页面</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4、HTTP的不足"><span class="nav-number">1.3.2.4.</span> <span class="nav-text">4、HTTP的不足</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、HTTP的改进-HTTPS"><span class="nav-number">2.</span> <span class="nav-text">二、HTTP的改进-HTTPS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、HTTPS采用的加密技术"><span class="nav-number">3.</span> <span class="nav-text">三、HTTPS采用的加密技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#（一）对称密钥加密"><span class="nav-number">3.1.</span> <span class="nav-text">（一）对称密钥加密</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（二）非对称密钥加密"><span class="nav-number">3.2.</span> <span class="nav-text">（二）非对称密钥加密</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、HTTPS通信加密机制"><span class="nav-number">4.</span> <span class="nav-text">四、HTTPS通信加密机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#（一）HTTPS采用混合机制的加密方式"><span class="nav-number">4.1.</span> <span class="nav-text">（一）HTTPS采用混合机制的加密方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（二）https的证书机制"><span class="nav-number">4.2.</span> <span class="nav-text">（二）https的证书机制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、SSL-TLS"><span class="nav-number">5.</span> <span class="nav-text">五、SSL/TLS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#（一）SSL协议"><span class="nav-number">5.1.</span> <span class="nav-text">（一）SSL协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（二）加密算法"><span class="nav-number">5.2.</span> <span class="nav-text">（二）加密算法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、散列函数Hash"><span class="nav-number">5.2.1.</span> <span class="nav-text">1、散列函数Hash</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、对称加密"><span class="nav-number">5.2.2.</span> <span class="nav-text">2、对称加密</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、非对称加密"><span class="nav-number">5.2.3.</span> <span class="nav-text">3、非对称加密</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、SSL-TSL握手过程"><span class="nav-number">6.</span> <span class="nav-text">六、SSL/TSL握手过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、HTTPS工作流程"><span class="nav-number">7.</span> <span class="nav-text">七、HTTPS工作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#（一）建立连接"><span class="nav-number">7.1.</span> <span class="nav-text">（一）建立连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（二）数据传输"><span class="nav-number">7.2.</span> <span class="nav-text">（二）数据传输</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八、HTTP与HTTPS的不同"><span class="nav-number">8.</span> <span class="nav-text">八、HTTP与HTTPS的不同</span></a></li></ol></div>
             
 
           </div>
