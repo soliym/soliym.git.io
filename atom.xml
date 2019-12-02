@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://soliym.top/"/>
-  <updated>2019-11-25T10:23:29.069Z</updated>
+  <updated>2019-12-01T05:33:51.432Z</updated>
   <id>http://soliym.top/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>单钥密码体制三</title>
+    <link href="http://soliym.top/2019/12/01/%E5%8D%95%E9%92%A5%E5%AF%86%E7%A0%81%E4%BD%93%E5%88%B6%E4%B8%89/"/>
+    <id>http://soliym.top/2019/12/01/单钥密码体制三/</id>
+    <published>2019-12-01T05:09:52.000Z</published>
+    <updated>2019-12-01T05:33:51.432Z</updated>
+    
+    <content type="html"><![CDATA[<p>下面介绍我国的商用分组密码SM4及单钥密码中的分组密码</p><a id="more"></a><h3 id="一、SM4的特点"><a href="#一、SM4的特点" class="headerlink" title="一、SM4的特点"></a>一、SM4的特点</h3><p>1、</p><p>数据分组长度=128位、密钥长度=128位 </p><p>数据处理单位：字节（ 8位），字（32位） </p><p>2、</p><p>基本轮函数加迭代 </p><p>解密算法与加密算法相同-密钥使用顺序不同</p><h3 id="二、SM4-密码算法基本运算"><a href="#二、SM4-密码算法基本运算" class="headerlink" title="二、SM4 密码算法基本运算"></a>二、SM4 密码算法基本运算</h3><h4 id="1、SM4使用模2加和循环移位运算"><a href="#1、SM4使用模2加和循环移位运算" class="headerlink" title="1、SM4使用模2加和循环移位运算"></a>1、SM4使用模2加和循环移位运算</h4><p>1）模2加：⊕，32 比特异或运算 </p><p>2）循环移位：<em>&lt;&lt;&lt; i</em> <em>，</em>把32位字循环左移<em>i</em> 位</p><h4 id="2、代换运算：S盒"><a href="#2、代换运算：S盒" class="headerlink" title="2、代换运算：S盒"></a>2、代换运算：S盒</h4><p>起混淆作用，输入8bit序列，输出8bit序列</p><p>运算规则根据s盒代换</p><h4 id="3、非线性变换"><a href="#3、非线性变换" class="headerlink" title="3、非线性变换"></a>3、非线性变换</h4><p>由4个并行的S盒构成，输入x1,x2,x3,x4,输出y1,y2,y3,y4</p><p>运算规则根据s盒代换</p><h4 id="4、线性变换"><a href="#4、线性变换" class="headerlink" title="4、线性变换"></a>4、线性变换</h4><p>起扩散作用，输入32bit，输出32bit，循环移位</p><p>L(B)=B^(B&lt;&lt;&lt;2)^(B&lt;&lt;&lt;10)^(B&lt;&lt;&lt;18)^(B&lt;&lt;&lt;24)</p><h4 id="5、合成变换"><a href="#5、合成变换" class="headerlink" title="5、合成变换"></a>5、合成变换</h4><p>由非线性变换和线性变换复合而成</p><h4 id="6、轮函数"><a href="#6、轮函数" class="headerlink" title="6、轮函数"></a>6、轮函数</h4><p>轮函数运算式：F(x0,x1,x2,x3,rk)=x0^T(x1^x2^x3^rk)</p><p>T函数本质上分两步：一是S盒非线性变换，另一个是线性移位。 </p><h3 id="三、加密流程"><a href="#三、加密流程" class="headerlink" title="三、加密流程"></a>三、加密流程</h3><h4 id="加密与解密流程图"><a href="#加密与解密流程图" class="headerlink" title="加密与解密流程图"></a>加密与解密流程图</h4><p><img src="/2019/12/01/单钥密码体制三/01.png" alt="01"></p><h4 id="算法流程图"><a href="#算法流程图" class="headerlink" title="算法流程图"></a>算法流程图</h4><p><img src="/2019/12/01/单钥密码体制三/02.png" alt="02"></p><h3 id="四、加密步骤"><a href="#四、加密步骤" class="headerlink" title="四、加密步骤"></a>四、加密步骤</h3><h4 id="1、明文分组"><a href="#1、明文分组" class="headerlink" title="1、明文分组"></a>1、明文分组</h4><p>SM4算法分组长度为128bit，也就是16个字节，如果SM4算法分组长度为128bit，也就是16个字节，如果明文字节数不是16的整数倍，仍然采取补0凑足128位的方法。</p><p>将明文转换成二进制，然后以128bit分组。</p><h4 id="2、明文组分组"><a href="#2、明文组分组" class="headerlink" title="2、明文组分组"></a>2、明文组分组</h4><p>将128bit的明文组均分为各32bit的子组。</p><h4 id="3、合成变换"><a href="#3、合成变换" class="headerlink" title="3、合成变换"></a>3、合成变换</h4><p><img src="/2019/12/01/单钥密码体制三/03.png" alt="03"></p><p>非线性变换S盒置换规则：</p><p>SM4中利用了4个完全相同的S盒，每个S盒对应8位的输入和8位的输出</p><p>以输入的前半字节为行号，后半字节为列号，行列交叉点处的数据即为输出</p><p>线性变换循环移位加：</p><p>运算规则： </p><p>C=L（B）<em>=B</em>⊕(<em>B</em>&lt;&lt;&lt;2)⊕(<em>B</em>&lt;&lt;&lt;10)⊕(<em>B</em>&lt;&lt;&lt;18) ⊕(<em>B</em>&lt;&lt;&lt;24)</p><p>流程：X1,x2,x3,rk先异或输出32bit数，然后非线性变换，由四个并行的s盒置换，输出32bit数，在经线性变换，输出32bit数</p><h4 id="4、轮函数"><a href="#4、轮函数" class="headerlink" title="4、轮函数"></a>4、轮函数</h4><p>X0&lt;-x1,x1&lt;-x2,x2&lt;-x3,x3-&lt;x0^T(x1^x2^x3^rk)</p><h4 id="5、反序变换"><a href="#5、反序变换" class="headerlink" title="5、反序变换"></a>5、反序变换</h4><p>R（x32,x33,x34,x35）=（x35,x34,x33,x32）</p><h3 id="五、密钥生成"><a href="#五、密钥生成" class="headerlink" title="五、密钥生成"></a>五、密钥生成</h3><p><img src="/2019/12/01/单钥密码体制三/04.png" alt="04"></p><p>1、系统参数FK</p><p>2、固定参数CK</p><p>1、初始密钥MK分为4X32=128bit</p><p>2、MK与FK异或得到K</p><p>3、32轮函数变换得到32个子密钥，轮函数与加密过程基本相同，只是将线性变换修改为</p><p><em>L<strong>(</strong>B<strong>)=</strong>B</em>⊕<em>(<strong>B</strong>&lt;&lt;&lt;</em> <em>13**)</em>⊕<em>(<strong>B</strong>&lt;&lt;&lt;</em> <em>23<strong>)</strong>,<strong>加密函数中用到的是密钥，而密钥扩展算法中用到的是</strong>32bit<strong>固定参数</strong>CK</em></p><h3 id="六、安全性"><a href="#六、安全性" class="headerlink" title="六、安全性"></a>六、安全性</h3><p>①国家专业机构设计。算法简洁，以字和字节为处理单位，对称运算，符合当今分组密码主流。 </p><p>②专业机构进行了密码分析，因此是安全的。 </p><p>③民间学者对21轮SM4进行了差分密码分析。 </p><p>④尚需经过实践检验。</p><h3 id="七、流密码"><a href="#七、流密码" class="headerlink" title="七、流密码"></a>七、流密码</h3><h4 id="流密码"><a href="#流密码" class="headerlink" title="流密码"></a>流密码</h4><p>流密码：将明文划分成字符，或其编码的基本单元，字符分别与密钥流作用进行加密，解密时以同步产生的同样的密钥流实现。流密码强度完全依赖于密钥所产生的序列的随机性和不可预测性。</p><p>如果密码序列是一个非周期序列，那么可以做到一次一密体制，一次一密可以实现无条件安全。</p><h4 id="ZUC算法"><a href="#ZUC算法" class="headerlink" title="ZUC算法"></a>ZUC算法</h4><p>ZUC本质上一个密钥序列产生的算法，其输入为128bit的初始密钥和128比特的初始向量，输出为32比特的密钥字序列，其逻辑上分为三层，分别是：16级线性反馈移位寄存器（LFSR），比特重组（BR），非线性函数F。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;下面介绍我国的商用分组密码SM4及单钥密码中的分组密码&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="信息安全" scheme="http://soliym.top/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="密码学" scheme="http://soliym.top/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
+    
+  </entry>
   
   <entry>
     <title>AES列混淆机制详解</title>

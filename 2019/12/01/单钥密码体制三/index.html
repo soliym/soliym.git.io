@@ -81,25 +81,23 @@
 
 
 
-<meta name="description" content="信息安全的两次变革：第一次是计算机的诞生，许多重要文件存储于计算机中，因此，计算机的主机安全就成为了一个重要的问题。第二次是计算机网络及分布式系统的诞生，人们利用网络对数据传输，在这个复杂且庞大的网络中，如何去传输重要数据，这又给信息安全带来新的问题和挑战。随着这些问题的解决，密码学也在不断的发展中。信息安全的四个目标：保密性、完整性、可用性、合法使用。">
+<meta name="description" content="下面介绍我国的商用分组密码SM4及单钥密码中的分组密码">
 <meta name="keywords" content="密码学">
 <meta property="og:type" content="article">
-<meta property="og:title" content="单钥密码体制(一)">
-<meta property="og:url" content="http://soliym.top/2019/11/24/单钥密码体制一/index.html">
+<meta property="og:title" content="单钥密码体制三">
+<meta property="og:url" content="http://soliym.top/2019/12/01/单钥密码体制三/index.html">
 <meta property="og:site_name" content="soliym">
-<meta property="og:description" content="信息安全的两次变革：第一次是计算机的诞生，许多重要文件存储于计算机中，因此，计算机的主机安全就成为了一个重要的问题。第二次是计算机网络及分布式系统的诞生，人们利用网络对数据传输，在这个复杂且庞大的网络中，如何去传输重要数据，这又给信息安全带来新的问题和挑战。随着这些问题的解决，密码学也在不断的发展中。信息安全的四个目标：保密性、完整性、可用性、合法使用。">
+<meta property="og:description" content="下面介绍我国的商用分组密码SM4及单钥密码中的分组密码">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://soliym.top/2019/11/24/单钥密码体制一/01.png">
-<meta property="og:image" content="http://soliym.top/2019/11/24/单钥密码体制一/02.png">
-<meta property="og:image" content="http://soliym.top/2019/11/24/单钥密码体制一/03.png">
-<meta property="og:image" content="http://soliym.top/2019/11/24/单钥密码体制一/04.png">
-<meta property="og:image" content="http://soliym.top/2019/11/24/单钥密码体制一/05.png">
-<meta property="og:image" content="http://soliym.top/2019/11/24/单钥密码体制一/06.png">
-<meta property="og:updated_time" content="2019-11-24T09:57:33.605Z">
+<meta property="og:image" content="http://soliym.top/2019/12/01/单钥密码体制三/01.png">
+<meta property="og:image" content="http://soliym.top/2019/12/01/单钥密码体制三/02.png">
+<meta property="og:image" content="http://soliym.top/2019/12/01/单钥密码体制三/03.png">
+<meta property="og:image" content="http://soliym.top/2019/12/01/单钥密码体制三/04.png">
+<meta property="og:updated_time" content="2019-12-01T05:33:51.432Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="单钥密码体制(一)">
-<meta name="twitter:description" content="信息安全的两次变革：第一次是计算机的诞生，许多重要文件存储于计算机中，因此，计算机的主机安全就成为了一个重要的问题。第二次是计算机网络及分布式系统的诞生，人们利用网络对数据传输，在这个复杂且庞大的网络中，如何去传输重要数据，这又给信息安全带来新的问题和挑战。随着这些问题的解决，密码学也在不断的发展中。信息安全的四个目标：保密性、完整性、可用性、合法使用。">
-<meta name="twitter:image" content="http://soliym.top/2019/11/24/单钥密码体制一/01.png">
+<meta name="twitter:title" content="单钥密码体制三">
+<meta name="twitter:description" content="下面介绍我国的商用分组密码SM4及单钥密码中的分组密码">
+<meta name="twitter:image" content="http://soliym.top/2019/12/01/单钥密码体制三/01.png">
 
 
 
@@ -129,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://soliym.top/2019/11/24/单钥密码体制一/">
+  <link rel="canonical" href="http://soliym.top/2019/12/01/单钥密码体制三/">
 
 
 
 
 
-  <title>单钥密码体制(一) | soliym</title>
+  <title>单钥密码体制三 | soliym</title>
   
 
 
@@ -284,7 +282,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://soliym.top/2019/11/24/单钥密码体制一/">
+    <link itemprop="mainEntityOfPage" href="http://soliym.top/2019/12/01/单钥密码体制三/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="soliym">
@@ -301,7 +299,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">单钥密码体制(一)</h1>
+          <h1 class="post-title" itemprop="name headline">单钥密码体制三</h1>
         
 
         <div class="post-meta">
@@ -313,8 +311,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-24T17:34:01+08:00">
-                2019-11-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-01T13:09:52+08:00">
+                2019-12-01
               </time>
             
 
@@ -378,39 +376,54 @@
       
 
       
-        <p>信息安全的两次变革：第一次是计算机的诞生，许多重要文件存储于计算机中，因此，计算机的主机安全就成为了一个重要的问题。第二次是计算机网络及分布式系统的诞生，人们利用网络对数据传输，在这个复杂且庞大的网络中，如何去传输重要数据，这又给信息安全带来新的问题和挑战。随着这些问题的解决，密码学也在不断的发展中。信息安全的四个目标：保密性、完整性、可用性、合法使用。</p>
+        <p>下面介绍我国的商用分组密码SM4及单钥密码中的分组密码</p>
 <a id="more"></a>
-<h3 id="一、单钥密码体制"><a href="#一、单钥密码体制" class="headerlink" title="一、单钥密码体制"></a>一、单钥密码体制</h3><p>单钥密码体制也称为私钥加密体制，因为通信双方采用的密码相同，因此，也称为对称加密体制，根据其加密算法的特点，可分为：分组密码和流密码。</p>
-<p>古典密码：是一种简单的加密体制，它伴随着密码学的发展，它的思想对单钥密码体制影响深远，代换和置换思想，是单钥密码体制的基础。</p>
-<p>密码学可分为古代密码、近代密码、现代密码，它有两个重要的时期，一是1949，密码学成为一门学科，二是1976年，公钥密码算法的出现。</p>
-<p>密码学的进程：从单表代替到多表代替，再到机械码，以及现在的现代密码学，未来将会出现的量子密码学。</p>
-<p>密码学中有一个重要的定律：伯格夫斯基定律：每一个密码都是可以破解的</p>
-<p>虽然有些密码至今没有人可以破解，但是根据密码学的加密规则来说，密文都是根据一定的规则由明文加密而来，因此，密文肯定是可以破解的，只是时间和方法问题。</p>
-<p>既然所有的密码都是可以破解的，那么机密算法的安全性在哪？</p>
-<p>1、破译的成本超过加密信息性价值</p>
-<p>2、破译的时间超过加密信息的生命周期</p>
-<h3 id="二、分组密码DES"><a href="#二、分组密码DES" class="headerlink" title="二、分组密码DES"></a>二、分组密码DES</h3><h4 id="1、DES"><a href="#1、DES" class="headerlink" title="1、DES"></a>1、DES</h4><p>DES是一种分组加密算法，输入的明文为64位，密钥为56位，生成的密文分组长度为64位</p>
-<h4 id="2、DES算法"><a href="#2、DES算法" class="headerlink" title="2、DES算法"></a>2、DES算法</h4><p>1、对输入分组进行固定的“初始置换”IP运算，可以将这个置换表示为：</p>
-<p>  <img src="/2019/11/24/单钥密码体制一/01.png" alt="01"></p>
-<p> 注意：这里L0和R0称为“左右半分组”，各为32比特。IP是固定的函数（即输入密钥不是它的参数），它是公开的。这个过程实际上为“扩散（ Diffusion ）”。</p>
-<p>2、迭代运算，即将下面的运算迭代16轮</p>
-<p><img src="/2019/11/24/单钥密码体制一/02.png" alt="02"></p>
-<p>这个过程就是香农信息论中的“混淆”       </p>
-<p>3、将16轮迭代后得到的结果（L16, R16）输入到IP的逆置换IP-1中：</p>
-<p>注意：DES算法的加密和解密运算均采用这3个步骤。仅有的不同是：如果加密算法中使用的轮密钥次序为k1, k2, …, k16，那么解密算法中使用的密钥次序为：k16, k15, …, k1。   </p>
-<p><img src="/2019/11/24/单钥密码体制一/03.png" alt="03"></p>
-<p>加密流程：</p>
-<p><img src="/2019/11/24/单钥密码体制一/04.png" alt="04"></p>
-<p>3、密钥生成</p>
-<p><img src="/2019/11/24/单钥密码体制一/05.png" alt="05"></p>
-<p>4、迭代结构</p>
-<p><img src="/2019/11/24/单钥密码体制一/06.png" alt="06"></p>
-<p>DES的轮结构重点在于F函数，F函数将32bit明文扩展为48bit密文，然后在于密钥异或，再通过S盒的替换，压缩成32bit。</p>
-<p>F函数中明文的扩展：将明文分为8*4的矩阵，在矩阵的左右两侧，各加入一列元素，元素生成规则为：元素空间为0到32，左侧一列为第一列元素-1，如果为-1，则为32，右侧一列+1模32</p>
-<p>F函数中的密文压缩：通过8个s盒的代换，代换规则，将48bit密文分为8组，每组6bit，分别对应8个S盒，然后将每组的第一位和最后一位组成行，其他位组成列，然后查表替换。</p>
-<h3 id="三、DES安全性"><a href="#三、DES安全性" class="headerlink" title="三、DES安全性"></a>三、DES安全性</h3><p>因为DES的密钥太短，因此不能抵抗穷举密钥搜索攻击，已被破解，但是它的思想影响了后来单钥密码体制的设计。</p>
-<h3 id="四、DES的设计思想"><a href="#四、DES的设计思想" class="headerlink" title="四、DES的设计思想"></a>四、DES的设计思想</h3><p>DES的设计主要包含了扩散和混淆，这也是单钥加密算法中，分组密码的基本设计思想，扩散是将密钥对明文的影响尽可能多的去影响明文中的元素，使明文和密文的差别尽可能的大。混淆是将明文和密文的联系尽可能小，通过统计等手段，不能确定明文和密文之间的关系。</p>
-<p>扩散和混淆的思想来源于古典密码中的置换和代换。</p>
+<h3 id="一、SM4的特点"><a href="#一、SM4的特点" class="headerlink" title="一、SM4的特点"></a>一、SM4的特点</h3><p>1、</p>
+<p>数据分组长度=128位、密钥长度=128位 </p>
+<p>数据处理单位：字节（ 8位），字（32位） </p>
+<p>2、</p>
+<p>基本轮函数加迭代 </p>
+<p>解密算法与加密算法相同-密钥使用顺序不同</p>
+<h3 id="二、SM4-密码算法基本运算"><a href="#二、SM4-密码算法基本运算" class="headerlink" title="二、SM4 密码算法基本运算"></a>二、SM4 密码算法基本运算</h3><h4 id="1、SM4使用模2加和循环移位运算"><a href="#1、SM4使用模2加和循环移位运算" class="headerlink" title="1、SM4使用模2加和循环移位运算"></a>1、SM4使用模2加和循环移位运算</h4><p>1）模2加：⊕，32 比特异或运算 </p>
+<p>2）循环移位：<em>&lt;&lt;&lt; i</em> <em>，</em>把32位字循环左移<em>i</em> 位</p>
+<h4 id="2、代换运算：S盒"><a href="#2、代换运算：S盒" class="headerlink" title="2、代换运算：S盒"></a>2、代换运算：S盒</h4><p>起混淆作用，输入8bit序列，输出8bit序列</p>
+<p>运算规则根据s盒代换</p>
+<h4 id="3、非线性变换"><a href="#3、非线性变换" class="headerlink" title="3、非线性变换"></a>3、非线性变换</h4><p>由4个并行的S盒构成，输入x1,x2,x3,x4,输出y1,y2,y3,y4</p>
+<p>运算规则根据s盒代换</p>
+<h4 id="4、线性变换"><a href="#4、线性变换" class="headerlink" title="4、线性变换"></a>4、线性变换</h4><p>起扩散作用，输入32bit，输出32bit，循环移位</p>
+<p>L(B)=B^(B&lt;&lt;&lt;2)^(B&lt;&lt;&lt;10)^(B&lt;&lt;&lt;18)^(B&lt;&lt;&lt;24)</p>
+<h4 id="5、合成变换"><a href="#5、合成变换" class="headerlink" title="5、合成变换"></a>5、合成变换</h4><p>由非线性变换和线性变换复合而成</p>
+<h4 id="6、轮函数"><a href="#6、轮函数" class="headerlink" title="6、轮函数"></a>6、轮函数</h4><p>轮函数运算式：F(x0,x1,x2,x3,rk)=x0^T(x1^x2^x3^rk)</p>
+<p>T函数本质上分两步：一是S盒非线性变换，另一个是线性移位。 </p>
+<h3 id="三、加密流程"><a href="#三、加密流程" class="headerlink" title="三、加密流程"></a>三、加密流程</h3><h4 id="加密与解密流程图"><a href="#加密与解密流程图" class="headerlink" title="加密与解密流程图"></a>加密与解密流程图</h4><p><img src="/2019/12/01/单钥密码体制三/01.png" alt="01"></p>
+<h4 id="算法流程图"><a href="#算法流程图" class="headerlink" title="算法流程图"></a>算法流程图</h4><p><img src="/2019/12/01/单钥密码体制三/02.png" alt="02"></p>
+<h3 id="四、加密步骤"><a href="#四、加密步骤" class="headerlink" title="四、加密步骤"></a>四、加密步骤</h3><h4 id="1、明文分组"><a href="#1、明文分组" class="headerlink" title="1、明文分组"></a>1、明文分组</h4><p>SM4算法分组长度为128bit，也就是16个字节，如果SM4算法分组长度为128bit，也就是16个字节，如果明文字节数不是16的整数倍，仍然采取补0凑足128位的方法。</p>
+<p>将明文转换成二进制，然后以128bit分组。</p>
+<h4 id="2、明文组分组"><a href="#2、明文组分组" class="headerlink" title="2、明文组分组"></a>2、明文组分组</h4><p>将128bit的明文组均分为各32bit的子组。</p>
+<h4 id="3、合成变换"><a href="#3、合成变换" class="headerlink" title="3、合成变换"></a>3、合成变换</h4><p><img src="/2019/12/01/单钥密码体制三/03.png" alt="03"></p>
+<p>非线性变换S盒置换规则：</p>
+<p>SM4中利用了4个完全相同的S盒，每个S盒对应8位的输入和8位的输出</p>
+<p>以输入的前半字节为行号，后半字节为列号，行列交叉点处的数据即为输出</p>
+<p>线性变换循环移位加：</p>
+<p>运算规则： </p>
+<p>C=L（B）<em>=B</em>⊕(<em>B</em>&lt;&lt;&lt;2)⊕(<em>B</em>&lt;&lt;&lt;10)⊕(<em>B</em>&lt;&lt;&lt;18) ⊕(<em>B</em>&lt;&lt;&lt;24)</p>
+<p>流程：X1,x2,x3,rk先异或输出32bit数，然后非线性变换，由四个并行的s盒置换，输出32bit数，在经线性变换，输出32bit数</p>
+<h4 id="4、轮函数"><a href="#4、轮函数" class="headerlink" title="4、轮函数"></a>4、轮函数</h4><p>X0&lt;-x1,x1&lt;-x2,x2&lt;-x3,x3-&lt;x0^T(x1^x2^x3^rk)</p>
+<h4 id="5、反序变换"><a href="#5、反序变换" class="headerlink" title="5、反序变换"></a>5、反序变换</h4><p>R（x32,x33,x34,x35）=（x35,x34,x33,x32）</p>
+<h3 id="五、密钥生成"><a href="#五、密钥生成" class="headerlink" title="五、密钥生成"></a>五、密钥生成</h3><p><img src="/2019/12/01/单钥密码体制三/04.png" alt="04"></p>
+<p>1、系统参数FK</p>
+<p>2、固定参数CK</p>
+<p>1、初始密钥MK分为4X32=128bit</p>
+<p>2、MK与FK异或得到K</p>
+<p>3、32轮函数变换得到32个子密钥，轮函数与加密过程基本相同，只是将线性变换修改为</p>
+<p><em>L<strong>(</strong>B<strong>)=</strong>B</em>⊕<em>(<strong>B</strong>&lt;&lt;&lt;</em> <em>13**)</em>⊕<em>(<strong>B</strong>&lt;&lt;&lt;</em> <em>23<strong>)</strong>,<strong>加密函数中用到的是密钥，而密钥扩展算法中用到的是</strong>32bit<strong>固定参数</strong>CK</em></p>
+<h3 id="六、安全性"><a href="#六、安全性" class="headerlink" title="六、安全性"></a>六、安全性</h3><p>①国家专业机构设计。算法简洁，以字和字节为处理单位，对称运算，符合当今分组密码主流。 </p>
+<p>②专业机构进行了密码分析，因此是安全的。 </p>
+<p>③民间学者对21轮SM4进行了差分密码分析。 </p>
+<p>④尚需经过实践检验。</p>
+<h3 id="七、流密码"><a href="#七、流密码" class="headerlink" title="七、流密码"></a>七、流密码</h3><h4 id="流密码"><a href="#流密码" class="headerlink" title="流密码"></a>流密码</h4><p>流密码：将明文划分成字符，或其编码的基本单元，字符分别与密钥流作用进行加密，解密时以同步产生的同样的密钥流实现。流密码强度完全依赖于密钥所产生的序列的随机性和不可预测性。</p>
+<p>如果密码序列是一个非周期序列，那么可以做到一次一密体制，一次一密可以实现无条件安全。</p>
+<h4 id="ZUC算法"><a href="#ZUC算法" class="headerlink" title="ZUC算法"></a>ZUC算法</h4><p>ZUC本质上一个密钥序列产生的算法，其输入为128bit的初始密钥和128比特的初始向量，输出为32比特的密钥字序列，其逻辑上分为三层，分别是：16级线性反馈移位寄存器（LFSR），比特重组（BR），非线性函数F。</p>
 
       
     </div>
@@ -439,7 +452,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://soliym.top/2019/11/24/单钥密码体制一/" title="单钥密码体制(一)">http://soliym.top/2019/11/24/单钥密码体制一/</a>
+    <a href="http://soliym.top/2019/12/01/单钥密码体制三/" title="单钥密码体制三">http://soliym.top/2019/12/01/单钥密码体制三/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -483,8 +496,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/07/vlan接口模式/" rel="next" title="vlan接口模式">
-                <i class="fa fa-chevron-left"></i> vlan接口模式
+              <a href="/2019/11/25/AES列混淆机制详解/" rel="next" title="AES列混淆机制详解">
+                <i class="fa fa-chevron-left"></i> AES列混淆机制详解
               </a>
             
           </div>
@@ -492,10 +505,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/11/24/单钥密码体制二/" rel="prev" title="单钥密码体制二">
-                单钥密码体制二 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -681,7 +690,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、单钥密码体制"><span class="nav-number">1.</span> <span class="nav-text">一、单钥密码体制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、分组密码DES"><span class="nav-number">2.</span> <span class="nav-text">二、分组密码DES</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、DES"><span class="nav-number">2.1.</span> <span class="nav-text">1、DES</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、DES算法"><span class="nav-number">2.2.</span> <span class="nav-text">2、DES算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、DES安全性"><span class="nav-number">3.</span> <span class="nav-text">三、DES安全性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、DES的设计思想"><span class="nav-number">4.</span> <span class="nav-text">四、DES的设计思想</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、SM4的特点"><span class="nav-number">1.</span> <span class="nav-text">一、SM4的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、SM4-密码算法基本运算"><span class="nav-number">2.</span> <span class="nav-text">二、SM4 密码算法基本运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、SM4使用模2加和循环移位运算"><span class="nav-number">2.1.</span> <span class="nav-text">1、SM4使用模2加和循环移位运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、代换运算：S盒"><span class="nav-number">2.2.</span> <span class="nav-text">2、代换运算：S盒</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、非线性变换"><span class="nav-number">2.3.</span> <span class="nav-text">3、非线性变换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、线性变换"><span class="nav-number">2.4.</span> <span class="nav-text">4、线性变换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5、合成变换"><span class="nav-number">2.5.</span> <span class="nav-text">5、合成变换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6、轮函数"><span class="nav-number">2.6.</span> <span class="nav-text">6、轮函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、加密流程"><span class="nav-number">3.</span> <span class="nav-text">三、加密流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#加密与解密流程图"><span class="nav-number">3.1.</span> <span class="nav-text">加密与解密流程图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法流程图"><span class="nav-number">3.2.</span> <span class="nav-text">算法流程图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、加密步骤"><span class="nav-number">4.</span> <span class="nav-text">四、加密步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、明文分组"><span class="nav-number">4.1.</span> <span class="nav-text">1、明文分组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、明文组分组"><span class="nav-number">4.2.</span> <span class="nav-text">2、明文组分组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、合成变换"><span class="nav-number">4.3.</span> <span class="nav-text">3、合成变换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、轮函数"><span class="nav-number">4.4.</span> <span class="nav-text">4、轮函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5、反序变换"><span class="nav-number">4.5.</span> <span class="nav-text">5、反序变换</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、密钥生成"><span class="nav-number">5.</span> <span class="nav-text">五、密钥生成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、安全性"><span class="nav-number">6.</span> <span class="nav-text">六、安全性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、流密码"><span class="nav-number">7.</span> <span class="nav-text">七、流密码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#流密码"><span class="nav-number">7.1.</span> <span class="nav-text">流密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ZUC算法"><span class="nav-number">7.2.</span> <span class="nav-text">ZUC算法</span></a></li></ol></li></ol></div>
             
 
           </div>
