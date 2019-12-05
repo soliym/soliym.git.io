@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://soliym.top/"/>
-  <updated>2019-12-02T13:30:35.557Z</updated>
+  <updated>2019-12-05T14:57:22.113Z</updated>
   <id>http://soliym.top/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>internet校验和的增量更新</title>
+    <link href="http://soliym.top/2019/12/05/internet%E6%A0%A1%E9%AA%8C%E5%92%8C%E7%9A%84%E5%A2%9E%E9%87%8F%E6%9B%B4%E6%96%B0/"/>
+    <id>http://soliym.top/2019/12/05/internet校验和的增量更新/</id>
+    <published>2019-12-05T14:25:59.000Z</published>
+    <updated>2019-12-05T14:57:22.113Z</updated>
+    
+    <content type="html"><![CDATA[<p>在IP协议中，首部格式中有一个首部校验和字段，该字段采用的校验方法与常用的奇偶校验和循环冗余校验不同，下面将详细介绍这种方法，以及它所遇到的问题及解决方案</p><a id="more"></a><h3 id="一、校验方法"><a href="#一、校验方法" class="headerlink" title="一、校验方法"></a>一、校验方法</h3><p>IP首部的校验方法：</p><p>只校验首部不校验数据部分</p><p>发送方：将校验和字段置为0，然后将首部以2字节为一组，以二进制反码的形式相加，将其结果取反码后，写入到IP数据报的首部校验和字段。</p><p>接受方：与发送方的操作相似，收到数据报后，将首部以2字节16bit为一组，以二进制反码的形式相加，如果结果为1，则表示该数据报的首部在传输中没有差错，否则出现差错。</p><p>该方法在TCP/IP协议中有很多协议都会用到，比如TCP、UDP，不同的是，TCP、UDP添加了12字节的伪首部</p><h3 id="二、存在的问题"><a href="#二、存在的问题" class="headerlink" title="二、存在的问题"></a>二、存在的问题</h3><p>在TCP、UDP存在的问题是这种检错的方法并不可靠，但是它简单、效率高，在TCP、UDP中并没有什么太大的缺陷，而在IP数据报中，因为IP数据报是基于第三层网络层转发的，因此，会频繁的对IP数据报修改，比如IP协议中的TTL值，每经过一个路由器都要减去1，该值都要发生变化，对应校验和也要发生变化，而源数据只发生了很小的一次变化，就要重新计算校验和，这大大降低了路由器的转发速率。</p><p>在RFC1141文档中提供了一种解决方法：增量更新</p><p>即在原始值只发生了很小的变化，可以对校验和做出很小的改变，而不用重新计算校验和</p><h3 id="三、解决方案"><a href="#三、解决方案" class="headerlink" title="三、解决方案"></a>三、解决方案</h3><p>原始校验和C，以及字节m的旧值和新值：</p><p>​         C’= C +（-m）+ m’= C +（m’-m）</p><p>虽然该公式更新了校验和C，但是没更新校验和的反码</p><p> 〜C’=〜（C +（-m）+ m’）=〜C +（m-m’）=〜C + m +〜m’</p><p>C语言代码实现：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*implemented according with RFC 1071 and1141*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">unsigned</span> <span class="keyword">short</span> <span class="title">csum_incremental_update</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">short</span> old_csum,</span></span></span><br><span class="line"><span class="function"><span class="params">​                <span class="keyword">unsigned</span> <span class="keyword">short</span> old_field,</span></span></span><br><span class="line"><span class="function"><span class="params">​                <span class="keyword">unsigned</span> <span class="keyword">short</span> new_field)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">unsigned</span> <span class="keyword">long</span> csum = old_csum + old_field + (~new_field &amp; <span class="number">0xFFFF</span>);</span><br><span class="line">   csum = (csum &gt;&gt; <span class="number">16</span>) + (csum &amp; <span class="number">0xFFFF</span>);</span><br><span class="line">   csum +=  (csum &gt;&gt; <span class="number">16</span>);</span><br><span class="line">   <span class="keyword">return</span> csum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在IP协议中，首部格式中有一个首部校验和字段，该字段采用的校验方法与常用的奇偶校验和循环冗余校验不同，下面将详细介绍这种方法，以及它所遇到的问题及解决方案&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="网络" scheme="http://soliym.top/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="网络层" scheme="http://soliym.top/tags/%E7%BD%91%E7%BB%9C%E5%B1%82/"/>
+    
+  </entry>
   
   <entry>
     <title>Http与Https的区别和加密原理</title>
@@ -438,28 +460,6 @@
     
     
       <category term="贪心" scheme="http://soliym.top/tags/%E8%B4%AA%E5%BF%83/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>建站分享</title>
-    <link href="http://soliym.top/2018/11/26/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/"/>
-    <id>http://soliym.top/2018/11/26/关于博客的搭建/</id>
-    <published>2018-11-26T14:40:01.936Z</published>
-    <updated>2019-03-29T15:27:24.299Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Github-Pages-Hexo"><a href="#Github-Pages-Hexo" class="headerlink" title="Github Pages + Hexo"></a>Github Pages + Hexo</h2><p>  我的博客是Github Pages + Hexo在github上搭建的。<br>  下面是我对搭建博客过程中的一些分享<br><a id="more"></a></p><h3 id="一、-Git、node-js"><a href="#一、-Git、node-js" class="headerlink" title="一、 Git、node.js"></a>一、 Git、node.js</h3><p>  先下载安装好<strong>Git、node.js</strong>，具体的过程参照了网上很多的帖子，很多都不是很详细，对于我这种小白来说就是一种折磨（完全看不懂，虽然学了一点前端的HTML、css、js，但这里完全用不上，到是在后面修改主题的时候到是能看明白了。。。。）这些博客里有一个挺详细的，按照他的过程，很容易就弄出来了（其实也不容易。。。。。出现好多问题，当时就很崩溃，明明按照他的步骤完成的，为啥就不通过呢，只能靠着百度一一解决了。。。<br>  <strong>这个帖子有点小错误，可能是环境和版本不同的原因吧</strong>（我搭建的时候有些地方会出错，需要自己去改）</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://jantc.cn/2017/04/16/%E5%BB%BA%E7%AB%99%E5%88%86%E4%BA%AB%E4%B9%8BGithub%20Pages%20+%20Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%20(%E4%B8%80)/</span><br></pre></td></tr></table></figure><h3 id="二、Github"><a href="#二、Github" class="headerlink" title="二、Github"></a>二、Github</h3><p>  在github上申请免费的空间来搭建网页，以前西部数码上购买过一个虚拟主机，很贵，一年要几百大洋，主要是国内的主要备案很麻烦，后来就放弃了。在github上可以搭建一个简单的静态网页，虽然是静态的，但是也可以加入很多功能，比如评论、分享系统。用来写写博客或作为个人的自我接受很好用。没有繁琐的管理，搭建好以后只管写博客就好。<br>  <strong>注册GitHub的时候最好是在chrome浏览器中</strong>，因为可以翻译网页，像我这种还没过四级的渣渣，看见这些英文网站就头疼。。。。<br>  具体的注册步骤就不说了，反正我也是看着别人的帖子弄的。。。这个很容易网上就能找到（我忘了我是在按照那个弄的了）</p><h3 id="三、hexo"><a href="#三、hexo" class="headerlink" title="三、hexo"></a>三、hexo</h3><p>配置完hexo本地就算配置完成了，接下来就是将hexo托管到github。<br>  那个_config.yml有两个，<strong>一个是在hexo文件夹下的，另一个是在主题文件夹下的</strong>，一定要分清楚这两个，后面修改主题配置的时候会对这两个文件进行修改。<br>  到这基础的就弄完了，可以说有个简单的博客就搭建完了，不过这时候页面有点丑（太low而且没啥功能），接下来就是对博客的美化-主题</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo g  </span><br><span class="line">hexo s  </span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure><h3 id="四、主题"><a href="#四、主题" class="headerlink" title="四、主题"></a>四、主题</h3><p>我使用的是Material X作为博客的主题，想弄的话可以在我们博客的最下面点<strong>Material X</strong>连接，里面有关于这个主题的修改方法，在最下方有主题的源代码，下载后将文件放在主题文件夹中，上传就Ok了，具体的方法可以百度（有时间是话我会写篇文章来详细说一下我是怎样修改的和遇到的问题）</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://xaoxuu.com/blog/</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.wushile.top/</span><br></pre></td></tr></table></figure><h2 id="关于搭建博客"><a href="#关于搭建博客" class="headerlink" title="关于搭建博客"></a>关于搭建博客</h2><p>  博客搭建花了大概四天多的时间才完成对博客的简单搭建，第一次弄博客，遇到了很多很多的问题，几乎都快要放弃了，但想想已经花费的很多的时间去做这个博客，就该把它弄完，从无到有，很庆幸坚持到了最后，从一无所知的小白到完成搭建这个博客，学到了很多知识，在网上查找解决问题的时候也见识到了很多。很久都没有这么专注的去做一件事情，每天就想着一件事，就想把这个博客建好，现在终于把基础搭建完了，不足的地方以后再去修改，千里之行始于足下。这是第一次写博客，很多格式都不动，写的很low，没办法，这会已经快一点，也没时间去学了，明天还有课。这两周可能不会对博客再进行大的修改了，还有两周考数据结构，没时间去美化了，等考完试再去博客进行修改吧    </p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;Github-Pages-Hexo&quot;&gt;&lt;a href=&quot;#Github-Pages-Hexo&quot; class=&quot;headerlink&quot; title=&quot;Github Pages + Hexo&quot;&gt;&lt;/a&gt;Github Pages + Hexo&lt;/h2&gt;&lt;p&gt;  我的博客是Github Pages + Hexo在github上搭建的。&lt;br&gt;  下面是我对搭建博客过程中的一些分享&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="随笔" scheme="http://soliym.top/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-      <category term="hexo" scheme="http://soliym.top/tags/hexo/"/>
     
   </entry>
   
