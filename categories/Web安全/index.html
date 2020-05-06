@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="网络层,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -81,18 +81,13 @@
 
 
 
-<meta name="description" content="在IP协议中，首部格式中有一个首部校验和字段，该字段采用的校验方法与常用的奇偶校验和循环冗余校验不同，下面将详细介绍这种方法，以及它所遇到的问题及解决方案">
-<meta name="keywords" content="网络层">
-<meta property="og:type" content="article">
-<meta property="og:title" content="internet校验和的增量更新">
-<meta property="og:url" content="http://soliym.top/2019/12/05/internet校验和的增量更新/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="soliym">
+<meta property="og:url" content="http://soliym.top/categories/Web安全/index.html">
 <meta property="og:site_name" content="soliym">
-<meta property="og:description" content="在IP协议中，首部格式中有一个首部校验和字段，该字段采用的校验方法与常用的奇偶校验和循环冗余校验不同，下面将详细介绍这种方法，以及它所遇到的问题及解决方案">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-05T14:57:22.113Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="internet校验和的增量更新">
-<meta name="twitter:description" content="在IP协议中，首部格式中有一个首部校验和字段，该字段采用的校验方法与常用的奇偶校验和循环冗余校验不同，下面将详细介绍这种方法，以及它所遇到的问题及解决方案">
+<meta name="twitter:title" content="soliym">
 
 
 
@@ -122,13 +117,13 @@
 
 
 
-  <link rel="canonical" href="http://soliym.top/2019/12/05/internet校验和的增量更新/">
+  <link rel="canonical" href="http://soliym.top/categories/Web安全/">
 
 
 
 
 
-  <title>internet校验和的增量更新 | soliym</title>
+  <title>分类: Web安全 | soliym</title>
   
 
 
@@ -147,7 +142,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -263,235 +258,53 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block category">
 
-  
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h1>Web安全<small>分类</small>
+        </h1>
+      </div>
 
-  
-  
-  
+      
+        
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://soliym.top/2019/12/05/internet校验和的增量更新/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="soliym">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="soliym">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
+            <a class="post-title-link" href="/2020/05/06/xss-lab(1-10)详细讲解/" itemprop="url">
+              
+                <span itemprop="name">xss-lab(1-10)详细讲解</span>
+              
+            </a>
         
-          <h1 class="post-title" itemprop="name headline">internet校验和的增量更新</h1>
-        
+      </h2>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-05T22:25:59+08:00">
-                2019-12-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络/" itemprop="url" rel="index">
-                    <span itemprop="name">网络</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-            <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>在IP协议中，首部格式中有一个首部校验和字段，该字段采用的校验方法与常用的奇偶校验和循环冗余校验不同，下面将详细介绍这种方法，以及它所遇到的问题及解决方案</p>
-<a id="more"></a>
-<h3 id="一、校验方法"><a href="#一、校验方法" class="headerlink" title="一、校验方法"></a>一、校验方法</h3><p>IP首部的校验方法：</p>
-<p>只校验首部不校验数据部分</p>
-<p>发送方：将校验和字段置为0，然后将首部以2字节为一组，以二进制反码的形式相加，将其结果取反码后，写入到IP数据报的首部校验和字段。</p>
-<p>接受方：与发送方的操作相似，收到数据报后，将首部以2字节16bit为一组，以二进制反码的形式相加，如果结果为1，则表示该数据报的首部在传输中没有差错，否则出现差错。</p>
-<p>该方法在TCP/IP协议中有很多协议都会用到，比如TCP、UDP，不同的是，TCP、UDP添加了12字节的伪首部</p>
-<h3 id="二、存在的问题"><a href="#二、存在的问题" class="headerlink" title="二、存在的问题"></a>二、存在的问题</h3><p>在TCP、UDP存在的问题是这种检错的方法并不可靠，但是它简单、效率高，在TCP、UDP中并没有什么太大的缺陷，而在IP数据报中，因为IP数据报是基于第三层网络层转发的，因此，会频繁的对IP数据报修改，比如IP协议中的TTL值，每经过一个路由器都要减去1，该值都要发生变化，对应校验和也要发生变化，而源数据只发生了很小的一次变化，就要重新计算校验和，这大大降低了路由器的转发速率。</p>
-<p>在RFC1141文档中提供了一种解决方法：增量更新</p>
-<p>即在原始值只发生了很小的变化，可以对校验和做出很小的改变，而不用重新计算校验和</p>
-<h3 id="三、解决方案"><a href="#三、解决方案" class="headerlink" title="三、解决方案"></a>三、解决方案</h3><p>原始校验和C，以及字节m的旧值和新值：</p>
-<p>​         C’= C +（-m）+ m’= C +（m’-m）</p>
-<p>虽然该公式更新了校验和C，但是没更新校验和的反码</p>
-<p> 〜C’=〜（C +（-m）+ m’）=〜C +（m-m’）=〜C + m +〜m’</p>
-<p>C语言代码实现：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*implemented according with RFC 1071 and1141*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">unsigned</span> <span class="keyword">short</span> <span class="title">csum_incremental_update</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">short</span> old_csum,</span></span></span><br><span class="line"><span class="function"><span class="params">​                <span class="keyword">unsigned</span> <span class="keyword">short</span> old_field,</span></span></span><br><span class="line"><span class="function"><span class="params">​                <span class="keyword">unsigned</span> <span class="keyword">short</span> new_field)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">unsigned</span> <span class="keyword">long</span> csum = old_csum + old_field + (~new_field &amp; <span class="number">0xFFFF</span>);</span><br><span class="line">   csum = (csum &gt;&gt; <span class="number">16</span>) + (csum &amp; <span class="number">0xFFFF</span>);</span><br><span class="line">   csum +=  (csum &gt;&gt; <span class="number">16</span>);</span><br><span class="line">   <span class="keyword">return</span> csum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
-    
-      <div>
-        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="" alt="soliym wechat" style="width: 200px; max-width: 100%;">
-    <div></div>
-</div>
-
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2020-05-06T16:26:38+08:00" content="2020-05-06">
+          05-06
+        </time>
       </div>
-    
 
-    
-
-    
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    soliym
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="http://soliym.top/2019/12/05/internet校验和的增量更新/" title="internet校验和的增量更新">http://soliym.top/2019/12/05/internet校验和的增量更新/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-
-      </div>
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/网络层/" rel="tag"><i class="fa fa-tag"></i>
- 网络层</a>
-          
-        </div>
-      
-
-      
-      
-        <div class="post-widgets">
-        
-
-        
-
-        
-          
-          <div id="needsharebutton-postbottom">
-            <span class="btn">
-              <i class="fa fa-share-alt" aria-hidden="true"></i>
-            </span>
-          </div>
-        
-        </div>
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/12/02/Http与Https的区别和加密原理/" rel="next" title="Http与Https的区别和加密原理">
-                <i class="fa fa-chevron-left"></i> Http与Https的区别和加密原理
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/12/24/云服务器搭建Web网站一/" rel="prev" title="云服务器搭建web网站一">
-                云服务器搭建web网站一 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
       
     </div>
+
   </div>
+  
+  
+  
+
+  
+
 
 
           </div>
@@ -499,15 +312,6 @@
 
 
           
-
-  
-    <div class="comments" id="comments">
-      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTI2Ny8xNzgxNQ=="></div>
-    </div>
-
-  
-
-
 
         </div>
         
@@ -528,17 +332,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -647,22 +442,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、校验方法"><span class="nav-number">1.</span> <span class="nav-text">一、校验方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、存在的问题"><span class="nav-number">2.</span> <span class="nav-text">二、存在的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、解决方案"><span class="nav-number">3.</span> <span class="nav-text">三、解决方案</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -837,10 +616,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v="></script>
-<script type="text/javascript" src="/js/src/post-details.js?v="></script>
-
-
 
   
 
@@ -869,17 +644,6 @@
 
 
 
-  
-    <script type="text/javascript">
-      (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    </script>
   
 
 
