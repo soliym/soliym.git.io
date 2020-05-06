@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="soliym">
 <meta property="og:description" content="xss注入与sql注入有很多相似之处，如果有sql学习的基础，那么学习xss将会很轻松，xss注入的方法总的来说就方面，一方面从js脚本入手，如果js方面的防御机制，可以考虑绕过，或者选择html的标签中的事件属性注入，本文并没有涉及flash xss攻击，flash xss会作为单独一章，而且也没有涉及存储型xss攻击，关于存储型xss会在dvwa中讲到">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-06T08:47:31.135Z">
+<meta property="og:updated_time" content="2020-05-06T09:13:33.692Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="xss-lab(11-18)详细讲解">
 <meta name="twitter:description" content="xss注入与sql注入有很多相似之处，如果有sql学习的基础，那么学习xss将会很轻松，xss注入的方法总的来说就方面，一方面从js脚本入手，如果js方面的防御机制，可以考虑绕过，或者选择html的标签中的事件属性注入，本文并没有涉及flash xss攻击，flash xss会作为单独一章，而且也没有涉及存储型xss攻击，关于存储型xss会在dvwa中讲到">
@@ -418,8 +418,7 @@
 <p>并没有被执行，因为通过htmlspecialchars($str)函数，有些特殊字符被转码了，转为了html实体，所以我们采用其他标签的事件属性触发</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">src=&apos;level1.php?name=&lt;img src=1 onerror=alert(1)&gt;&apos;</span><br></pre></td></tr></table></figure>
 <h6 id="第16关："><a href="#第16关：" class="headerlink" title="第16关："></a>第16关：</h6><p>首先试探输入：</p>
-<script>alert(1)</script>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;alert(1)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 <p>其中script被过滤了，然后大小写输入</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;SCRIPT&gt;alert(1)&lt;/SCRIPT&gt;</span><br></pre></td></tr></table></figure>
 <p>大小写也被过滤了，嵌套写入</p>
@@ -437,7 +436,9 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;&lt;embed src=xsf01.swf?&quot;.htmlspecialchars($_GET[&quot;arg01&quot;]).&quot;=&quot;.htmlspecialchars($_GET[&quot;arg02&quot;]).&quot; width=100% heigth=100%&gt;&quot;;</span><br></pre></td></tr></table></figure>
 <p>要注意的是：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;&lt;embed src=xsf01.swf?&quot;.htmlspecialchars($_GET[&quot;arg01&quot;]).&quot;=&quot;.htmlspecialchars($_GET[&quot;arg02&quot;]).&quot; width=100% heigth=100%&gt;&quot;</span><br></pre></td></tr></table></figure>
-<p>这个语句是可以拆解的，”<embed src="xsf01.swf?" "="" width="100%" heigth="100%">“本身就是闭合的，所以不需要构造闭合，所以可以绕过htmlspecialchars该函数，因此，我们输入的才会被当成独立事件属性，不然就需要去构造闭合，而对于htmlspecialchars来说，双引号是特殊处理的，不能用来闭合，就像19关一样</p>
+<p>这个语句是可以拆解的，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;&lt;embed src=xsf01.swf?&quot; &quot; width=100% heigth=100%&gt;&quot;</span><br></pre></td></tr></table></figure>
+<p>本身就是闭合的，所以不需要构造闭合，所以可以绕过htmlspecialchars该函数，因此，我们输入的才会被当成独立事件属性，不然就需要去构造闭合，而对于htmlspecialchars来说，双引号是特殊处理的，不能用来闭合，就像19关一样</p>
 <h6 id="第18关："><a href="#第18关：" class="headerlink" title="第18关："></a>第18关：</h6><p>与17关是一样的</p>
 <p>查看源码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;&lt;embed src=xsf02.swf?&quot;.htmlspecialchars($_GET[&quot;arg01&quot;]).&quot;=&quot;.htmlspecialchars($_GET[&quot;arg02&quot;]).&quot; width=100% heigth=100%&gt;&quot;;</span><br></pre></td></tr></table></figure>
