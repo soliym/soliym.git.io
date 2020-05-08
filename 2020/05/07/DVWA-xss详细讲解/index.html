@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="堆栈,">
+  <meta name="keywords" content="xss,">
 
 
 
@@ -81,20 +81,18 @@
 
 
 
-<meta name="description" content="c语言 全局变量与局部变量的划分在做背包问题的时候遇到这样的问题，定义一个二维数组变量，该变量的大小为1000*1000，但是在运行时报错，显示“Stack overflow ”，说明在此处超过了栈的空间。">
-<meta name="keywords" content="堆栈">
+<meta name="description" content="XSS，全称跨站脚本，即跨站脚本攻击，某种意义上也是一种注入攻击，是指攻击者在页面中注入恶意的脚本代码，当受害者访问该页面时，恶意代码会在其浏览器上执行，需要修改的是，XSS不仅仅扩展JavaScript，还包括flash等其他脚本语言。根据恶意代码是否存储在服务器中，XSS可以分为存储型的XSS与反射型的XSS。">
+<meta name="keywords" content="xss">
 <meta property="og:type" content="article">
-<meta property="og:title" content="c关于堆栈的划定">
-<meta property="og:url" content="http://soliym.top/2019/05/14/c关于堆栈的划定/index.html">
+<meta property="og:title" content="DVWA-xss详细讲解">
+<meta property="og:url" content="http://soliym.top/2020/05/07/DVWA-xss详细讲解/index.html">
 <meta property="og:site_name" content="soliym">
-<meta property="og:description" content="c语言 全局变量与局部变量的划分在做背包问题的时候遇到这样的问题，定义一个二维数组变量，该变量的大小为1000*1000，但是在运行时报错，显示“Stack overflow ”，说明在此处超过了栈的空间。">
+<meta property="og:description" content="XSS，全称跨站脚本，即跨站脚本攻击，某种意义上也是一种注入攻击，是指攻击者在页面中注入恶意的脚本代码，当受害者访问该页面时，恶意代码会在其浏览器上执行，需要修改的是，XSS不仅仅扩展JavaScript，还包括flash等其他脚本语言。根据恶意代码是否存储在服务器中，XSS可以分为存储型的XSS与反射型的XSS。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://soliym.top/2019/05/14/c关于堆栈的划定/D:/网站文件/personalblog/hexo/source/_posts/c关于堆栈的划定/溢出.png">
-<meta property="og:updated_time" content="2019-05-14T13:51:36.365Z">
+<meta property="og:updated_time" content="2020-05-08T02:09:39.300Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="c关于堆栈的划定">
-<meta name="twitter:description" content="c语言 全局变量与局部变量的划分在做背包问题的时候遇到这样的问题，定义一个二维数组变量，该变量的大小为1000*1000，但是在运行时报错，显示“Stack overflow ”，说明在此处超过了栈的空间。">
-<meta name="twitter:image" content="http://soliym.top/2019/05/14/c关于堆栈的划定/D:/网站文件/personalblog/hexo/source/_posts/c关于堆栈的划定/溢出.png">
+<meta name="twitter:title" content="DVWA-xss详细讲解">
+<meta name="twitter:description" content="XSS，全称跨站脚本，即跨站脚本攻击，某种意义上也是一种注入攻击，是指攻击者在页面中注入恶意的脚本代码，当受害者访问该页面时，恶意代码会在其浏览器上执行，需要修改的是，XSS不仅仅扩展JavaScript，还包括flash等其他脚本语言。根据恶意代码是否存储在服务器中，XSS可以分为存储型的XSS与反射型的XSS。">
 
 
 
@@ -124,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://soliym.top/2019/05/14/c关于堆栈的划定/">
+  <link rel="canonical" href="http://soliym.top/2020/05/07/DVWA-xss详细讲解/">
 
 
 
 
 
-  <title>c关于堆栈的划定 | soliym</title>
+  <title>DVWA-xss详细讲解 | soliym</title>
   
 
 
@@ -279,7 +277,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://soliym.top/2019/05/14/c关于堆栈的划定/">
+    <link itemprop="mainEntityOfPage" href="http://soliym.top/2020/05/07/DVWA-xss详细讲解/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="soliym">
@@ -296,7 +294,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">c关于堆栈的划定</h1>
+          <h1 class="post-title" itemprop="name headline">DVWA-xss详细讲解</h1>
         
 
         <div class="post-meta">
@@ -308,8 +306,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-14T21:41:59+08:00">
-                2019-05-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-07T20:08:12+08:00">
+                2020-05-07
               </time>
             
 
@@ -331,8 +329,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/c语言/" itemprop="url" rel="index">
-                    <span itemprop="name">c语言</span>
+                  <a href="/categories/Web安全/" itemprop="url" rel="index">
+                    <span itemprop="name">Web安全</span>
                   </a>
                 </span>
 
@@ -373,13 +371,110 @@
       
 
       
-        <h4 id="c语言-全局变量与局部变量的划分"><a href="#c语言-全局变量与局部变量的划分" class="headerlink" title="c语言 全局变量与局部变量的划分"></a>c语言 全局变量与局部变量的划分</h4><p>在做背包问题的时候遇到这样的问题，定义一个二维数组变量，该变量的大小为1000*1000，但是在运行时报错，显示“Stack overflow ”，说明在此处超过了栈的空间。</p>
+        <p>XSS，全称跨站脚本，即跨站脚本攻击，某种意义上也是一种注入攻击，是指攻击者在页面中注入恶意的脚本代码，当受害者访问该页面时，恶意代码会在其浏览器上执行，需要修改的是，XSS不仅仅扩展JavaScript，还包括flash等其他脚本语言。根据恶意代码是否存储在服务器中，XSS可以分为存储型的XSS与反射型的XSS。</p>
 <a id="more"></a>
-<p><img src="/2019/05/14/c关于堆栈的划定/D:/网站文件\personalblog\hexo\source\_posts\c关于堆栈的划定\溢出.png" alt=""></p>
-<h5 id="c-c-内存分配"><a href="#c-c-内存分配" class="headerlink" title="c/c++内存分配"></a>c/c++内存分配</h5><h6 id="栈区-stack-sagment"><a href="#栈区-stack-sagment" class="headerlink" title="栈区(stack sagment)"></a>栈区(stack sagment)</h6><p>由编译器自动分配释放，存放函数的参数的值，局部变量的值等。在Windows下，栈是向低地址扩展的数据结构，是一块连续的内存的区域。这句话的意思是栈顶的地址和栈的最大容量是系统预先规定好的，在Windows下，栈的大小是2M(也有的是1M，总之是一个编译时就确定的常数)，如果申请的空间超过栈的剩余空间时，将提示overflow。因此，能从栈获得的空间较小。</p>
-<h6 id="堆区-heap-sagment"><a href="#堆区-heap-sagment" class="headerlink" title="堆区(heap sagment)"></a>堆区(heap sagment)</h6><p> 一般由程序员分配释放，若程序员不释放，程序结束时可能由系统回收 。它与数据结构中的堆是两回事。堆是向高地址扩展的数据结构，是不连续的内存区域。这是由于系统是用链表来存储的空闲内存地址的，自然是不连续的，而链表的遍历方向是由低地址向高地址。堆的大小受限于计算机系统中有效的虚拟内存。由此可见，堆获得的空间比较灵活，也比较大。</p>
-<h6 id="全局区-静态区-data-sagment"><a href="#全局区-静态区-data-sagment" class="headerlink" title="全局区(静态区)(data sagment)"></a>全局区(静态区)(data sagment)</h6><p>全局变量和静态变量的存储区域是在一起的，程序结束后由系统释放。数据区的大小由系统限定，一般很大。</p>
-<p>因为栈区的大小是编译器分配好的，如果变量的空间过大就会有栈的溢出问题，因此变量的类型是局部变量还是全局变量要根据变量大小选择，一版来说只有用到数组要考虑溢出问题，比如long、double都是固定长度大小的。如果数组的大小大于1000*1000就要考虑溢出问题，而全局变量的大小是有系统规定的，一般都很大。全局变量大小可达G以上。</p>
+<h4 id="XSS分类："><a href="#XSS分类：" class="headerlink" title="XSS分类："></a>XSS分类：</h4><p>反射型xss：只是简单地把用户输入的数据反射给浏览器，简单来说，黑客往往需要用户诱使用户点击一个恶意链接，才能攻击成功。</p>
+<p>存储型XSS：将用户输入的数据存储在服务器端。</p>
+<p>DOM　XSS：通过修改页面的DOM节点形成的XSS。</p>
+<h4 id="反射型-Reflected"><a href="#反射型-Reflected" class="headerlink" title="反射型-Reflected"></a>反射型-Reflected</h4><h5 id="LOW等级："><a href="#LOW等级：" class="headerlink" title="LOW等级："></a>LOW等级：</h5><p>​    当我们输入数据时，会在hello后面回显，判断该过程是有客户输入，然后经过后台处理，回显在页面上，使用脚本试探</p>
+<pre><code>&lt;script&gt;alert(&apos;xss&apos;)&lt;/script&gt;
+</code></pre><p>​    弹出消息框，存在xss漏洞</p>
+<p>​    获取cookie值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;alert(document.cookie)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>​    查看源代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if( array_key_exists( &quot;name&quot;, $_GET ) &amp;&amp; $_GET[ &apos;name&apos; ] != NULL ) &#123;</span><br><span class="line">    // Feedback for end user</span><br><span class="line">    echo &apos;&lt;pre&gt;Hello &apos; . $_GET[ &apos;name&apos; ] . &apos;&lt;/pre&gt;&apos;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    后台通过get方法获取变量名为name的值，然后通过echo显示在页面上，显示的内容是在html标签”pre”内的，因此，我们可以构造一个js脚本“script”，让这个脚本标签包含在“pre”标签内，当浏览器解析该html页面时，就会把我们输入的代码当成脚本处理，通过脚本我们就可以获取用户的cookie值或攻击用户，这样就会形成xss漏洞</p>
+<h5 id="medium等级："><a href="#medium等级：" class="headerlink" title="medium等级："></a>medium等级：</h5><p>​    先输入“script”试探页面的防御机制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;alert(&apos;xss&apos;)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>​    根据显示的内容：alert(‘xss’)</p>
+<p>​    “script”关键字，被过滤了，我们首先考虑绕过该过滤</p>
+<p>方法一：大写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;SCRIPT&gt;alert(1)&lt;/SCRIPT&gt;</span><br></pre></td></tr></table></figure>
+<p>​    弹出消息框，可以实现xss注入</p>
+<p>方法二：嵌套</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;sc&lt;script&gt;ript&gt;alert(&apos;xss&apos;)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>​    弹出消息框，可以实现xss注入</p>
+<p>方法三：其他标签</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=1 onerror=alert(&apos;xss&apos;)&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;javascript:alert(1)&quot;&gt;1&lt;/a&gt; //需要点击链接</span><br></pre></td></tr></table></figure>
+<p>​    弹出消息框，可以实现xss注入</p>
+<p>​    查看源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$name = str_replace( &apos;&lt;script&gt;&apos;, &apos;&apos;, $_GET[ &apos;name&apos; ] );</span><br><span class="line">    echo &quot;&lt;pre&gt;Hello $&#123;name&#125;&lt;/pre&gt;&quot;;</span><br></pre></td></tr></table></figure>
+<p>​    str_replace函数将第三个参数中的第一个参数，替换为第二个参数，即，将name变量的值中的“script”替换为‘ ’，而且是小写的，这个页面只有这一个防御，很容易就可以绕过，方法很多</p>
+<h5 id="high等级："><a href="#high等级：" class="headerlink" title="high等级："></a>high等级：</h5><p>​    首先用“script”试探页面防御机制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;alert(1)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>​    根据页面的回显，只返回“&gt;”,其它的都被过滤了，目前并不清楚清除防御机制，采用其它方法试探</p>
+<p>方法一：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;SCRIPT&gt;alert(1)&lt;/SCRIPT&gt;</span><br></pre></td></tr></table></figure>
+<p>​    无弹窗，不能注入</p>
+<p>方法二：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;sc&lt;script&gt;ript&gt;alert(&apos;xss&apos;)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>​    无弹窗，不能注入</p>
+<p>方法三：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=1 onerror=alert(&apos;xss&apos;)&gt;</span><br></pre></td></tr></table></figure>
+<p>​    有消息弹出，可以注入</p>
+<p>在这几个方法中，只有换标签的方法可以，我们可以猜测到的是，后台对“script”这几个字符做了过滤</p>
+<p>​    查看源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$name = preg_replace( &apos;/&lt;(.*)s(.*)c(.*)r(.*)i(.*)p(.*)t/i&apos;, &apos;&apos;, $_GET[ &apos;name&apos; ] );</span><br><span class="line"></span><br><span class="line">    echo &quot;&lt;pre&gt;Hello $&#123;name&#125;&lt;/pre&gt;&quot;;</span><br></pre></td></tr></table></figure>
+<p>​    采用正则表达式的方式，来匹配“&lt;script”,并且是/i,所以大小写，嵌套都是无用的，只有换标签可以</p>
+<p>impossible等级：</p>
+<p>​    impossible等级是一种比较安全的防御，暂时无法破解，对于常用的xss注入手段都可以防御</p>
+<p>​    查看源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">checkToken( $_REQUEST[ &apos;user_token&apos; ], $_SESSION[ &apos;session_token&apos; ], &apos;index.php&apos; );</span><br><span class="line"></span><br><span class="line">    $name = htmlspecialchars( $_GET[ &apos;name&apos; ] );</span><br><span class="line"></span><br><span class="line">    echo &quot;&lt;pre&gt;Hello $&#123;name&#125;&lt;/pre&gt;&quot;;</span><br></pre></td></tr></table></figure>
+<p>​    首先会检查用户是否合法，user_token和session</p>
+<p>​    htmlspecialchars该函数的作用是将一些特殊字符转换为html实体编码</p>
+<p>​        编码：“&lt;”   “&gt;”   “&amp;”  “ 单引号 “ “ 双引号  “</p>
+<p>​    所有的html标签都是带有尖括号的，而且如果采用事件属性，需要闭合“pre”同样需要尖括号，所以杜绝了xss注入</p>
+<h4 id="存储型-stored"><a href="#存储型-stored" class="headerlink" title="存储型-stored"></a>存储型-stored</h4><h5 id="low等级："><a href="#low等级：" class="headerlink" title="low等级："></a>low等级：</h5><p>​    message</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;alert(&apos;xss&apos;)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>​    name（字数限制，可以在浏览器的查看器中更改字数限制maxlength=”10”）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;alert(&apos;xss&apos;)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>​    在message和name都可以xss注入，注入的数据是存储在数据库中的，所以不会消失，每当用户访问页面时，都会触发页面从数据库输出信息，当注入的代码在浏览器中执行时，就会触发</p>
+<p>​    查看源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$message = trim( $_POST[ &apos;mtxMessage&apos; ] );</span><br><span class="line">$name    = trim( $_POST[ &apos;txtName&apos; ] ); </span><br><span class="line">$message = stripslashes( $message ); </span><br><span class="line">.....</span><br><span class="line">$query  = &quot;INSERT INTO guestbook ( comment, name ) VALUES ( &apos;$message&apos;, &apos;$name&apos; );&quot;;</span><br></pre></td></tr></table></figure>
+<p>​    trim函数：删除头尾的空格</p>
+<p>​    stripslashes：删除message中的反斜杠</p>
+<p>​    所有输入的数据都被存储在数据库中，所以从数据库调取数据就会触发xss注入的代码</p>
+<h5 id="medium等级：-1"><a href="#medium等级：-1" class="headerlink" title="medium等级："></a>medium等级：</h5><p>​    现在针对xss攻击的方法就很固定了，就是前面的方法，慢慢试探页面的防御机制</p>
+<p>name：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=1 onerror=&apos;alert(1)&apos;&gt;</span><br></pre></td></tr></table></figure>
+<p>message：</p>
+<p>​    message采用前面几种方法都是不行</p>
+<p>​    查看源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$message = trim( $_POST[ &apos;mtxMessage&apos; ] );</span><br><span class="line">$name    = trim( $_POST[ &apos;txtName&apos; ] );</span><br><span class="line">$message = strip_tags( addslashes( $message ) );</span><br><span class="line"></span><br><span class="line">$message = htmlspecialchars( $message );</span><br><span class="line"></span><br><span class="line">$name = str_replace( &apos;&lt;script&gt;&apos;, &apos;&apos;, $name );</span><br><span class="line"></span><br><span class="line">$query  = &quot;INSERT INTO guestbook ( comment, name ) VALUES ( &apos;$message&apos;, &apos;$name&apos; );&quot;;</span><br></pre></td></tr></table></figure>
+<p>​    函数：</p>
+<p>​    trim：删除头尾的空格</p>
+<p>​    addslashes：在双引号前加反斜杠</p>
+<p>​    Strip_tags：剥离字符串的html标签</p>
+<p>​    htmlspecialchars：将特殊字符转换为 HTML 实体</p>
+<p>​    对message有htmlspecialchars防御，所以只能从name入手</p>
+<h5 id="high等级：-1"><a href="#high等级：-1" class="headerlink" title="high等级："></a>high等级：</h5><p>​    通过试探，这一关的注入方式与反射型是一样的，采用其他标签</p>
+<p>​    查看源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$name = preg_replace( &apos;/&lt;(.*)s(.*)c(.*)r(.*)i(.*)p(.*)t/i&apos;, &apos;&apos;, $name );</span><br></pre></td></tr></table></figure>
+<p>​    在源代码中，message依然是实体化，只能从name入手，但是与上一关相比，对”script”做了过滤，与反射型的high一样，采用其他标签</p>
+<p>​    name：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=1 onerror=alert(&apos;xss&apos;)&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="impossible等级："><a href="#impossible等级：" class="headerlink" title="impossible等级："></a>impossible等级：</h5><p>​    可能已经猜到了impossible的防御机制，对name和message做了实体化过滤</p>
+<p>​    查看代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$message = htmlspecialchars( $message ); </span><br><span class="line"></span><br><span class="line">$name = htmlspecialchars( $name );</span><br></pre></td></tr></table></figure>
+<p>​    所有都被实体化，所以不能xss注入</p>
+<h4 id="DOM型："><a href="#DOM型：" class="headerlink" title="DOM型："></a>DOM型：</h4><h5 id="low等级：-1"><a href="#low等级：-1" class="headerlink" title="low等级："></a>low等级：</h5><p>​    这一关没有输入的地方，是一个下拉菜单栏，当我们选择其中一个后，会在浏览器顶部地址栏中，显示”default=English”,然后在下拉菜单栏中，右键检查元素，可以看到”select”的变量名是default，后面紧接一个脚本，比较长，大概就是选择一个选项，就会创建这个选项的”option”,而标签内显示的内容，就是选中的选项。这里就会有一个xss漏洞，如果我们在地址栏里面，修改default的值为脚本代码，这样就会在“option”建立一个脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">default=&lt;script&gt;alert(1)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>​    弹出消息框，注入成功，后台没有防御机制</p>
+<h5 id="medium等级：-2"><a href="#medium等级：-2" class="headerlink" title="medium等级："></a>medium等级：</h5><p>​    通过前面的方法试探发现不可以，查看源代码    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if (stripos ($default, &quot;&lt;script&quot;) !== false) &#123;</span><br><span class="line">        header (&quot;location: ?default=English&quot;);</span><br><span class="line">        exit;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>​    stripos：查找&lt;script在default中第一次出现的位置</p>
+<p>xss注入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;/option&gt;&lt;/select&gt;&lt;img src=1 onerror=alert(&apos;xss&apos;)&gt;</span><br></pre></td></tr></table></figure>
+<p>“script”被过滤，所以采用其他标签，先闭合’option’和‘select’，然后注入标签，在标签中携带代码</p>
+<h5 id="high等级：-2"><a href="#high等级：-2" class="headerlink" title="high等级："></a>high等级：</h5><p>​    查看源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">switch ($_GET[&apos;default&apos;]) &#123;</span><br><span class="line">        case &quot;French&quot;:</span><br><span class="line">        case &quot;English&quot;:</span><br><span class="line">        case &quot;German&quot;:</span><br><span class="line">        case &quot;Spanish&quot;:</span><br><span class="line">            # ok</span><br><span class="line">            break;</span><br><span class="line">        default:</span><br><span class="line">            header (&quot;location: ?default=English&quot;);</span><br><span class="line">            exit;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>在这里对default的内容做了限制，</p>
+<p>xss注入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">English#&lt;script&gt;alert(document.cookie)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>让switch不去查看后面的代码</p>
+<h5 id="impossible等级：-1"><a href="#impossible等级：-1" class="headerlink" title="impossible等级："></a>impossible等级：</h5><p>查看代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line"># Don&apos;t need to do anything, protction handled on the client side</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -408,7 +503,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://soliym.top/2019/05/14/c关于堆栈的划定/" title="c关于堆栈的划定">http://soliym.top/2019/05/14/c关于堆栈的划定/</a>
+    <a href="http://soliym.top/2020/05/07/DVWA-xss详细讲解/" title="DVWA-xss详细讲解">http://soliym.top/2020/05/07/DVWA-xss详细讲解/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -423,8 +518,8 @@
       
         <div class="post-tags">
           
-            <a href="/tags/堆栈/" rel="tag"><i class="fa fa-tag"></i>
- 堆栈</a>
+            <a href="/tags/xss/" rel="tag"><i class="fa fa-tag"></i>
+ xss</a>
           
         </div>
       
@@ -452,8 +547,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/11/2n皇后/" rel="next" title="2n皇后">
-                <i class="fa fa-chevron-left"></i> 2n皇后
+              <a href="/2020/05/06/xss-lab(11-18)详细讲解/" rel="next" title="xss-lab(11-18)详细讲解">
+                <i class="fa fa-chevron-left"></i> xss-lab(11-18)详细讲解
               </a>
             
           </div>
@@ -461,10 +556,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/17/RHCSA-Linux简介/" rel="prev" title="RHCSA-Linux简介">
-                RHCSA-Linux简介 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -650,7 +741,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#c语言-全局变量与局部变量的划分"><span class="nav-number">1.</span> <span class="nav-text">c语言 全局变量与局部变量的划分</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#c-c-内存分配"><span class="nav-number">1.1.</span> <span class="nav-text">c/c++内存分配</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#栈区-stack-sagment"><span class="nav-number">1.1.1.</span> <span class="nav-text">栈区(stack sagment)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#堆区-heap-sagment"><span class="nav-number">1.1.2.</span> <span class="nav-text">堆区(heap sagment)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#全局区-静态区-data-sagment"><span class="nav-number">1.1.3.</span> <span class="nav-text">全局区(静态区)(data sagment)</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#XSS分类："><span class="nav-number">1.</span> <span class="nav-text">XSS分类：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#反射型-Reflected"><span class="nav-number">2.</span> <span class="nav-text">反射型-Reflected</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#LOW等级："><span class="nav-number">2.1.</span> <span class="nav-text">LOW等级：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#medium等级："><span class="nav-number">2.2.</span> <span class="nav-text">medium等级：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#high等级："><span class="nav-number">2.3.</span> <span class="nav-text">high等级：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存储型-stored"><span class="nav-number">3.</span> <span class="nav-text">存储型-stored</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#low等级："><span class="nav-number">3.1.</span> <span class="nav-text">low等级：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#medium等级：-1"><span class="nav-number">3.2.</span> <span class="nav-text">medium等级：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#high等级：-1"><span class="nav-number">3.3.</span> <span class="nav-text">high等级：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#impossible等级："><span class="nav-number">3.4.</span> <span class="nav-text">impossible等级：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM型："><span class="nav-number">4.</span> <span class="nav-text">DOM型：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#low等级：-1"><span class="nav-number">4.1.</span> <span class="nav-text">low等级：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#medium等级：-2"><span class="nav-number">4.2.</span> <span class="nav-text">medium等级：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#high等级：-2"><span class="nav-number">4.3.</span> <span class="nav-text">high等级：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#impossible等级：-1"><span class="nav-number">4.4.</span> <span class="nav-text">impossible等级：</span></a></li></ol></li></ol></div>
             
 
           </div>
