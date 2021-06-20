@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="OSPF,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="soliym" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="一、动态路由协议1、动态路由协议：直连路由间构建邻居关系，通过相互沟通学习路由信息，来获取未知的路由信息，然后根据不同的路由选择算法，计算到达未知网段的最佳路径，并将其加载到路由表中。">
+<meta name="keywords" content="OSPF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OSPF(一)">
+<meta property="og:url" content="http://soliym.top/2021/06/19/OSPF(一)/index.html">
+<meta property="og:site_name" content="soliym">
+<meta property="og:description" content="一、动态路由协议1、动态路由协议：直连路由间构建邻居关系，通过相互沟通学习路由信息，来获取未知的路由信息，然后根据不同的路由选择算法，计算到达未知网段的最佳路径，并将其加载到路由表中。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="file:///C:/Users/ASUS/AppData/Local/Packages/Microsoft.Office.OneNote_8wekyb3d8bbwe/TempState/msohtmlclip/clip_image001.png">
+<meta property="og:updated_time" content="2019-09-19T09:50:58.070Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OSPF(一)">
+<meta name="twitter:description" content="一、动态路由协议1、动态路由协议：直连路由间构建邻居关系，通过相互沟通学习路由信息，来获取未知的路由信息，然后根据不同的路由选择算法，计算到达未知网段的最佳路径，并将其加载到路由表中。">
+<meta name="twitter:image" content="file:///C:/Users/ASUS/AppData/Local/Packages/Microsoft.Office.OneNote_8wekyb3d8bbwe/TempState/msohtmlclip/clip_image001.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://soliym.top/2021/06/19/OSPF(一)/">
+
+
+
+
+
+  <title>OSPF(一) | soliym</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">soliym</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://soliym.top/2021/06/19/OSPF(一)/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="soliym">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="soliym">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">OSPF(一)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-19T22:37:20+08:00">
+                2021-06-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/CCNP-HCNP/" itemprop="url" rel="index">
+                    <span itemprop="name">CCNP/HCNP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="一、动态路由协议"><a href="#一、动态路由协议" class="headerlink" title="一、动态路由协议"></a>一、动态路由协议</h4><p>1、动态路由协议：直连路由间构建邻居关系，通过相互沟通学习路由信息，来获取未知的路由信息，然后根据不同的路由选择算法，计算到达未知网段的最佳路径，并将其加载到路由表中。</p>
+<a id="more"></a>
+<p>2、动态路由协议分类：</p>
+<p>​                   1、基于AS将路由协议分为IGP和EGP</p>
+<p>​                         AS-自治系统    </p>
+<p>​                                   0-65535  标准为2个字节   扩展为4个字节</p>
+<p>​                                                   1-64511          公有</p>
+<p>​                                                    64512-65535 私有</p>
+<p>​                         IGP—内部网关路由协议（as之内使用）</p>
+<p>​                                   RIP/OSPF/EIGRP(Cisco)/isis</p>
+<p>​                                 EGP—外部网关路由协议（as之间使用）</p>
+<p>​                                    BGP/EGP</p>
+<p>​                   2、内部网关路由协议—IGP分类</p>
+<p>​                         ①更新时是否携带子网掩码：有类别—不携带</p>
+<p>​                                                                     无类别—携带</p>
+<p>​                         ②工作特点：距离适量—RIP/EIGRP</p>
+<p>​                                                                基于路由条目收敛</p>
+<p>​                                             链路状态—OSPF/ISIS</p>
+<p>​                                                               基于LSA收敛</p>
+<h4 id="二、开放式最短路径优先协议"><a href="#二、开放式最短路径优先协议" class="headerlink" title="二、开放式最短路径优先协议"></a>二、开放式最短路径优先协议</h4><h5 id="1、OSPF协议特点"><a href="#1、OSPF协议特点" class="headerlink" title="1、OSPF协议特点"></a>1、OSPF协议特点</h5><p>适用范围：IGP</p>
+<p>类型：链路状态型动态路由协议</p>
+<p>算法：SPF算法  </p>
+<p>封装：基于IP封装，协议号为89—跨层封装</p>
+<p>版本：OSPFV2—IPV4、OSPFV3—IPV6</p>
+<p>更新方式：组播或单播—224.0.0.5/224.0.0.6</p>
+<p>​                      触发更新/周期更新—周期更新时间是30min</p>
+<p>区域划分：OSPF需要合理规划IP地址和区域划分</p>
+<p>​                 —目的：减少lsa数量、减少lsa传播范围、减少对资源的消耗</p>
+<p>​                 —原因：OSPF需要消耗大量的路由器资源</p>
+<p>metric计算：OSPF使用cost计算metric</p>
+<p>​                    cost=参考带宽/链路实际带宽</p>
+<p>​                    每条路由信息的metric值=该条路径上每段链路的cost值的总和</p>
+<p>router-id：在网络内唯一标识一台路由器</p>
+<h5 id="2、区域划分"><a href="#2、区域划分" class="headerlink" title="2、区域划分"></a>2、区域划分</h5><p>​     1、区域内传拓扑：</p>
+<p>​          —用于每台路由器计算到达所有未知路径的最短路径</p>
+<p>​          —拓扑信息：路由器之间的连接关系</p>
+<p>​    2、 区域间传路由：</p>
+<p>​           —区域间传递计算完成的路由信息</p>
+<p>​           —路由信息：包含的接口的路由信息</p>
+<p>​     3、区域标识：使用十进制或类似于ip地址的32位二进制</p>
+<p>​     4、区域划分：基于链路（接口）</p>
+<p>​     5、区域类型：骨干区域</p>
+<p>​                            —区域0，必须存在且唯一</p>
+<p>​                                  非骨干区域</p>
+<p>​                           —非0区域</p>
+<p>​     6、 路由器的角色：        </p>
+<p>​           —骨干路由器：一个路由器的所有接口都在area 0中</p>
+<p>​            —非骨干路由器：一个路由器的所有接口都不在area 0 中</p>
+<p>​            —ABR：区域边界路由器：能够产生3类LSA的路由器既有接口属于area 0 又有接口属        于非area 0</p>
+<p>​            —ASBR：自治系统边界路由器，能够产生5类或7类LSA的路由器，连接ospf网络和非ospf网络，并且将非ospf引入到ospf网络中</p>
+<p>​       7、区域划分规则</p>
+<p>​          ①OSPF网络中必须存在并唯一的骨干区域（若OSPF仅仅存在一个区域可以为非0区域）</p>
+<p>​          ②非骨干区域必须与骨干区域直接相连（非骨干不能非骨干直接相连）</p>
+<p>​     8、不规则区域：1.不连续的0区域     2.非骨干没有挂靠在骨干区域之上</p>
+<h5 id="3、OSPF数据报"><a href="#3、OSPF数据报" class="headerlink" title="3、OSPF数据报"></a>3、OSPF数据报</h5><p>   OSPF数据包跨层封装于三层报头</p>
+<p><img src="file:///C:/Users/ASUS/AppData/Local/Packages/Microsoft.Office.OneNote_8wekyb3d8bbwe/TempState/msohtmlclip/clip_image001.png" alt="img"></p>
+<p>五类数据报：</p>
+<p>1、hello（224.0.0.5）：发现、建立、保活邻居关系、邻接关系</p>
+<p>2、DBD-数据库描述包：本地链路状态数据库的目录</p>
+<p>3、LSR-链路状态查询：根据DBD中的描述，对未知的lsa请求</p>
+<p>4、LSU-链路状态更新：对请求的LSR的回复，携带lsa信息</p>
+<p>5、LSACK-链路状态确认：确认包，保证lsa传递的可靠性</p>
+<p>DBD：数据库描述数据包  使用隐式确认，分为两种：1.主从选举DBD-包含mtu，若不一致则停留在预启动   2.发送LSA头部摘要信息（LSA目录）</p>
+<p>由于IP数据报不可靠，所以除hello外，其他数据包需要确认</p>
+<p>DBD—序列号，显示或隐式确认</p>
+<p>LSR—LSU</p>
+<p>LSU—LSACK</p>
+<h5 id="4、OSPF状态机"><a href="#4、OSPF状态机" class="headerlink" title="4、OSPF状态机"></a>4、OSPF状态机</h5><p>down：一旦收发hello，则进入下一状态</p>
+<p>init—初始化：当接收到的hello中携带自己的router-id，则进入下一状态</p>
+<p>2way—双发通信：邻居关系建立的标志</p>
+<p>​             点到点网络直接进入下一状态，ma网路进行DR/BDR选举</p>
+<p>​             条件匹配：若条件匹配成功，进入下一状态</p>
+<p>​                              若条件匹配失败，停留在当前状态，依靠hello保活邻居关系</p>
+<p>Exstart预启动:通过类hello包DBD进行主从关系选举，router-id大的为主，优先进入下一状态</p>
+<p>​                 （通过主从选举确定先发送DBD的一方，确保传输的可靠性和对链路带宽的占用小）          如果mtu不相同则停留在该阶段</p>
+<p>exchange准交换：使用真正的DBD包进行数据库目录的共享</p>
+<p>loading 加载：使用LSR/LSU/LSack来获取未知的LSA信息</p>
+<p>lsr–请求列表-针对每一条发送lsu</p>
+<p>lsu–重传列表-对方收到lsu后发送ack确认，如果没收到，则重发</p>
+<p>full转发:邻接关系建立的标志</p>
+<h5 id="5、OSPF工作方式"><a href="#5、OSPF工作方式" class="headerlink" title="5、OSPF工作方式"></a>5、OSPF工作方式</h5><p>启动宣告配置完成后，路由器开始组播（224.0.0.5）收发OSPF的hello包；若接收到的hello包中存在本地的route-id，建立邻居关系，生成邻居表；</p>
+<p>之后基于表格中所有的邻居进行条件的匹配，匹配失败将维持邻居关系，仅hello包周期保活即可；</p>
+<p>匹配成功者间可以建立邻接关系；邻居间使用DBD进行数据库目录的比对；之后使用LSR查询目录中未知的LSA信息，对端使用LSU来携带传递LSA，最终需要LSack进行接收确认；</p>
+<p>当本地收集到区域内所有设备的LSA后，生成LSDB—链路状态数据库表；</p>
+<p>本地基于LSDB启用SFP算法，计算到达所有未知网段的最短路径，然后将其加载到路由表内；</p>
+<p>收敛完成，仅hello包周期保活所有的邻居和邻接关系；每30MIN周期进行DBD包的收发来进行纠错；</p>
+<p>结构突变：</p>
+<p>新增网段—直连新增网段设备使用DBD来告知所有的邻居，邻居进行LSR/LSU/LSACK收敛</p>
+<p>断开网段—断开新增网段设备使用DBD来告知所有的邻居，邻居进行LSR/LSU/LSACK收敛</p>
+<p>无法沟通—-dead time 和最大老化来解决</p>
+<p>正常邻居间存在hello包，若超过dead time依然没有hello包，断开邻居关系，删除从该邻居处学习到的所有信息</p>
+<p>若邻居关系依然正常，但每30min的周期没有正常进行，每条lsa后方存在一个老化时间，默认最大为3609s；到达最大老化时删除该LSA信息即可；</p>
+<p>名词：</p>
+<p>Router-ID：路由器标示符，用于标识该路由器在OSPF网络中的唯一性</p>
+<p>选举规则：1.手工指定最优先    2.最大的环回接口地址  3.最大的物理接口</p>
+<p>hello时间、dead时间：默认10、40或 30、120s</p>
+<p>DR优先级 ：</p>
+<p>DR：指定路由器</p>
+<p>BDR：备份指定路由器</p>
+<p>LSA：链路状态通告；在不同条件下存在不同类别的LSA，用于携带拓扑或路由</p>
+<p>LSDB：链路状态数据库；所有LSA的集合</p>
+<p>OSPF收敛行为—OSPF的LSA洪泛</p>
+<p>​                           OSPF的LSDB同步</p>
+<p>OSPF邻居关系建立条件：</p>
+<p>1.router-ID必须不同    </p>
+<p>2.area-ID必须一致</p>
+<p>3.认证类型和认证型数据都一致   </p>
+<p>4.hello时间、dead时间都一致  </p>
+<p>5.特殊区域标识必须一致  </p>
+<p>6.若在MA网络中，network mask必须一致</p>
+<p>7.必须同时使用单播或组播</p>
+<h5 id="6、OSPF基础配置"><a href="#6、OSPF基础配置" class="headerlink" title="6、OSPF基础配置"></a>6、OSPF基础配置</h5><h6 id="（一）cisco"><a href="#（一）cisco" class="headerlink" title="（一）cisco"></a>（一）cisco</h6><p>r1(config)#router ospf 1   启动时需要配置进程号，仅具有本地意义</p>
+<p>r1(config-router)#router-id 1.1.1.1   配置RID，要求为全网唯一</p>
+<p>​                              手工—环回接口最大数字—物理接口最大数字</p>
+<p>宣告：1、激活  2、路由或拓扑   3、区域划分</p>
+<p>r1(config-router)#network 1.1.1.1 0.0.0.0 area 0</p>
+<p>r1(config-router)#network 12.1.1.0 0.0.0.255 area 0</p>
+<p>​                                   反掩码</p>
+<p>启动配置完成后，所有设备间使用hello包，发现并建立邻居关系，生成邻居表：</p>
+<p>Hello time 为10s，dead time 为 hello time 的4倍；</p>
+<p>r2#show ip ospf neighbor </p>
+<p>Neighbor ID     Pri   State           Dead Time   Address         Interface</p>
+<p>1.1.1.1           0   FULL/  -        00:00:34    12.1.1.1        Serial1/0</p>
+<p>3.3.3.3           0   FULL/  -        00:00:39    23.1.1.2        Serial1/1</p>
+<p>邻居关系建立后，邻居间进行条件匹配，匹配成功者间进入邻接关系；基于DBD/LSR/LSU/LSack获取未知LSA信息，生成LSDB–数据库表；</p>
+<p>r2#show ip ospf database </p>
+<p>LSDB同步完成后，本地使用SPF最短路径选路规则，将到达未知网段的路由加载路由表：</p>
+<p>使用字母O标识通过OSPF学习的路由；</p>
+<p>O      本地区域内的路由，是本地通过拓扑计算所得</p>
+<p>O IA    域间路由，其他区域的路由，通过ABR共享进入的</p>
+<p>管理距离为110；度量为cost值=开销值=参考带宽/接口带宽</p>
+<p>默认参考带宽为100M；整段路径cost值之和最小为最佳路径；</p>
+<p>注：当接口带宽大于参考带宽时，cost值为1；将可能导致选路不佳，建议修改参考带宽</p>
+<p>r1(config)#router ospf 1 </p>
+<p>r1(config-router)#auto-cost reference-bandwidth ?    </p>
+<p>  <1-4294967>  The reference bandwidth in terms of Mbits per second</1-4294967></p>
+<p>r1(config-router)#auto-cost reference-bandwidth 1000</p>
+<p>切记：整个网络所有设备均需要修改一致；</p>
+<p>【5】OSPF建立成为邻接关系的条件—-关注网络类型</p>
+<p>点到点–在一个网段内只能存在两个节点</p>
+<p>MA网络—在一个网段内节点数量不限制</p>
+<p>在点到点网络ospf只能直接建立邻接关系；</p>
+<p>在MA网络中为避免重复的更新，将进行DR/BDR选举，所有的非DR/BDR间仅建立邻居关系；DR/BDR与其他非DR/BDR建立邻接关系，基于224.0.0.6沟通；</p>
+<p>选举规则：</p>
+<p>比较接口优先级  0-255 大优  默认为1；</p>
+<p>接口优先级若相同，比较RID；</p>
+<p>r1(config)#interface fastEthernet 0/0</p>
+<p>r1(config-if)#ip ospf priority 3  修改接口优先级</p>
+<p>注：ospf选择非抢占的，因此在人为修改了优先级后，必须重启所有设备的OSPF进程</p>
+<p>r1#clear ip ospf process </p>
+<p>Reset ALL OSPF processes? [no]: yes</p>
+<p>可以将设备的参选接口优先级修改为0,—-不参选；但至少留一台设备参选，否则将无DR,网络无法通行；</p>
+<h6 id="（二）华为"><a href="#（二）华为" class="headerlink" title="（二）华为"></a>（二）华为</h6><p>[r1]ospf 1 router-id 1.1.1.1  启动时需要定义进程号，仅具有本地意义；  建议同时配置ROUTER-ID；</p>
+<p>​                      手工—环回最大数值IP地址—物理接口最大数值IP地址</p>
+<p>宣告：</p>
+<p>[r2]ospf 1 router-id 2.2.2.2</p>
+<p> [r2-ospf-1]area 0</p>
+<p> [r2-ospf-1-area-0.0.0.0]network 12.1.1.2 0.0.0.0</p>
+<p> [r2-ospf-1]area 1 </p>
+<p> [r2-ospf-1-area-0.0.0.1]network 23.1.1.1 0.0.0.0</p>
+<p>OSPF的区域划分规则：</p>
+<p>星型结构—所有的非骨干区域必须连接到的骨干区域，否则不能进行区域间路由共享</p>
+<p>ABR—区域边界路由器  同时工作的多个区域间；合法ABR必须同时工作在骨干区域，否则不能进行区域间的路由共享；</p>
+<p>启动配置完成后，路由器间使用hello包收发建立邻居关系，生成邻居表：</p>
+<p>[r2]display ospf peer</p>
+<p>Area 0.0.0.0 interface 12.1.1.2(GigabitEthernet0/0/0)’s neighbors</p>
+<p> Router ID: 1.1.1.1          Address: 12.1.1.1        </p>
+<p>   State: Full  Mode:Nbr is  Slave  Priority: 1</p>
+<p>   DR: 12.1.1.1  BDR: 12.1.1.2  MTU: 0    </p>
+<p>   Dead timer due in 35  sec </p>
+<p>   Retrans timer interval: 5 </p>
+<p>   Neighbor is up for 00:18:48     </p>
+<p>   Authentication Sequence: [ 0 ]</p>
+<p>邻居关系建立后，邻居间进行条件的匹配；匹配成功建立邻接关系，同步LSDB完成后，本地生成LSDB—数据库表；</p>
+<p>[r2]display ospf lsdb   查看数据库的目录；内部存在各种类别的信息，需要具体查看</p>
+<p>LSDB同步完成后，本地基于SFP算法，计算到达所有未知网段的最短路径，然后将其加载到路由表中；</p>
+<p>[r3]display  ip routing-table  查看路由表</p>
+<p>Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface</p>
+<p>​        1.1.1.1/32  OSPF    10   2           D   23.1.1.1        GigabitEthernet0/0/0</p>
+<p>​        2.2.2.2/32  OSPF    10   1           D   23.1.1.1        GigabitEthernet0/0/0</p>
+<p>[r3]display ip routing-table protocol ospf  查看本地所有通过OSPF协议学习到的路由</p>
+<p>[r1]display ospf routing    查看本地工作OSPF的直连，及本地通过OSPF学习到的路由</p>
+<p>Destination        Cost  Type       NextHop         AdvRouter       Area</p>
+<p> 1.1.1.1/32         0     Stub       1.1.1.1         1.1.1.1         0.0.0.0</p>
+<p> 12.1.1.0/24        1     Transit     12.1.1.1        1.1.1.1         0.0.0.0</p>
+<p> 2.2.2.2/32         1     Stub       12.1.1.2        2.2.2.2         0.0.0.0</p>
+<p> 3.3.3.3/32         2     Inter-area  12.1.1.2        2.2.2.2         0.0.0.0</p>
+<p> 23.1.1.0/24        2     Inter-area  12.1.1.2        2.2.2.2         0.0.0.0</p>
+<p>  类型标记为Inter-area 代表其他区域产生的路由条目</p>
+<p>OSPF的度量值为cost=开销值=参考带宽/接口带宽</p>
+<p>默认的参考带宽为100M；OSPF默认优选整段路径cost之和最小；</p>
+<p>若接口带宽大于参考带宽，cost值为1；将可能导致选路的不佳，建议修改默认的参考带宽；</p>
+<p>[r1]ospf 1</p>
+<p>[r1-ospf-1]bandwidth-reference 1000</p>
+<p>切记：一旦修改，全网所有设备均需修改为一致；</p>
+<p>​             </p>
+<p>​     </p>
+<p>​      </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="" alt="soliym wechat" style="width: 200px; max-width: 100%;">
+    <div></div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    soliym
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://soliym.top/2021/06/19/OSPF(一)/" title="OSPF(一)">http://soliym.top/2021/06/19/OSPF(一)/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/OSPF/" rel="tag"><i class="fa fa-tag"></i>
+ OSPF</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/06/19/n皇后/" rel="next" title="n皇后">
+                <i class="fa fa-chevron-left"></i> n皇后
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/06/19/OSPF(三)/" rel="prev" title="OSPF(三)">
+                OSPF(三) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTI2Ny8xNzgxNQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">soliym</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/soliym" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:soliym@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:531106830@qq.com" target="_blank" title="qq">
+                      
+                        <i class="fa fa-fw fa-qq"></i>qq</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/6401619515/home?leftnav=1" target="_blank" title="weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://soliym.top/" title="soliym" target="_blank">soliym</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、动态路由协议"><span class="nav-number">1.</span> <span class="nav-text">一、动态路由协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、开放式最短路径优先协议"><span class="nav-number">2.</span> <span class="nav-text">二、开放式最短路径优先协议</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、OSPF协议特点"><span class="nav-number">2.1.</span> <span class="nav-text">1、OSPF协议特点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、区域划分"><span class="nav-number">2.2.</span> <span class="nav-text">2、区域划分</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、OSPF数据报"><span class="nav-number">2.3.</span> <span class="nav-text">3、OSPF数据报</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、OSPF状态机"><span class="nav-number">2.4.</span> <span class="nav-text">4、OSPF状态机</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5、OSPF工作方式"><span class="nav-number">2.5.</span> <span class="nav-text">5、OSPF工作方式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6、OSPF基础配置"><span class="nav-number">2.6.</span> <span class="nav-text">6、OSPF基础配置</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#（一）cisco"><span class="nav-number">2.6.1.</span> <span class="nav-text">（一）cisco</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#（二）华为"><span class="nav-number">2.6.2.</span> <span class="nav-text">（二）华为</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+     
+    </div>
+   
+  </aside>
+
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">soliym</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v="></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v="></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v="></script>
+<script type="text/javascript" src="/js/src/post-details.js?v="></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v="></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

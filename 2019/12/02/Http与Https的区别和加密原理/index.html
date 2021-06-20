@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="密码学,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="soliym" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="HTTP与HTTPS的区别及工作过程">
+<meta name="keywords" content="密码学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Http与Https的区别和加密原理">
+<meta property="og:url" content="http://soliym.top/2019/12/02/Http与Https的区别和加密原理/index.html">
+<meta property="og:site_name" content="soliym">
+<meta property="og:description" content="HTTP与HTTPS的区别及工作过程">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-02T13:30:35.557Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Http与Https的区别和加密原理">
+<meta name="twitter:description" content="HTTP与HTTPS的区别及工作过程">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://soliym.top/2019/12/02/Http与Https的区别和加密原理/">
+
+
+
+
+
+  <title>Http与Https的区别和加密原理 | soliym</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">soliym</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://soliym.top/2019/12/02/Http与Https的区别和加密原理/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="soliym">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="soliym">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Http与Https的区别和加密原理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-02T21:24:38+08:00">
+                2019-12-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/信息安全/" itemprop="url" rel="index">
+                    <span itemprop="name">信息安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>HTTP与HTTPS的区别及工作过程  </p>
+<a id="more"></a>                                                          
+<h3 id="一、HTTP介绍"><a href="#一、HTTP介绍" class="headerlink" title="一、HTTP介绍"></a>一、HTTP介绍</h3><h4 id="1、什么是HTTP"><a href="#1、什么是HTTP" class="headerlink" title="1、什么是HTTP"></a>1、什么是HTTP</h4><p>（一）HTTP（Hypertext Transfer Protocol）：超文本传输协议</p>
+<p>一种建立在TCP上的无状态连接的应用层协议，HTTP是WWW的数据交互的基础，超文本文档包括超链接链接到其他资源用户可以很容易获取。HTTP发展用来促进超文本和WWW。所谓协议，就是指双方遵循的规则、约定。http协议，就是浏览器和服务器之间进行通信的一种规规则。</p>
+<p>（二）TCP-IP详解对HTTP的概述</p>
+<p>H T T P是一个简单的协议。客户进程建立一条同服务器进程的 T C P连接，然后发出请求并读取服务器进程的响应。服务器进程关闭连接表示本次响应结束。服务器进程返回的文件通常含有指向其他服务器上文件的指针 (超文本链接)。用户显然可以很轻松地沿着这些链接从一 个服务器到下一个服务器。 </p>
+<h4 id="2、HTTP特点"><a href="#2、HTTP特点" class="headerlink" title="2、HTTP特点"></a>2、HTTP特点</h4><p>1、简单：客户向服务器请求服务时，只需传送请求方法和路径。请求方法常用的有GET、HEAD、POST。每种方法规定了客户与服务器联系的不同类型。由于HTTP协议简单，使得HTTP服务器的程序规模小，因而通信速度很快。</p>
+<p>2、灵活：HTTP允许传输任意类型的数据对象。正在传输的类型由Content-Type加以标记。</p>
+<p>3、请求-响应模式：客户端每次向服务器发起一个请求时都建立一个连接， 服务器处理完客户的请求即断开连接。</p>
+<p>4、无状态：HTTP协议是无状态协议。无状态是指协议对于事务处理没有记忆能力。缺少状态意味着如果后续处理需要前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。 </p>
+<h4 id="3、HTTP工作过程"><a href="#3、HTTP工作过程" class="headerlink" title="3、HTTP工作过程"></a>3、HTTP工作过程</h4><h5 id="（一）概述"><a href="#（一）概述" class="headerlink" title="（一）概述"></a>（一）概述</h5><p>HTTP客户端发起请求，创建端口。</p>
+<p>HTTP服务器在端口监听客户端请求。</p>
+<p>HTTP服务器向客户端返回状态和内容</p>
+<h5 id="（二）详解"><a href="#（二）详解" class="headerlink" title="（二）详解"></a>（二）详解</h5><h6 id="1、输入地址后回车，首先执行域名解析"><a href="#1、输入地址后回车，首先执行域名解析" class="headerlink" title="1、输入地址后回车，首先执行域名解析"></a>1、输入地址后回车，首先执行域名解析</h6><p>（1）查询浏览器自身的DNS缓冲</p>
+<p>（2）如果缓冲失效则查找系统的DNS缓冲</p>
+<p>（3）如果系统DNS缓冲没有查到则查看本地Host文件</p>
+<p>（4）如果找不到配置则浏览器发起DNS系统调用</p>
+<p>（5）主机向DNS服务器发起查询，获取IP地址</p>
+<h6 id="2、连接并进行通信"><a href="#2、连接并进行通信" class="headerlink" title="2、连接并进行通信"></a>2、连接并进行通信</h6><p>（1）浏览器获得域名对应的IP地址后，发起TCP“三次握手”</p>
+<p>（2）TCP/IP连接建立起来后，浏览器就可以向服务器发送http请求</p>
+<p>（3）服务器接收到这个请求，根据路径参数，经过后端的一些处理之后，把处理后的一个结果的数据返回给浏览器</p>
+<h6 id="3、浏览器渲染页面"><a href="#3、浏览器渲染页面" class="headerlink" title="3、浏览器渲染页面"></a>3、浏览器渲染页面</h6><h6 id="4、HTTP的不足"><a href="#4、HTTP的不足" class="headerlink" title="4、HTTP的不足"></a>4、HTTP的不足</h6><p>（一）安全性</p>
+<p>​      （1）HTTP使用明文通信，内容可能窃取</p>
+<p>​      （2）不验证通信方的身份，因此有可能遭遇伪装</p>
+<p>​      （3）无法证明报文的完整性，有可能已遭篡改</p>
+<p>（二）响应时间长</p>
+<p>​      （1）基于TCP工作，可靠但是速度慢</p>
+<p>​      （2）HTTP协议是无状态协议，传输完成后断开TCP连接，下一次的请求需要重新建立连接</p>
+<p>（三）臃肿的消息首部</p>
+<h3 id="二、HTTP的改进-HTTPS"><a href="#二、HTTP的改进-HTTPS" class="headerlink" title="二、HTTP的改进-HTTPS"></a>二、HTTP的改进-HTTPS</h3><p>Https并不是一个崭新的协议，而是在http的基础上发展而来相当于是Http的升级版。它主要是为了解决http协议安全性不足的问题而诞生的。HTTPS 就是在 HTTP 下加入了 SSL 层，从而保护了交换数据隐私和完整性，提供对网站服务器身份认证的功能，简单来说它就是安全版的 HTTP。</p>
+<p>Http+加密+认证+完整性保护=https</p>
+<p>Https的通信端口由SSL/TSL代替了，它是一种应用层协议。一般的情况下http直接和Tcp进行通信，当使用了SSL之后，就会变成先和SSL通信，SSL再和TCP进行通信。</p>
+<h3 id="三、HTTPS采用的加密技术"><a href="#三、HTTPS采用的加密技术" class="headerlink" title="三、HTTPS采用的加密技术"></a>三、HTTPS采用的加密技术</h3><h4 id="（一）对称密钥加密"><a href="#（一）对称密钥加密" class="headerlink" title="（一）对称密钥加密"></a>（一）对称密钥加密</h4><p> SSL采用的加密技术叫做“单密钥加密”，也叫作“对称密钥加密”，这种加密方法是这样的，比如客户端向服务器发送一条信息，首先客户端会采用已知的算法对信息进行加密，接收端对加密的信息进行解密的时候需要用到密钥，中间会传递密钥，（加密和解密的密钥是同一个），密钥在传输中间是被加密的。这种方式看起来安全，但是仍有潜在的危险，一旦被窃听，或者信息被挟持，就有可能破解密钥，而破解其中的信息，这种方式存在安全隐患。</p>
+<h4 id="（二）非对称密钥加密"><a href="#（二）非对称密钥加密" class="headerlink" title="（二）非对称密钥加密"></a>（二）非对称密钥加密</h4><p>“非对称加密”使用的时候有两把锁，一把叫做“私钥”，一把是“公钥”，使用非对称加密的加密方式的时候，服务器首先告诉客户端按照自己给定的公开密钥进行加密处理，客户端按照公开密钥加密以后，服务器接受到信息再通过自己的私有密钥进行解密，这样做的好处就是解密的钥匙根本就不会进行传输，因此也就避免了被挟持的风险。就算公开密钥被窃听者拿到了，它也很难进行解密。</p>
+<h3 id="四、HTTPS通信加密机制"><a href="#四、HTTPS通信加密机制" class="headerlink" title="四、HTTPS通信加密机制"></a>四、HTTPS通信加密机制</h3><h4 id="（一）HTTPS采用混合机制的加密方式"><a href="#（一）HTTPS采用混合机制的加密方式" class="headerlink" title="（一）HTTPS采用混合机制的加密方式"></a>（一）HTTPS采用混合机制的加密方式</h4><p>https则综合了对称密钥加密和非对称密钥加密的两种方式，充分利用两者的优势，在最初的连接的时候使用非对称密钥的加密方式保证连接的安全性，之后稳定的通讯采用对称加密的方式，稳定的通讯是指确保交换的密钥是安全的。</p>
+<p>某网站拥有用于非对称加密的公钥A、私钥A’，浏览器像网站服务器请求，服务器把公钥A明文给传输浏览器，浏览器随机生成一个用于对称加密的密钥X，用公钥A加密后传给服务器，服务器拿到后用私钥A’解密得到密钥X，这样双方就都拥有密钥X了，且别人无法知道它。之后双方所有数据都用密钥X加密解密。</p>
+<p>虽然这种加密方式比对称加密和非对称加密安全，但是还是存在漏洞，某网站拥有用于非对称加密的公钥A、私钥A’，浏览器向网站服务器请求，服务器把公钥A明文给传输浏览器，中间人劫持到公钥A，保存下来，把数据包中的公钥A替换成自己伪造的公钥B（它当然也拥有公钥B对应的私钥B’），浏览器随机生成一个用于对称加密的密钥X，用公钥B（浏览器不知道公钥被替换了）加密后传给服务器，中间人劫持后用私钥B’解密得到密钥X，再用公钥A加密后传给服务器，服务器拿到后用私钥A’解密得到密钥X</p>
+<p>为了应对这种漏洞，HTTPS加入了一种新的安全机制，证书认证</p>
+<h4 id="（二）https的证书机制"><a href="#（二）https的证书机制" class="headerlink" title="（二）https的证书机制"></a>（二）https的证书机制</h4><p>1、服务器的开发者携带公开密钥，向数字证书认证机构提出公开密钥的申请，数字证书认证机构在认清申请者的身份，审核通过以后，会对开发者申请的公开密钥做数字签名，然后分配这个已签名的公开密钥，并将密钥放在证书里面，绑定在一起</p>
+<p>2、服务器将这份数字证书发送给客户端，因为客户端也认可证书机构，客户端可以通过数字证书中的数字签名来验证公钥的真伪，来确保服务器传过来的公开密钥是真实的。一般情况下，证书的数字签名是很难被伪造的，这取决于认证机构的公信力。一旦确认信息无误之后，客户端就会通过公钥对报文进行加密发送，服务器接收到以后用自己的私钥进行解密。</p>
+<h3 id="五、SSL-TLS"><a href="#五、SSL-TLS" class="headerlink" title="五、SSL/TLS"></a>五、SSL/TLS</h3><p>SSL(Secure Sockets Layer <a href="https://baike.baidu.com/item/%E5%AE%89%E5%85%A8%E5%A5%97%E6%8E%A5%E5%B1%82" target="_blank" rel="noopener">安全套接层</a>),及其继任者<a href="https://baike.baidu.com/item/%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8" target="_blank" rel="noopener">传输层安全</a>（Transport Layer Security，TLS）是为<a href="https://baike.baidu.com/item/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/9636548" target="_blank" rel="noopener">网络通信</a>提供安全及<a href="https://baike.baidu.com/item/%E6%95%B0%E6%8D%AE%E5%AE%8C%E6%95%B4%E6%80%A7/110071" target="_blank" rel="noopener">数据完整性</a>的一种安全协议。TLS与SSL在<a href="https://baike.baidu.com/item/%E4%BC%A0%E8%BE%93%E5%B1%82/4329536" target="_blank" rel="noopener">传输层</a>对网络连接进行加密。</p>
+<p>SSL是基于HTTP之下TCP之上的一个协议层，是基于HTTP标准并对TCP传输数据时进行加密，所以HPPTS是HTTP+SSL/TCP的简称。</p>
+<p>标准化后的SSL更名为TLS(Transport Layer Security 安全传输层协议)</p>
+<h4 id="（一）SSL协议"><a href="#（一）SSL协议" class="headerlink" title="（一）SSL协议"></a>（一）SSL协议</h4><p>SSL协议是一个分层的协议，共有两层组成。处于SSL协议的底层的是SSL记录层协议(SSL Record Protocol)，它位于可靠的传输层协议(如TCP)之上，用于封装高层协议的数据。其中SSL握手协议(SSL Handshake Protocol)允许服务方和客户方互相认证，并在应用层协议传送数据之前协商出一个加密算法和会话密钥。</p>
+<p>SSL协议实现的安全机制包括：</p>
+<p>数据传输的机密性：利用对称密钥算法对传输的数据进行加密。</p>
+<p>身份验证机制：基于证书利用数字签名方法对服务器和客户端进行身份验证，其中客户端的身份验证是可选的。</p>
+<p>消息完整性验证：消息传输过程中使用MAC算法来检验消息的完整性。</p>
+<h4 id="（二）加密算法"><a href="#（二）加密算法" class="headerlink" title="（二）加密算法"></a>（二）加密算法</h4><h5 id="1、散列函数Hash"><a href="#1、散列函数Hash" class="headerlink" title="1、散列函数Hash"></a>1、散列函数Hash</h5><p>常见的有 MD5、SHA1、SHA256，该类函数特点是函数单向不可逆、对输入非常敏感、输出长度固定，针对数据的任何修改都会改变散列函数的结果，用于防止信息篡改并验证数据的完整性。</p>
+<h5 id="2、对称加密"><a href="#2、对称加密" class="headerlink" title="2、对称加密"></a>2、对称加密</h5><p>常见的有AES-CBC、DES、3DES、AES-GCM等，相同的密钥可以用于信息的加密和解密，掌握密钥才能获取信息，能够防止信息窃听。</p>
+<h5 id="3、非对称加密"><a href="#3、非对称加密" class="headerlink" title="3、非对称加密"></a>3、非对称加密</h5><p>即常见的 RSA 算法，还包括 ECC、DH 等算法，算法特点是，密钥成对出现，一般称为公钥(公开)和私钥(保密)，公钥加密的信息只能私钥解开，私钥加密的信息只能公钥解开。</p>
+<h3 id="六、SSL-TSL握手过程"><a href="#六、SSL-TSL握手过程" class="headerlink" title="六、SSL/TSL握手过程"></a>六、SSL/TSL握手过程</h3><p>（一）客户端发起请求，以明文传输请求信息，包含版本信息，加密套件候选列表，压缩算法候选列表，随机数，扩展字段等信息</p>
+<p>（二）服务端返回协商的信息结果，包括选择使用的协议版本，选择的加密套件 ，选择的压缩算法、随机数等，其中随机数用于后续的密钥协商;服务器端配置对应的证书链，用于身份验证与密钥交换</p>
+<p>（三）证书校验，客户端验证证书的合法性，如果验证通过才会进行后续通信，否则根据错误情况不同做出提示和操作</p>
+<p>（四）合法性验证通过之后，客户端计算产生随机数字 Pre-master，并用证书公钥加密，发送给服务器</p>
+<p>（五）服务器用私钥解密加密的数据，基于之前交换的两个明文随机数，计算得到协商密钥，计算之前所有接收信息的 hash 值，验证数据和密钥正确性;</p>
+<p>（六）握手结束</p>
+<h3 id="七、HTTPS工作流程"><a href="#七、HTTPS工作流程" class="headerlink" title="七、HTTPS工作流程"></a>七、HTTPS工作流程</h3><h4 id="（一）建立连接"><a href="#（一）建立连接" class="headerlink" title="（一）建立连接"></a>（一）建立连接</h4><p>1.服务端首先把自己的公钥（Key1）发给证书颁发机构，向证书颁发机构申请证书。</p>
+<p>2.证书颁发机构自己也有一对公钥私钥。机构利用自己的私钥来加密Key1，并且通过服务端网址等信息生成一个证书签名，证书签名同样经过机构的私钥加密。证书制作完成后，机构把证书发送给了服务端。</p>
+<p>3.当客户端向服务端请求通信的时候，服务端不再直接返回自己的公钥（Key1），而是把自己申请的证书返回给客户端。</p>
+<p>4.客户端收到证书以后，要做的第一件事情是验证证书的真伪。需要说明的是，各大浏览器和操作系统已经维护了所有权威证书机构的名称和公钥。所以客户端只需要知道是哪个机构颁布的证书，就可以从本地找到对应的机构公钥，解密出证书签名，客户端对证书验证成功后，就可以放心地再次利用机构公钥，解密出服务端的公钥Key1。</p>
+<ol start="5">
+<li><p>客户端生成自己的对称加密密钥Key2，并且用服务端公钥Key1加密Key2，发送给服务端。</p>
+</li>
+<li><p>服务端用自己的私钥解开加密，得到对称加密密钥Key2。于是客户端与服务端开始用Key2进行对称加密的通信。</p>
+</li>
+</ol>
+<h4 id="（二）数据传输"><a href="#（二）数据传输" class="headerlink" title="（二）数据传输"></a>（二）数据传输</h4><ol>
+<li><p>对应用层数据进行分片成合适的 block</p>
+</li>
+<li><p>为分片数据编号，防止重放攻击</p>
+</li>
+<li><p>使用协商的压缩算法压缩数据</p>
+</li>
+<li><p>计算 MAC 值和压缩数据组成传输数据</p>
+</li>
+<li><p>使用 key 加密数据，发送给服务器</p>
+</li>
+<li><p>服务器收到数据之后使用key解密，校验数据，解压缩数据，重新组装</p>
+</li>
+</ol>
+<h3 id="八、HTTP与HTTPS的不同"><a href="#八、HTTP与HTTPS的不同" class="headerlink" title="八、HTTP与HTTPS的不同"></a>八、HTTP与HTTPS的不同</h3><p>(1) HTTPS是加密传输协议，HTTP是明文传输协议</p>
+<p>(2) HTTPS需要用到SSL证书，而HTTP不用</p>
+<p>(3) HTTPS比HTTP更加安全，对搜索引擎更友好，利于SEO</p>
+<p>(4) HTTPS标准端口443，HTTP标准端口80</p>
+<p>(5) HTTPS基于传输层，HTTP基于应用层</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="" alt="soliym wechat" style="width: 200px; max-width: 100%;">
+    <div></div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    soliym
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://soliym.top/2019/12/02/Http与Https的区别和加密原理/" title="Http与Https的区别和加密原理">http://soliym.top/2019/12/02/Http与Https的区别和加密原理/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/密码学/" rel="tag"><i class="fa fa-tag"></i>
+ 密码学</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/01/单钥密码体制三/" rel="next" title="单钥密码体制三">
+                <i class="fa fa-chevron-left"></i> 单钥密码体制三
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/05/internet校验和的增量更新/" rel="prev" title="internet校验和的增量更新">
+                internet校验和的增量更新 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTI2Ny8xNzgxNQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">soliym</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/soliym" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:soliym@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:531106830@qq.com" target="_blank" title="qq">
+                      
+                        <i class="fa fa-fw fa-qq"></i>qq</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/6401619515/home?leftnav=1" target="_blank" title="weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://soliym.top/" title="soliym" target="_blank">soliym</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、HTTP介绍"><span class="nav-number">1.</span> <span class="nav-text">一、HTTP介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、什么是HTTP"><span class="nav-number">1.1.</span> <span class="nav-text">1、什么是HTTP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、HTTP特点"><span class="nav-number">1.2.</span> <span class="nav-text">2、HTTP特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、HTTP工作过程"><span class="nav-number">1.3.</span> <span class="nav-text">3、HTTP工作过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#（一）概述"><span class="nav-number">1.3.1.</span> <span class="nav-text">（一）概述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#（二）详解"><span class="nav-number">1.3.2.</span> <span class="nav-text">（二）详解</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1、输入地址后回车，首先执行域名解析"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">1、输入地址后回车，首先执行域名解析</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2、连接并进行通信"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">2、连接并进行通信</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3、浏览器渲染页面"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">3、浏览器渲染页面</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4、HTTP的不足"><span class="nav-number">1.3.2.4.</span> <span class="nav-text">4、HTTP的不足</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、HTTP的改进-HTTPS"><span class="nav-number">2.</span> <span class="nav-text">二、HTTP的改进-HTTPS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、HTTPS采用的加密技术"><span class="nav-number">3.</span> <span class="nav-text">三、HTTPS采用的加密技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#（一）对称密钥加密"><span class="nav-number">3.1.</span> <span class="nav-text">（一）对称密钥加密</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（二）非对称密钥加密"><span class="nav-number">3.2.</span> <span class="nav-text">（二）非对称密钥加密</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、HTTPS通信加密机制"><span class="nav-number">4.</span> <span class="nav-text">四、HTTPS通信加密机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#（一）HTTPS采用混合机制的加密方式"><span class="nav-number">4.1.</span> <span class="nav-text">（一）HTTPS采用混合机制的加密方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（二）https的证书机制"><span class="nav-number">4.2.</span> <span class="nav-text">（二）https的证书机制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、SSL-TLS"><span class="nav-number">5.</span> <span class="nav-text">五、SSL/TLS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#（一）SSL协议"><span class="nav-number">5.1.</span> <span class="nav-text">（一）SSL协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（二）加密算法"><span class="nav-number">5.2.</span> <span class="nav-text">（二）加密算法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、散列函数Hash"><span class="nav-number">5.2.1.</span> <span class="nav-text">1、散列函数Hash</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、对称加密"><span class="nav-number">5.2.2.</span> <span class="nav-text">2、对称加密</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、非对称加密"><span class="nav-number">5.2.3.</span> <span class="nav-text">3、非对称加密</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、SSL-TSL握手过程"><span class="nav-number">6.</span> <span class="nav-text">六、SSL/TSL握手过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、HTTPS工作流程"><span class="nav-number">7.</span> <span class="nav-text">七、HTTPS工作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#（一）建立连接"><span class="nav-number">7.1.</span> <span class="nav-text">（一）建立连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（二）数据传输"><span class="nav-number">7.2.</span> <span class="nav-text">（二）数据传输</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八、HTTP与HTTPS的不同"><span class="nav-number">8.</span> <span class="nav-text">八、HTTP与HTTPS的不同</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+     
+    </div>
+   
+  </aside>
+
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">soliym</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v="></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v="></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v="></script>
+<script type="text/javascript" src="/js/src/post-details.js?v="></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v="></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
